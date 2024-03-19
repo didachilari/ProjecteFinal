@@ -1,3 +1,21 @@
-body.login .w100 {
-  width: 20px;
+body.login header {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  padding-top: 10px;
+}
+body.login header .w100 {
+  width: 30px;
+  height: 20px;
+  aspect-ratio: 1;
+}
+body.login header .w200 {
+  width: 30px;
+  height: 20px;
+  aspect-ratio: 1;
+}
+body.login header .w300 {
+  width: 30px;
+  height: 20px;
+  aspect-ratio: 1;
 }/*# sourceMappingURL=login.css.map */
