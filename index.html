@@ -12,15 +12,43 @@
 <body class="index">
     <header>
         <div class="container">
-            <div class="menu">
-                <p>CoutureApp</p>
-                <form action=""method="post" target="_blank">
-                    <input type="search" name="busqueda">
-                    <input type="submit" value="Buscar">
-                </form>
-                <a href="./index.html"><i class="bi bi-person-circle"></i></a>
-                <a href="./index.html"><i class="bi bi-cart"></i></a>
-            </div>
+            <!--<div class="menu row">
+                <div class="home col-">
+                    <a href="./index.html" class="logo">CoutureApp</a>
+                </div>
+                <div class="busqueda col">
+                    <form action=""method="post" target="_blank">
+                        <input class="barra" type="search" name="busqueda">
+                        <input class="buscar" type="submit" value="Buscar">
+                    </form>
+                </div>
+                <div class="usuario-carrito col">
+                    <a href="./index.html"><i class="bi bi-person-circle"></i></a>
+                    <a href="./index.html"><i class="bi bi-cart"></i></a>
+                </div>
+            </div>-->
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="#">CoutureApp</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-primary " type="submit"><i class="bi bi-search"></i> Buscar</button>
+                      </form>
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-person-circle"></i></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
         </div>
     </header>
 </body>
