@@ -7,20 +7,48 @@ body.login {
             width: 30px;
             height: 20px;
             aspect-ratio: 1;
+            margin: 10px;
+
         }
 
         .w200 {
             width: 30px;
             height: 20px;
             aspect-ratio: 1;
+            margin: 10px;
+
         }
 
         .w300 {
             width: 30px;
             height: 20px;
             aspect-ratio: 1;
+            margin: 1
+            0px;
         }
     }
-
+    .inicisessio{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        input{
+            margin-bottom: 20px;
+        }
+        button{
+            background-color: #44749D;
+            border: 1px solid #44749D;
+            border-radius: 5px;
+        }
+        .boton-incisessio{
+            text-decoration: none;
+            color: white;
+        }
+    }
  
 }
