@@ -6,14 +6,40 @@ body.login header .w100 {
   width: 30px;
   height: 20px;
   aspect-ratio: 1;
+  margin: 10px;
 }
 body.login header .w200 {
   width: 30px;
   height: 20px;
   aspect-ratio: 1;
+  margin: 10px;
 }
 body.login header .w300 {
   width: 30px;
   height: 20px;
   aspect-ratio: 1;
+  margin: 10px;
+}
+body.login .inicisessio {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+body.login .inicisessio form {
+  display: flex;
+  flex-direction: column;
+}
+body.login .inicisessio input {
+  margin-bottom: 20px;
+}
+body.login .inicisessio button {
+  background-color: #44749D;
+  border: 1px solid #44749D;
+  border-radius: 5px;
+}
+body.login .inicisessio .boton-incisessio {
+  text-decoration: none;
+  color: white;
 }/*# sourceMappingURL=login.css.map */
