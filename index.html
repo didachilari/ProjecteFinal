@@ -49,9 +49,60 @@
       <div class="container">
         <h2>Artículos populares</h2>
         <div class="carrusel">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="contenedor-articulo">
+                  <div class="usuario">
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
 
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+              <div class="swiper-slide">
+
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
         </div>
       </div>
     </section>
 </body>
+<script>
+  var swiper = new Swiper(".carrusel-populares", {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
 </html>
