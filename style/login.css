@@ -18,7 +18,7 @@ body.login header .w300 {
   width: 30px;
   height: 20px;
   aspect-ratio: 1;
-  margin: 10px;
+  margin: 1 0px;
 }
 body.login .inicisessio {
   display: flex;
