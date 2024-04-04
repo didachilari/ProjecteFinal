@@ -7,11 +7,12 @@ body.index{
             font-weight: 200;
             word-spacing: 5px;
             letter-spacing: 2px;
+            margin-bottom: 50px;
         }
         a{
             text-decoration: none;
             color: #ececec;
-            padding: 5px 30px 5px 30px;
+            padding: 7px 50px 7px 50px;
             background-color: #44749D;
             font-size: 20px;
             border-radius: 5px;
@@ -19,8 +20,9 @@ body.index{
         }
     }
     section.populares{
+        margin-top: 70px;
         h2{
-            height: 32px;
+            
         }
     }
 }
