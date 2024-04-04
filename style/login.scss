@@ -1,13 +1,12 @@
 body.login {
     header {
         display: flex;
-        justify-content: right;
+        text-align: right;
 
         .w100 {
             width: 30px;
             height: 20px;
             aspect-ratio: 1;
-            margin: 10px;
 
         }
 
@@ -15,7 +14,6 @@ body.login {
             width: 30px;
             height: 20px;
             aspect-ratio: 1;
-            margin: 10px;
 
         }
 
@@ -23,8 +21,6 @@ body.login {
             width: 30px;
             height: 20px;
             aspect-ratio: 1;
-            margin: 1
-            0px;
         }
     }
     .inicisessio{
