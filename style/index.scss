@@ -22,7 +22,18 @@ body.index{
     section.populares{
         margin-top: 70px;
         .carrusel{
-            
+            .carrusel-populares{
+                .swiper-wrapper{
+                    .swiper-slide{
+                        .contenedor-articulo{
+                            .usuario{
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

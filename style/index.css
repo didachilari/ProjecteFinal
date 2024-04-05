@@ -20,4 +20,8 @@ body.index section.vender a {
 }
 body.index section.populares {
   margin-top: 70px;
+}
+body.index section.populares .carrusel .carrusel-populares .swiper-wrapper .swiper-slide .contenedor-articulo .usuario {
+  display: flex;
+  align-items: center;
 }/*# sourceMappingURL=index.css.map */
