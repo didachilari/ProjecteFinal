@@ -1,4 +1,5 @@
 body.index{
+    
     section.vender{
         margin-top: 30px;
         text-align: center;
@@ -24,61 +25,53 @@ body.index{
         .carrusel{
             .carrusel-populares{
                 .swiper-wrapper{
+                    margin-bottom: 20px;
                     .swiper-slide{
-                        padding: 40px;
-                        .contenedor-articulo{
-                            border: 1px solid black;
-                            .usuario{
-                                padding: 10px 0 10px 20px;
-                                border-bottom: 1px solid black;
-                                display: flex;
-                                align-items: center;
-                                gap: 10px;
-                            }
-                            .imagen{
-                                border-bottom: 1px solid black;
-                                img{
-                                    width: 100%;
-                                    object-fit: cover;
-                                    aspect-ratio: 1;
-                                }
-                            }
-                            .contenido{
-                                .con-icon{
-                                    align-items: center;
-                                    .c-1{
-                                        padding-left: 20px;
-                                    }
-                                    .c-2{
-                                        .h-b{
-                                            flex-direction: column;
-                                            align-content:end;
-                                            padding-right: 20px;
-                                            gap: 5px;
-                                            img{
-                                                width: 50px;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        padding: 20px;
                     }
                 }
             }
             .swiper-button-prev{
+                padding: 3px;
+                width: 43px !important;
+                border: 2px solid black;
+                background-color: white;
+                border-radius: 30px;
                 content: url(./../img/arrow-left.svg);
-                width: 40px;
                 transform: translateX(-10px);
             }
             .swiper-button-next{
+                padding: 3px;
+                width: 43px !important;
+                border: 2px solid black;
+                background-color: white;
+                border-radius: 30px;
                 content: url(./../img/arrow-right.svg);
-                width: 40px;
-                transform: translateX(10px);
+                transform: translateX(10px) translateY(-10px);
             }
             .swiper-pagination-bullet-active {
                 opacity: var(--swiper-pagination-bullet-opacity, 1);
                 background: #000;
+            }
+        }
+    }
+    section.novedades{
+        margin-top: 100px;
+        .articulos{
+            margin-top: 50px;
+            .producto{
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+        }
+    }
+    section.outfits{
+        margin-top: 100px;
+        .articulos{
+            margin-top: 50px;
+            .producto{
+                padding-top: 12px;
+                padding-bottom: 12px;
             }
         }
     }
