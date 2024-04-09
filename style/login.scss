@@ -1,28 +1,4 @@
 body.login {
-    header {
-        display: flex;
-        text-align: right;
-
-        .w100 {
-            width: 30px;
-            height: 20px;
-            aspect-ratio: 1;
-
-        }
-
-        .w200 {
-            width: 30px;
-            height: 20px;
-            aspect-ratio: 1;
-
-        }
-
-        .w300 {
-            width: 30px;
-            height: 20px;
-            aspect-ratio: 1;
-        }
-    }
     .inicisessio{
         display: flex;
         flex-direction: column;
@@ -45,6 +21,10 @@ body.login {
             text-decoration: none;
             color: white;
         }
+        margin-top: 220px;
+        .pie-form a{
+            color: black;
+        }
     }
- 
+
 }

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 body.login header {
   display: flex;
   text-align: right;
@@ -17,12 +19,14 @@ body.login header .w300 {
   height: 20px;
   aspect-ratio: 1;
 }
+>>>>>>> 14362f630f0bc55258c629a3312d7a77be8f6b1c
 body.login .inicisessio {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
+  margin-top: 220px;
 }
 body.login .inicisessio form {
   display: flex;
@@ -39,4 +43,7 @@ body.login .inicisessio button {
 body.login .inicisessio .boton-incisessio {
   text-decoration: none;
   color: white;
+}
+body.login .inicisessio .pie-form a {
+  color: black;
 }/*# sourceMappingURL=login.css.map */
