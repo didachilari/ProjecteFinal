@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+=======
+body.login header {
+  display: flex;
+  text-align: right;
+}
+body.login header .w100 {
+  width: 30px;
+  height: 20px;
+  aspect-ratio: 1;
+}
+body.login header .w200 {
+  width: 30px;
+  height: 20px;
+  aspect-ratio: 1;
+}
+body.login header .w300 {
+  width: 30px;
+  height: 20px;
+  aspect-ratio: 1;
+}
+>>>>>>> 14362f630f0bc55258c629a3312d7a77be8f6b1c
 body.login .inicisessio {
   display: flex;
   flex-direction: column;

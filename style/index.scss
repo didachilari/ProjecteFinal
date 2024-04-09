@@ -1,4 +1,5 @@
 body.index{
+    
     section.vender{
         margin-top: 30px;
         text-align: center;
@@ -22,7 +23,56 @@ body.index{
     section.populares{
         margin-top: 70px;
         .carrusel{
-            
+            .carrusel-populares{
+                .swiper-wrapper{
+                    margin-bottom: 20px;
+                    .swiper-slide{
+                        padding: 20px;
+                    }
+                }
+            }
+            .swiper-button-prev{
+                padding: 3px;
+                width: 43px !important;
+                border: 2px solid black;
+                background-color: white;
+                border-radius: 30px;
+                content: url(./../img/arrow-left.svg);
+                transform: translateX(-10px);
+            }
+            .swiper-button-next{
+                padding: 3px;
+                width: 43px !important;
+                border: 2px solid black;
+                background-color: white;
+                border-radius: 30px;
+                content: url(./../img/arrow-right.svg);
+                transform: translateX(10px) translateY(-10px);
+            }
+            .swiper-pagination-bullet-active {
+                opacity: var(--swiper-pagination-bullet-opacity, 1);
+                background: #000;
+            }
+        }
+    }
+    section.novedades{
+        margin-top: 100px;
+        .articulos{
+            margin-top: 50px;
+            .producto{
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+        }
+    }
+    section.outfits{
+        margin-top: 100px;
+        .articulos{
+            margin-top: 50px;
+            .producto{
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
         }
     }
 }
