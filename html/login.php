@@ -46,19 +46,23 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body class="login">
-    <div class="inicisessio">
-        <div class="logo">CoutureAPP</div>
-        <form id="loginform" action="login.php" method="post"> 
-            <input type="text" name="usuario" placeholder="Nombre usuario" required>
-            
-            <input type="password" placeholder="Contraseña" name="password" required>
-            
-            <button type="submit" title="IniciarSession" name="IniciarSession" class="boton-incisessio">Iniciar Sesión</button>
-        </form>
-        <div class="pie-form">
-            <a href="./registre.php">Crear Cuenta</a>
+<body class="login">        
+    <div class="container">
+        <div class="inicisessio">
+
+            <div class="logo">CoutureAPP</div>
+            <form id="loginform" action="login.php" method="post"> 
+                <input type="text" name="usuario" placeholder="Nombre usuario" required>
+                
+                <input type="password" placeholder="Contraseña" name="password" required>
+                
+                <button type="submit" title="IniciarSession" name="IniciarSession" class="boton-incisessio">Iniciar Sesión</button>
+            </form>
+            <div class="pie-form">
+                <a href="./registre.php">Crear Cuenta</a>
+            </div>
         </div>
+    
     </div>
 </body>
 </html>
