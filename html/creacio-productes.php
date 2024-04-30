@@ -34,36 +34,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: Sesión de usuario no encontrada.");
     }
 
-    // Obtener los datos del formulario
-    $titulo = $_POST["titulo"];
-    $descripcion = $_POST["descripcion"];
-    $categoria = $_POST["categoria"];
-    $precio = $_POST["precio"];
-    $imagen = $_FILES["imagen"]["tmp_name"];
-    $marca = $_POST["marca"]; 
+// Obtener los datos del formulario
+$titulo = $_POST["titulo"];
+$descripcion = $_POST["descripcion"];
+$categoria = $_POST["categoria"]; // Obtener la categoría seleccionada
+$precio = $_POST["precio"];
+$imagen = $_FILES["imagen"]["tmp_name"];
+$marca = $_POST["marca"]; 
 
-    // Leer la imagen como datos binarios
-    $imagenBinaria = file_get_contents($imagen);
+// Leer la imagen como datos binarios
+$imagenBinaria = file_get_contents($imagen);
 
-    // Preparar la consulta SQL
-    $sql = "INSERT INTO producte (nom, preu, foto, me_gusta, id_usuari, id_marcas) VALUES (?, ?, ?, 0, ?, ?)";
+// Preparar la consulta SQL
+$sql = "INSERT INTO producte (nom, preu, foto, categorias, me_gusta, id_usuari, id_marcas) VALUES (?, ?, ?, ?, 0, ?, ?)";
 
-    // Preparar la declaración
-    $stmt = $conn->prepare($sql);
+// Preparar la declaración
+$stmt = $conn->prepare($sql);
 
-    // Vincular parámetros
-    $stmt->bind_param("ssssi", $titulo, $precio, $imagenBinaria, $id_usuario, $marca); // "s" para cadena, "i" para entero
+// Vincular parámetros
+$stmt->bind_param("ssssii", $titulo, $precio, $imagenBinaria, $categoria, $id_usuario, $marca); // "s" para cadena, "i" para entero
 
-    // Ejecutar la consulta
-    if ($stmt->execute()) {
-        header("Location: ../index.php");
-        // Cerrar la declaración y la conexión
-        $stmt->close();
-        $conn->close();
-        exit();
-    } else {
-        echo "<script>alert('Error al crear el producto: " . $conn->error . "');</script>"; // Alerta de error
-    }
+// Ejecutar la consulta
+if ($stmt->execute()) {
+    header("Location: ../index.php");
+    // Cerrar la declaración y la conexión
+    $stmt->close();
+    $conn->close();
+    exit();
+} else {
+    echo "<script>alert('Error al crear el producto: " . $conn->error . "');</script>"; // Alerta de error
+}
 
     // Cerrar la declaración y la conexión
     $stmt->close();

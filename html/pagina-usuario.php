@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 }
 
 // Obtener los productos del usuario con el nombre de la marca
-$sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca 
+$sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca, p.categorias 
         FROM producte p 
         INNER JOIN marcas m ON p.id_marcas = m.id_marcas 
         WHERE p.id_usuari = ?";
@@ -112,6 +112,7 @@ $conn->close();
                         <th>Título</th>
                         <th>Precio</th>
                         <th>Marca</th>
+                        <th>Categoría</th>
                         <th>Foto</th>
                         <th>Acciones</th>
                     </tr>
@@ -122,6 +123,7 @@ $conn->close();
                             <td><?php echo $producto['nom']; ?></td>
                             <td><?php echo $producto['preu']; ?></td>
                             <td><?php echo $producto['nombre_marca']; ?></td>
+                            <td><?php echo $producto['categorias']; ?></td>
                             <td>
                                 <?php if(isset($producto['foto']) && !empty($producto['foto'])): ?>
                                     <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['foto']); ?>" alt="" style="max-width: 500px; max-height: 500px;">

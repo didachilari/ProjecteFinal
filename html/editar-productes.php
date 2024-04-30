@@ -24,7 +24,7 @@ if (!isset($_GET['id'])) {
 
 $id_producto = $_GET['id'];
 
-$sql = "SELECT id_producte, nom, preu, foto, id_marcas FROM producte WHERE id_producte = ?";
+$sql = "SELECT id_producte, nom, preu, foto, id_marcas, categorias FROM producte WHERE id_producte = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_producto);
 $stmt->execute();
@@ -43,6 +43,22 @@ $result_marcas = $conn->query($sql_marcas);
 if (!$result_marcas) {
     echo "Error al obtener las marcas: " . $conn->error;
     exit();
+}
+
+// Procesamiento del formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener la nueva categoría del formulario
+    $categoria = $_POST['categoria'];
+
+    // Actualizar la categoría del producto en la base de datos
+    $sql_update_categoria = "UPDATE producte SET categorias = ? WHERE id_producte = ?";
+    $stmt_update_categoria = $conn->prepare($sql_update_categoria);
+    $stmt_update_categoria->bind_param("si", $categoria, $id_producto);
+
+    if ($stmt_update_categoria->execute()) {
+    } else {
+        echo "Error al actualizar la categoría: " . $conn->error;
+    }
 }
 ?>
 
@@ -97,6 +113,17 @@ if (!$result_marcas) {
                 <label for="precio" class="form-label">Precio:</label>
                 <input type="number" class="form-control" id="precio" name="precio" value="<?= $producto['preu'] ?>" min="0" step="0.01" required>
             </div>
+            <div class="my-3">
+                        <label for="categoria" class="form-label">Categoría:</label>
+                        <select id="categoria" name="categoria" class="form-select" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="camiseta">Camiseta</option>
+                            <option value="camisa">Camisa</option>
+                            <option value="pantalon">Pantalon</option>
+                            <option value="abrigo">Abrigo</option>
+                            <option value="calzado">Calzado</option>
+                        </select>
+                    </div>
             <div class="mb-3">
                 <label for="marca" class="form-label">Marca:</label>
                 <select class="form-select" id="marca" name="marca" required>
