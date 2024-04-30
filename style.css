@@ -64,6 +64,15 @@ header nav .container-fluid .navbar-collapse form .form-control {
   padding-right: 20px;
   gap: 5px;
 }
+.contenedor-articulo .contenido .con-icon .c-2 .h-b button.boton-corazon {
+  border: transparent;
+  background-color: transparent;
+  width: -moz-max-content;
+  width: max-content;
+}
+.contenedor-articulo .contenido .con-icon .c-2 .h-b button.boton-corazon img {
+  width: 30px;
+}
 .contenedor-articulo .contenido .con-icon .c-2 .h-b img {
   width: 50px;
 }/*# sourceMappingURL=style.css.map */

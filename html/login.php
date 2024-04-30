@@ -1,4 +1,7 @@
 <?php
+// Iniciar la sesión
+session_start();
+
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
@@ -23,19 +26,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // Inicio de sesión exitoso
-        header("Location: ./../index.html");
+        $row = $result->fetch_assoc();
+        $_SESSION['id_usuario'] = $row['id_usuari']; // Guardar el ID del usuario en la sesión
+        $_SESSION['usuario'] = $usuario; // También puedes guardar otros datos del usuario si lo necesitas
+        header("Location: ./../index.php");
         exit(); 
-
-    } else {
+    }
+     else {
         // Credenciales incorrectas
         $mensaje = "Usuari o contrasenya incorrectes!";
         echo '<script>alert("' . $mensaje . '");</script>';
     }
-    
 }
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

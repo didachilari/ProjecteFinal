@@ -64,11 +64,21 @@ header{
                     align-content:end;
                     padding-right: 20px;
                     gap: 5px;
+                    button.boton-corazon{
+                        border: transparent;
+                        background-color: transparent;
+                        width: max-content;
+                        img{
+                            width: 30px;
+                        }
+                    }
                     img{
                         width: 50px;
                     }
                 }
+
             }
+
         }
     }
 }

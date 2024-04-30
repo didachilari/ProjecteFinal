@@ -68,4 +68,8 @@ body.index section.outfits .articulos {
 body.index section.outfits .articulos .producto {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+.boton-corazon img {
+  width: 10px;
 }/*# sourceMappingURL=index.css.map */

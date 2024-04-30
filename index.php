@@ -23,15 +23,18 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                         <button class="btn btn-outline-primary " type="submit"><i class="bi bi-search"></i> Buscar</button>
                       </form>
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./html/login.php"><i class="bi bi-person-circle"></i></a>
+                        <a class="nav-link active" aria-current="page" href="./html/pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                      </li>
+                      <li class="nav-item">
+                      <a class="nav-link" href="./html/login.php"><i class="bi bi-house-door"></i></a>
                       </li>
                     </ul>
                   </div>
@@ -42,14 +45,14 @@
     <section class="vender">
       <div class="container">
         <p>Empieza a vender en solo un click</p>
-        <a href="./html/creacio-productes.html">Vender</a>
+        <a href="./html/creacio-productes.php">Vender</a>
       </div>
     </section>
     <section class="populares">
       <div class="container">
         <h2>Artículos populares</h2>
       
-        <div class="carrusel">
+        <!-- <div class="carrusel">
           <div class="swiper carrusel-populares">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -154,8 +157,8 @@
                   </div>
                 </div>
 
-              </div>
-              <div class="swiper-slide">
+              </div> 
+              <!-- <div class="swiper-slide">
 
                 <div class="contenedor-articulo">
                   <div class="usuario">
@@ -702,4 +705,70 @@
     },
   });
 </script>
-</html>
+</html> -->
+<?php
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "couture";
+
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Consulta SQL para obtener todos los datos de la tabla producte
+$sql = "SELECT p.*, u.nom_usuari 
+        FROM producte p 
+        INNER JOIN usuario u ON p.id_usuari = u.id_usuari";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Mostrar los datos obtenidos
+    while($row = $result->fetch_assoc()) {
+        echo '<div class="contenedor-articulo">';
+        echo '<div class="usuario">';
+        echo '<img src="./img/user-line.svg" alt="">';
+        echo '<span class="n-usuario">' . $row["nom_usuari"] . '</span>'; // Nombre de usuario obtenido de la tabla usuario
+        echo '</div>';
+        echo '<div class="imagen" style="text-align:center";>';
+        // Establecer el tamaño máximo de la imagen usando CSS
+        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['foto']).'" alt="" style="max-width: 500px; max-height: 500px; object-fit: contain;">';
+        echo '</div>';
+        echo '<div class="contenido">';
+        echo '<div class="row con-icon">';
+        echo '<div class="col-6">';
+        echo '<div class="c-1">';
+        echo '<span>' . $row["preu"] . '€</span>';
+        echo '<br>';
+        echo '<span>' . $row["me_gusta"] . '</span>';
+        echo '<br>';
+        // No hay columna "marca" en la tabla, solo un ID de marca
+        echo '<span>' . $row["id_marcas"] . '</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="col-6">';
+        echo '<div class="c-2">';
+        echo '<div class="row h-b">';
+        echo '<button type="button" class="boton-corazon">
+              <img src="./img/heart.svg" alt="">
+              </button>';
+        echo '<button type="button" class="boton-corazon">
+        <img src="./img/bag.svg" alt="">
+              </button>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "0 resultados";
+}
+$conn->close();
+?>
+
