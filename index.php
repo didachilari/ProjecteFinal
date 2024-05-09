@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Index</title>
 </head>
 <body class="index">
@@ -22,16 +23,17 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-primary " type="submit"><i class="bi bi-search"></i> Buscar</button>
-                      </form>
+                  <form class="d-flex" role="search" action="resultados_busqueda.php" method="GET">
+                  <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
+                  <button class="btn btn-outline-primary " type="submit"><i class="bi bi-search"></i> Buscar</button>
+                  </form>
+
                     <ul class="navbar-nav">
                       <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./html/pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
+                        <a class="nav-link nav-link-cart" href="./html/carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
                       </li>
                       <li class="nav-item">
                       <a class="nav-link" href="./html/login.php"><i class="bi bi-house-door"></i></a>
@@ -51,661 +53,7 @@
     <section class="populares">
       <div class="container">
         <h2>Artículos populares</h2>
-      
-        <!-- <div class="carrusel">
-          <div class="swiper carrusel-populares">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div> 
-              <!-- <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="swiper-slide">
-
-                <div class="contenedor-articulo">
-                  <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuari">Didac</span>
-                  </div>
-                  <div class="imagen">
-                    <img src="./img/nike.png" alt="">
-                  </div>
-                  <div class="contenido">
-                    <div class="row con-icon">
-                      <div class="col-6">
-                        <div class="c-1">
-                          <span>12,00€</span>
-                          <br>
-                          <span>42</span>
-                          <br>
-                          <span>Nike</span>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="c-2">
-                          <div class="row h-b">
-                            <img src="./img/heart.svg" alt="">
-                            <img src="./img/bag.svg" alt="">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="marcas">
-      <div class="container">
-        <div class="titulo">
-          
-        </div>
-      </div>
-    </section>
-
-    <section class="novedades">
-      <div class="container">
-        <h2>Novedades</h2>
-        <div class="articulos">
-          <div class="row">
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-3 producto">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="contenido">
-                  <div class="row con-icon">
-                    <div class="col-6">
-                      <div class="c-1">
-                        <span>12,00€</span>
-                        <br>
-                        <span>42</span>
-                        <br>
-                        <span>Nike</span>
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="c-2">
-                        <div class="row h-b">
-                          <img src="./img/heart.svg" alt="">
-                          <img src="./img/bag.svg" alt="">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="outfits">
-      <div class="container">
-        <h2>Outfits</h2>
-        <div class="articulos">
-          <div class="row">
-
-            <div class="col-3 outfit">
-              <div class="contenedor-articulo">
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 outfit">
-              <div class="contenedor-articulo">
-                <div class="imagen">
-                  <img src="./img/nike.png" alt="">
-                </div>
-                <div class="usuario">
-                  <img src="./img/user-line.svg" alt="">
-                  <span class="n-usuari">Didac</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-
-    </footer>
-</body>
-<script>
-  var swiper = new Swiper(".carrusel-populares", {
-    slidesPerView: 4,
-    spaceBetween: 30,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-</script>
-</html> -->
+ 
 <?php
 // Conexión a la base de datos
 $servername = "localhost";
@@ -720,10 +68,14 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consulta SQL para obtener todos los datos de la tabla producte
+// Variable que almacena el término de búsqueda
+$searchTerm = $_GET['search'] ?? ''; // Si no se ha enviado un término de búsqueda, se asigna una cadena vacía
+
+// Consulta SQL para obtener los datos filtrados por el término de búsqueda
 $sql = "SELECT p.*, u.nom_usuari 
         FROM producte p 
-        INNER JOIN usuario u ON p.id_usuari = u.id_usuari";
+        INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+        WHERE p.nom LIKE '%$searchTerm%'"; // Filtrar por el nombre del producto que contenga el término de búsqueda
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -742,12 +94,13 @@ if ($result->num_rows > 0) {
         echo '<div class="row con-icon">';
         echo '<div class="col-6">';
         echo '<div class="c-1">';
-        echo '<span>' . $row["preu"] . '€</span>';
+        echo '<span> Nombre: ' . $row["nom"] . '</span>'; // Aquí se imprime el nombre del producto
+        echo '<br>';
+        echo '<span> Precio: ' . $row["preu"] . '€</span>'; // Luego se imprime el precio
         echo '<br>';
         echo '<span>' . $row["me_gusta"] . '</span>';
         echo '<br>';
-        // No hay columna "marca" en la tabla, solo un ID de marca
-        echo '<span>' . $row["id_marcas"] . '</span>';
+        // Aquí puedes agregar más detalles del producto si lo deseas
         echo '</div>';
         echo '</div>';
         echo '<div class="col-6">';
@@ -756,10 +109,10 @@ if ($result->num_rows > 0) {
         echo '<button type="button" class="boton-corazon">
               <img src="./img/heart.svg" alt="">
               </button>';
-        echo '<button type="button" class="boton-corazon">
-        <img src="./img/bag.svg" alt="">
-              </button>';
-        echo '</div>';
+              echo '<button type="button" class="boton-corazon" onclick="agregarAlCarrito(' . $row["id_producte"] . ')">
+              <img src="./img/bag.svg" alt="">
+          </button>';
+     
         echo '</div>';
         echo '</div>';
         echo '</div>';
@@ -771,4 +124,24 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 ?>
+<script>
+var contadorCarrito = 0;
 
+function agregarAlCarrito(idProducto) {
+    // Incrementa el contador
+    contadorCarrito++;
+    // Actualiza el contador en la interfaz
+    document.getElementById("contadorCarrito").textContent = contadorCarrito;
+    $.ajax({
+        url: 'agregar_al_carrito.php',
+        type: 'POST',
+        data: { id: idProducto },
+        success: function(response) {
+            // Maneja la respuesta del servidor si es necesario
+        }
+    });
+}
+</script>
+</section>
+</body>
+</html>

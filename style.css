@@ -32,6 +32,25 @@ header nav .container-fluid .navbar-collapse form .form-control {
   width: 100%;
   max-width: 600px;
 }
+header nav .container-fluid .navbar-collapse .nav-item .nav-link-cart {
+  position: relative;
+}
+header nav .container-fluid .navbar-collapse .nav-item .nav-link-cart .contador-carrito {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .contenedor-articulo {
   border: 1px solid black;
