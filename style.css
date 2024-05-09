@@ -75,4 +75,13 @@ header nav .container-fluid .navbar-collapse form .form-control {
 }
 .contenedor-articulo .contenido .con-icon .c-2 .h-b img {
   width: 50px;
+}
+
+form label {
+  font-family: "Kantumruy Pro", sans-serif;
+  font-weight: 600;
+}
+form input, form textarea {
+  font-family: "Kantumruy Pro", sans-serif;
+  font-weight: 400;
 }/*# sourceMappingURL=style.css.map */
