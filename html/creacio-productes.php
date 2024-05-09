@@ -1,8 +1,8 @@
 <?php
-// Iniciar sesión
+//iniciarem la sessió
 session_start();
 
-// Conexión a la base de datos
+//connexió bbdd
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,12 +10,12 @@ $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Verificar la conexión
+//verificarem la connexió
 if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
 
-// Obtener marcas de la base de datos
+//obtindrem les marcas de la bbdd
 $sql_marcas = "SELECT id_marcas, nom FROM marcas";
 $result_marcas = $conn->query($sql_marcas);
 $marcas = [];
@@ -25,44 +25,44 @@ if ($result_marcas->num_rows > 0) {
     }
 }
 
-// Verificar si se envió el formulario
+//verificarem s'hi s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener el ID del usuario de la sesión
+    //obtindrem el ID de l'usuari de la sessió
     if(isset($_SESSION['id_usuario'])) {
         $id_usuario = $_SESSION['id_usuario'];
     } else {
         die("Error: Sesión de usuario no encontrada.");
     }
 
-    // Obtener los datos del formulario
+    //obtindrem les dades del formulari
     $titulo = $_POST["titulo"];
     $descripcion = $_POST["descripcion"];
-    $categoria = $_POST["categoria"]; // Obtener la categoría seleccionada
+    $categoria = $_POST["categoria"];
     $precio = $_POST["precio"];
     $imagen = $_FILES["imagen"]["tmp_name"];
     $marca = $_POST["marca"]; 
 
-    // Leer la imagen como datos binarios
+    //leegirem la img amb dades binaries 
     $imagenBinaria = file_get_contents($imagen);
 
-    // Preparar la consulta SQL
+    //farem la consulta SQL
     $sql = "INSERT INTO producte (nom, preu, foto, categorias, me_gusta, id_usuari, id_marcas) VALUES ('$titulo', '$precio', ?, '$categoria', 0, $id_usuario, $marca)";
 
-    // Preparar la declaración
+    //prepararem la declaració
     $stmt = $conn->prepare($sql);
 
-    // Vincular parámetro para la imagen
-    $stmt->bind_param("b", $imagenBinaria); // "b" para datos binarios
+    //el que farem aqui serà amb el bind_param agafar directament la img de la bbdd en contes de agafar-la d'una carpeta local
+    $stmt->bind_param("b", $imagenBinaria); 
 
-    // Ejecutar la consulta
+    //executarem la consulta
     if ($stmt->execute()) {
         header("Location: ../index.php");
         exit();
     } else {
-        echo "<script>alert('Error al crear el producto: " . $conn->error . "');</script>"; // Alerta de error
+        echo "<script>alert('Error al crear el producto: " . $conn->error . "');</script>";
     }
 
-    // Cerrar la declaración y la conexión
+    //tancarem la declaració i connexió
     $stmt->close();
     $conn->close();
 }
@@ -75,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Productos</title>
 
-    <!-- Enlaces a hojas de estilo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">

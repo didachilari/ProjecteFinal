@@ -1,21 +1,21 @@
 <?php
-// Verificar si el formulario ha sido enviado
+//verificarem s'hi s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conectar a la base de datos
+    //connexió bbdd
     $servername = "localhost";
     $username = "root";
     $password = "";
     $database = "couture";
 
-    // Crear conexión
+    //crearem la connexió
     $conn = new mysqli($servername, $username, $password, $database);
 
-    // Comprobar la conexión
+    //verificarem la connexió
     if ($conn->connect_error) {
         die("Connexió fallida: " . $conn->connect_error);
     }
 
-    // Obtener los datos del formulario
+    //obtindrem les dades del formulari
     $nom = $_POST["nom"];
     $cognoms = $_POST["cognoms"];
     $telf = $_POST["telf"];
@@ -25,25 +25,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_usuari = $_POST["nom_usuari"];
     $contrasenya = $_POST["contrasenya"];
 
-    // Verificar si todos los campos están llenos
+    //verificarem si tots els camps del formulari estan ple
     if (!empty($nom) && !empty($cognoms) && !empty($telf) && !empty($data_naixament) && !empty($correu) && !empty($dni) && !empty($nom_usuari) && !empty($contrasenya)) {
-        // Preparar la consulta SQL para insertar los datos en la base de datos
+        //insertarem les dades a la bbdd
         $sql = "INSERT INTO usuario (nom, cognoms, telf, data_naixament, correu, dni, nom_usuari, contrasenya) 
                 VALUES ('$nom', '$cognoms', '$telf', '$data_naixament', '$correu', '$dni', '$nom_usuari', '$contrasenya')";
 
-        // Ejecutar la consulta
+        //executarem la consulta
         if ($conn->query($sql) === TRUE) {
-            // Después de crear, ir a login.php para iniciar sesión
             header("Location: ./login.php");
             exit(); 
         } else {
-            // Si hay algún error al insertar en la base de datos
+            //s'hi ha algun error
             $mensaje = "No s'ha creat l'usuari!";
             echo '<script>alert("' . $mensaje . '");</script>';
         }
     } 
 
-    // Cerrar la conexión
+    //tancar la connexió
     $conn->close();
 }
 ?>

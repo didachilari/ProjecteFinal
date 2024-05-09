@@ -1,18 +1,19 @@
 <?php
+//iniciarem la sessió
 session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
     exit();
 }
-
+//connexió bbdd
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
-
+//verificarem la connexió
 if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
@@ -22,6 +23,7 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
+//obtindrem la id del producte
 $id_producto = $_GET['id'];
 
 $sql = "SELECT id_producte, nom, preu, foto, id_marcas, categorias FROM producte WHERE id_producte = $id_producto";
@@ -42,32 +44,30 @@ if (!$result_marcas) {
     exit();
 }
 
-// Procesamiento del formulario
+//verificarem s'hi s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener la nueva categoría del formulario
+    //obtindrem la categoria nova 
     $categoria = $_POST['categoria'];
 
-    // Actualizar la categoría del producto en la base de datos
+    //actualizarem la categoria del producte a la bbdd
     $sql_update_categoria = "UPDATE producte SET categorias = '$categoria' WHERE id_producte = $id_producto";
 
     if ($conn->query($sql_update_categoria) === TRUE) {
-        // Procesar la imagen si se proporcionó
+        //processarem la imatge si s'ha proporcionat
         if ($_FILES['foto']['size'] > 0) {
-            // Leer la imagen como datos binarios
+            //legirem la img com dades binaries
             $imagen_temp = $_FILES['foto']['tmp_name'];
             $imagen_contenido = file_get_contents($imagen_temp);
 
-            // Actualizar la imagen en la base de datos
+            //actualizarem la img a la bbdd
             $sql_update_imagen = "UPDATE producte SET foto = ? WHERE id_producte = $id_producto";
             $stmt_update_imagen = $conn->prepare($sql_update_imagen);
-            $stmt_update_imagen->bind_param("b", $imagen_contenido); // "b" para datos binarios
+            $stmt_update_imagen->bind_param("b", $imagen_contenido); 
 
             if (!$stmt_update_imagen->execute()) {
                 echo "Error al actualizar la imagen: " . $conn->error;
             }
-        }
-        
-        // Redireccionar a alguna página o mostrar un mensaje de éxito
+        }     
     } else {
         echo "Error al actualizar la categoría: " . $conn->error;
     }
