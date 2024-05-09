@@ -24,11 +24,8 @@ if (!isset($_GET['id'])) {
 
 $id_producto = $_GET['id'];
 
-$sql = "SELECT id_producte, nom, preu, foto, id_marcas, categorias FROM producte WHERE id_producte = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_producto);
-$stmt->execute();
-$result = $stmt->get_result();
+$sql = "SELECT id_producte, nom, preu, foto, id_marcas, categorias FROM producte WHERE id_producte = $id_producto";
+$result = $conn->query($sql);
 
 if (!$result || $result->num_rows == 0) {
     echo "El producto no existe.";
@@ -51,15 +48,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $categoria = $_POST['categoria'];
 
     // Actualizar la categoría del producto en la base de datos
-    $sql_update_categoria = "UPDATE producte SET categorias = ? WHERE id_producte = ?";
-    $stmt_update_categoria = $conn->prepare($sql_update_categoria);
-    $stmt_update_categoria->bind_param("si", $categoria, $id_producto);
+    $sql_update_categoria = "UPDATE producte SET categorias = '$categoria' WHERE id_producte = $id_producto";
 
-    if ($stmt_update_categoria->execute()) {
+    if ($conn->query($sql_update_categoria) === TRUE) {
+        // Procesar la imagen si se proporcionó
+        if ($_FILES['foto']['size'] > 0) {
+            // Leer la imagen como datos binarios
+            $imagen_temp = $_FILES['foto']['tmp_name'];
+            $imagen_contenido = file_get_contents($imagen_temp);
+
+            // Actualizar la imagen en la base de datos
+            $sql_update_imagen = "UPDATE producte SET foto = ? WHERE id_producte = $id_producto";
+            $stmt_update_imagen = $conn->prepare($sql_update_imagen);
+            $stmt_update_imagen->bind_param("b", $imagen_contenido); // "b" para datos binarios
+
+            if (!$stmt_update_imagen->execute()) {
+                echo "Error al actualizar la imagen: " . $conn->error;
+            }
+        }
+        
+        // Redireccionar a alguna página o mostrar un mensaje de éxito
     } else {
         echo "Error al actualizar la categoría: " . $conn->error;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <header>
-        <div class="container">
+    <div class="container">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">CoutureApp</a>
@@ -103,41 +116,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <div class="container mt-5">
-        <h1>Editar Producto</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="titulo" class="form-label">Título:</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $producto['nom'] ?>" required>
-            </div>
-            <div class="mb-3">
-                <label for="precio" class="form-label">Precio:</label>
-                <input type="number" class="form-control" id="precio" name="precio" value="<?= $producto['preu'] ?>" min="0" step="0.01" required>
-            </div>
-            <div class="my-3">
-                        <label for="categoria" class="form-label">Categoría:</label>
-                        <select id="categoria" name="categoria" class="form-select" required>
-                            <option value="">Selecciona una categoría</option>
-                            <option value="camiseta">Camiseta</option>
-                            <option value="camisa">Camisa</option>
-                            <option value="pantalon">Pantalon</option>
-                            <option value="abrigo">Abrigo</option>
-                            <option value="calzado">Calzado</option>
-                        </select>
-                    </div>
-            <div class="mb-3">
-                <label for="marca" class="form-label">Marca:</label>
-                <select class="form-select" id="marca" name="marca" required>
-                    <?php while ($marca = $result_marcas->fetch_assoc()): ?>
-                        <option value="<?= $marca['id_marcas'] ?>" <?= ($producto['id_marcas'] == $marca['id_marcas']) ? 'selected' : '' ?>><?= $marca['nom'] ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="foto" class="form-label">Foto:</label>
-                <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </form>
-    </div>
+    <h1>Editar Producto</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título:</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="<?= $producto['nom'] ?>" required>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio:</label>
+            <input type="number" class="form-control" id="precio" name="precio" value="<?= $producto['preu'] ?>" min="0" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría:</label>
+            <select id="categoria" name="categoria" class="form-select" required>
+                <option value="">Selecciona una categoría</option>
+                <option value="camiseta" <?= ($producto['categorias'] == 'camiseta') ? 'selected' : '' ?>>Camiseta</option>
+                <option value="camisa" <?= ($producto['categorias'] == 'camisa') ? 'selected' : '' ?>>Camisa</option>
+                <option value="pantalon" <?= ($producto['categorias'] == 'pantalon') ? 'selected' : '' ?>>Pantalon</option>
+                <option value="abrigo" <?= ($producto['categorias'] == 'abrigo') ? 'selected' : '' ?>>Abrigo</option>
+                <option value="calzado" <?= ($producto['categorias'] == 'calzado') ? 'selected' : '' ?>>Calzado</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="foto" class="form-label">Foto:</label>
+            <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+
 </body>
 </html>

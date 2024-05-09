@@ -1,8 +1,8 @@
 <?php
-// Iniciar sesión
+// Inicia la sesión para acceder a los datos del carrito
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
+// Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
     exit();
@@ -28,11 +28,8 @@ if ($conn->connect_error) {
 $sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca, p.categorias 
         FROM producte p 
         INNER JOIN marcas m ON p.id_marcas = m.id_marcas 
-        WHERE p.id_usuari = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_usuario);
-$stmt->execute();
-$result = $stmt->get_result();
+        WHERE p.id_usuari = $id_usuario";
+$result = $conn->query($sql);
 
 // Array para almacenar los productos del usuario
 $productos_usuario = [];
@@ -46,10 +43,8 @@ while ($row = $result->fetch_assoc()) {
 if (isset($_POST['eliminar_producto'])) {
     $id_producto = $_POST['eliminar_producto'];
 
-    $sql = "DELETE FROM producte WHERE id_producte = ? AND id_usuari = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $id_producto, $id_usuario);
-    $stmt->execute();
+    $sql = "DELETE FROM producte WHERE id_producte = $id_producto AND id_usuari = $id_usuario";
+    $conn->query($sql);
 
     // Redirigir para evitar reenvío de formulario
     header("Location: pagina-usuario.php");
@@ -57,7 +52,6 @@ if (isset($_POST['eliminar_producto'])) {
 }
 
 // Cerrar la conexión
-$stmt->close();
 $conn->close();
 ?>
 

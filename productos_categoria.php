@@ -43,7 +43,6 @@ if ($result->num_rows > 0) {
         echo '<br>';
         echo '<span>' . $row["me_gusta"] . '</span>';
         echo '<br>';
-        // Aquí puedes agregar más detalles del producto si lo deseas
         echo '</div>';
         echo '</div>';
         echo '<div class="col-6">';
