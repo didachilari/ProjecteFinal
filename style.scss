@@ -17,12 +17,63 @@ body{
 }
 header{
     background-color: #ffffffcb;
-    nav{
-        .container-fluid{
-            gap: 50px;
-            a{
-                font-size: 25px;
+    padding-top: 10px;
+
+    a{
+        --bs-navbar-brand-font-size:30px;
+        @media (max-width:992px) {
+            --bs-navbar-brand-font-size:25px;
+        }
+    }
+    .cabecera{
+        //menu de la cabecera
+        .navbar-nav{
+            flex-direction: row;
+            justify-content: flex-end;
+            gap:40px;
+            @media (max-width:992px) {
+                gap: 20px;
             }
+            .nav-item{
+                .nav-link{
+                    --bs-nav-link-font-size: 23px;
+                    @media (max-width:992px) {
+                        --bs-nav-link-font-size: 20px;
+                    }
+                    i{
+                        transition: all 0.15s ease;
+                        &:hover{
+                            color:#934c14;
+                        }
+                    }
+                }                
+                .nav-link-cart{
+                    position: relative;
+                    .contador-carrito {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        transform: translate(50%, -10%);
+                        background-color: red;
+                        color: white;
+                        border-radius: 50%;
+                        padding: 5px;
+                        font-size: 10px;
+                        width: 15px;
+                        height: 15px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+    
+    //menu de navegacion
+    nav{
+        .container{
+            flex-direction: row-reverse;
             .navbar-collapse{
                 form{
                     width: 90%;
@@ -31,29 +82,50 @@ header{
                         max-width: 600px;
                     }
                 }
-                .nav-item{                
-                    .nav-link-cart{
-                        position: relative;
-                        .contador-carrito {
-                            position: absolute;
-                            top: 0;
-                            right: 0;
-                            transform: translate(50%, -50%);
-                            background-color: red;
-                            color: white;
-                            border-radius: 50%;
-                            padding: 5px;
-                            font-size: 10px;
-                            width: 15px;
-                            height: 15px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                .navbar-nav{
+                    @media (min-width:992px) {
+                        gap: 40px;
+                    }
+                    .nav-item{   
+                        width: max-content;
+                        .nav-link{
+                            --bs-nav-link-color: #323232;
+                            --bs-nav-link-font-size: 20px;
+
+                        }
+                        &:hover{
+                            --bs-nav-link-hover-color:#934c14;
+                        }           
+                    }
+                }
+            }
+            .buscador{
+                @media (min-width:992px) {
+                    width: 35%;
+                }
+                @media (max-width:992px) {
+                    width: 60%;
+                }
+                form{
+                    .btn{
+                        padding: 0;
+                        padding-right: 10px;
+                        --bs-body-color: #323232;
+                        &:hover{
+                            --bs-btn-hover-color: #934c14;
+                        }
+                        .bi{
+                            font-size: 25px;
                         }
                     }
                 }
             }
-
+            .navbar-toggler{
+                --bs-navbar-toggler-border-color: transparent;
+                &:focus{
+                    box-shadow: none;
+                }
+            }
         } 
     }
     
@@ -113,5 +185,20 @@ form{
     input, textarea{
         font-family: "Kantumruy Pro", sans-serif;
         font-weight: 400;
+    }
+}
+
+.desktop{
+    display: block;
+}
+.mobile{
+    display: none;
+}
+@media (max-width:992px) {
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
     }
 }
