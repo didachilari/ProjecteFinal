@@ -18,28 +18,48 @@ body {
 
 header {
   background-color: rgba(255, 255, 255, 0.7960784314);
+  padding-top: 10px;
 }
-header nav .container-fluid {
-  gap: 50px;
+header a {
+  --bs-navbar-brand-font-size:30px;
 }
-header nav .container-fluid a {
-  font-size: 25px;
+@media (max-width: 992px) {
+  header a {
+    --bs-navbar-brand-font-size:25px;
+  }
 }
-header nav .container-fluid .navbar-collapse form {
-  width: 90%;
+header .cabecera .navbar-nav {
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 40px;
 }
-header nav .container-fluid .navbar-collapse form .form-control {
-  width: 100%;
-  max-width: 600px;
+@media (max-width: 992px) {
+  header .cabecera .navbar-nav {
+    gap: 20px;
+  }
 }
-header nav .container-fluid .navbar-collapse .nav-item .nav-link-cart {
+header .cabecera .navbar-nav .nav-item .nav-link {
+  --bs-nav-link-font-size: 23px;
+}
+@media (max-width: 992px) {
+  header .cabecera .navbar-nav .nav-item .nav-link {
+    --bs-nav-link-font-size: 20px;
+  }
+}
+header .cabecera .navbar-nav .nav-item .nav-link i {
+  transition: all 0.15s ease;
+}
+header .cabecera .navbar-nav .nav-item .nav-link i:hover {
+  color: #934c14;
+}
+header .cabecera .navbar-nav .nav-item .nav-link-cart {
   position: relative;
 }
-header nav .container-fluid .navbar-collapse .nav-item .nav-link-cart .contador-carrito {
+header .cabecera .navbar-nav .nav-item .nav-link-cart .contador-carrito {
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(50%, -50%);
+  transform: translate(50%, -10%);
   background-color: red;
   color: white;
   border-radius: 50%;
@@ -50,6 +70,59 @@ header nav .container-fluid .navbar-collapse .nav-item .nav-link-cart .contador-
   display: flex;
   justify-content: center;
   align-items: center;
+}
+header nav .container {
+  flex-direction: row-reverse;
+}
+header nav .container .navbar-collapse form {
+  width: 90%;
+}
+header nav .container .navbar-collapse form .form-control {
+  width: 100%;
+  max-width: 600px;
+}
+@media (min-width: 992px) {
+  header nav .container .navbar-collapse .navbar-nav {
+    gap: 40px;
+  }
+}
+header nav .container .navbar-collapse .navbar-nav .nav-item {
+  width: -moz-max-content;
+  width: max-content;
+}
+header nav .container .navbar-collapse .navbar-nav .nav-item .nav-link {
+  --bs-nav-link-color: #323232;
+  --bs-nav-link-font-size: 20px;
+}
+header nav .container .navbar-collapse .navbar-nav .nav-item:hover {
+  --bs-nav-link-hover-color:#934c14;
+}
+@media (min-width: 992px) {
+  header nav .container .buscador {
+    width: 35%;
+  }
+}
+@media (max-width: 992px) {
+  header nav .container .buscador {
+    width: 60%;
+  }
+}
+header nav .container .buscador form .btn {
+  padding: 0;
+  padding-right: 10px;
+  --bs-body-color: #323232;
+}
+header nav .container .buscador form .btn:hover {
+  --bs-btn-hover-color: #934c14;
+}
+header nav .container .buscador form .btn .bi {
+  font-size: 25px;
+}
+header nav .container .navbar-toggler {
+  --bs-navbar-toggler-border-color: transparent;
+}
+header nav .container .navbar-toggler:focus {
+  box-shadow: none;
 }
 
 .contenedor-articulo {
@@ -103,4 +176,21 @@ form label {
 form input, form textarea {
   font-family: "Kantumruy Pro", sans-serif;
   font-weight: 400;
+}
+
+.desktop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+  }
 }/*# sourceMappingURL=style.css.map */
