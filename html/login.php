@@ -5,7 +5,7 @@ session_start();
 //connexió bbdd
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);

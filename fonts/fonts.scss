@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inder&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 
 .inder-regular {
     font-family: "Inder", sans-serif;
@@ -10,5 +12,15 @@
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+  }
+
+  .inconsolata {
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  .karla {
+    font-family: "Karla", sans-serif;
+    font-optical-sizing: auto;
   }
   

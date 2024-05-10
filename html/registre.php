@@ -4,7 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //connexió bbdd
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "root";
     $database = "couture";
 
     //crearem la connexió
