@@ -42,16 +42,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen = $_FILES["imagen"]["tmp_name"];
     $marca = $_POST["marca"]; 
 
-    // Leer el contenido binario de la imagen
+    //leer contenido binario de la img
     $imagenBinaria = file_get_contents($imagen);
 
-    // Escapar el contenido binario para evitar problemas de codificación
-    $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria);
+    //escapar el contenido binario para evitar problemas de codificación
+    $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria); 
 
-    // Preparar la consulta SQL con el contenido binario de la imagen
+    //preparar la consulta sql
     $sql = "INSERT INTO producte (nom, preu, foto, categorias, me_gusta, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', 0, $id_usuario, $marca)";
 
-    // Ejecutar la consulta
+    //ejectuar la consulta
     if ($conn->query($sql) === TRUE) {
         header("Location: ../index.php");
         exit();

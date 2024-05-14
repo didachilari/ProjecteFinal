@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
     <header>
         <div class="container">
             <!-- Barra de navegación -->
@@ -42,29 +41,6 @@
                     </div>
                 </div>
             </nav>
-=======
-<header>
-      <div class="container">
-        <div class="cabecera">
-          <div class="row">
-            <div class="col">
-              <a class="navbar-brand" href="./index.php">CoutureApp</a>
-            </div>
-            <div class="col">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="./html/pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link nav-link-cart" href="./html/carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="./html/login.php"><i class="bi bi-house-door"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
->>>>>>> 4048a16879f568b61ce5ee955a1f5c257f8abf92
         </div>
       </div>
       <div class="flex-mobile">
