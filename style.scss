@@ -5,6 +5,10 @@
 
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+html{
+    position: relative;
+    height: 100vh;
+}
 p{
     font-size: 20px;
     font-family: "Karla", sans-serif;
@@ -14,13 +18,11 @@ h2{
     height: 32px;
     font-family: "Inder", sans-serif;
 }
-body{
-    background-color: #E6E6E6;
-}
-header{
-    background-color: #ffffffcb;
-    padding-top: 10px;
 
+header{
+    background-color: #ecececcb;
+    padding-top: 10px;
+    
     a{
         --bs-navbar-brand-font-size:30px;
         @media (max-width:992px) {
@@ -132,6 +134,51 @@ header{
     }
     
 } 
+footer{
+    
+    .background{
+        padding: 20px 0;
+        background-color: #42240C;
+        .general{
+            .izquierda{
+                .row{
+                    flex-direction: column;
+                    a{
+                        text-decoration: none;
+                        color: #E6E6E6;
+                        font-size: 20px;
+                    }
+                    .titulo{
+                        margin-bottom: 10px;
+                        a{
+                            font-size: 26px;
+                        }
+                    }
+                }
+            }
+            .derecha{
+                .row{
+                    flex-direction: column;
+                    align-items: end;
+                    p{
+                        font-size: 26px;
+                        color: #E6E6E6;
+                        margin-bottom: 10px;
+                    }
+                    .rrss{
+                        a{
+                            padding: 5px;
+                            background-color: #E6E6E6;
+                            color: #323232;
+                            margin: 0 5px;
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 .contenedor-articulo{
     border: 1px solid black;
     .usuario{

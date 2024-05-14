@@ -3,6 +3,11 @@
 @import url(./fonts/fonts.css);
 @import url(./style/creacio.css);
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+html {
+  position: relative;
+  height: 100vh;
+}
+
 p {
   font-size: 20px;
   font-family: "Karla", sans-serif;
@@ -13,12 +18,8 @@ h2 {
   font-family: "Inder", sans-serif;
 }
 
-body {
-  background-color: #E6E6E6;
-}
-
 header {
-  background-color: rgba(255, 255, 255, 0.7960784314);
+  background-color: rgba(236, 236, 236, 0.7960784314);
   padding-top: 10px;
 }
 header a {
@@ -124,6 +125,41 @@ header nav .container .navbar-toggler {
 }
 header nav .container .navbar-toggler:focus {
   box-shadow: none;
+}
+
+footer .background {
+  padding: 20px 0;
+  background-color: #42240C;
+}
+footer .background .general .izquierda .row {
+  flex-direction: column;
+}
+footer .background .general .izquierda .row a {
+  text-decoration: none;
+  color: #E6E6E6;
+  font-size: 20px;
+}
+footer .background .general .izquierda .row .titulo {
+  margin-bottom: 10px;
+}
+footer .background .general .izquierda .row .titulo a {
+  font-size: 26px;
+}
+footer .background .general .derecha .row {
+  flex-direction: column;
+  align-items: end;
+}
+footer .background .general .derecha .row p {
+  font-size: 26px;
+  color: #E6E6E6;
+  margin-bottom: 10px;
+}
+footer .background .general .derecha .row .rrss a {
+  padding: 5px;
+  background-color: #E6E6E6;
+  color: #323232;
+  margin: 0 5px;
+  font-size: 30px;
 }
 
 .contenedor-articulo {
