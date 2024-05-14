@@ -27,18 +27,19 @@ if ($result->num_rows > 0) {
         echo '<div class="contenedor-articulo">';
         echo '<div class="usuario">';
         echo '<img src="./img/user-line.svg" alt="">';
-        echo '<span class="n-usuario">' . $row["nom_usuari"] . '</span>'; 
+        echo '<span class="n-usuario">' . $row["nom_usuari"] . '</span>'; // Nombre de usuario obtenido de la tabla usuario
         echo '</div>';
         echo '<div class="imagen" style="text-align:center";>';
+        // Establecer el tamaño máximo de la imagen usando CSS
         echo '<img src="data:image/jpeg;base64,'.base64_encode($row['foto']).'" alt="" style="max-width: 500px; max-height: 500px; object-fit: contain;">';
         echo '</div>';
         echo '<div class="contenido">';
         echo '<div class="row con-icon">';
         echo '<div class="col-6">';
         echo '<div class="c-1">';
-        echo '<span> Nombre: ' . $row["nom"] . '</span>'; 
+        echo '<span> Nombre: ' . $row["nom"] . '</span>'; // Aquí se imprime el nombre del producto
         echo '<br>';
-        echo '<span> Precio: ' . $row["preu"] . '€</span>'; 
+        echo '<span> Precio: ' . $row["preu"] . '€</span>'; // Luego se imprime el precio
         echo '<br>';
         echo '<span>' . $row["me_gusta"] . '</span>';
         echo '<br>';

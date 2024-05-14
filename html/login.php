@@ -1,8 +1,8 @@
 <?php
-//iniciarem la sessió
+// Iniciar la sesión
 session_start();
 
-//connexió bbdd
+// Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,30 +10,30 @@ $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
-//verificarem la connexió
+// Verificar la conexión
 if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
 
-//verificarem s'hi s'ha enviat el formulari
+// Verificar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['password'];
 
-    //consultarem per verificar si l'usuari i contrasenya estan a la bbdd
+    // Consulta para verificar las credenciales
     $sql = "SELECT * FROM usuario WHERE nom_usuari = '$usuario' AND contrasenya = '$contrasena'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        //inici de sessió exitos
+        // Inicio de sesión exitoso
         $row = $result->fetch_assoc();
-        $_SESSION['id_usuario'] = $row['id_usuari']; //guardarem l'ID de l'usuari en la sessió
-        $_SESSION['usuario'] = $usuario; 
+        $_SESSION['id_usuario'] = $row['id_usuari']; // Guardar el ID del usuario en la sesión
+        $_SESSION['usuario'] = $usuario; // También puedes guardar otros datos del usuario si lo necesitas
         header("Location: ./../index.php");
         exit(); 
     }
      else {
-        //usuari o contrasenya incorrecta
+        // Credenciales incorrectas
         $mensaje = "Usuari o contrasenya incorrectes!";
         echo '<script>alert("' . $mensaje . '");</script>';
     }

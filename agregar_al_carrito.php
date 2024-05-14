@@ -1,15 +1,15 @@
 <?php
-//iniciarem la sessió
+// Inicia la sesión para mantener los datos del carrito
 session_start();
 
-// verificarem si la sessió del carrito existeix si no l'iniicialitzarem
+// Verifica si la sesión del carrito existe, si no, inicialízala
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = array();
 }
 
-//obtindrem la id del producte
+// Obtén el ID del producto enviado desde index.php
 $idProducto = $_POST['id'];
 
-//afegirem la id del producte a la sessió del carrito
+// Agrega el ID del producto a la sesión del carrito
 $_SESSION['carrito'][] = $idProducto;
 ?>

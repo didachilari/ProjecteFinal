@@ -1,17 +1,17 @@
 <?php
-//iniciarem la sessió
+// Inicia la sesión para acceder a los datos del carrito
 session_start();
 
-//verificarem si l'usuari a iniciat sessió
+// Verifica si el usuario ha iniciado sesión
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
     exit();
 }
 
-//obtindrem l'ID de l'usuari que ha iniciat sessió
+// Obtener el ID del usuario autenticado
 $id_usuario = $_SESSION['id_usuario'];
 
-//connexió bbdd
+// Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -19,38 +19,39 @@ $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
-//verificarem la connexió
+// Verificar la conexión
 if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
 
-//obtindrem els productes de l'usuari
+// Obtener los productos del usuario con el nombre de la marca
 $sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca, p.categorias 
         FROM producte p 
         INNER JOIN marcas m ON p.id_marcas = m.id_marcas 
         WHERE p.id_usuari = $id_usuario";
 $result = $conn->query($sql);
 
-//el que farem sera un array per emmagatzemar els productes de l'usuari
+// Array para almacenar los productos del usuario
 $productos_usuario = [];
 
-//obtindrem els resultats de la consulta dels productes
+// Obtener los productos del resultado de la consulta
 while ($row = $result->fetch_assoc()) {
     $productos_usuario[] = $row;
 }
 
-//farem una funció per eliminar un producte 
+// Función para eliminar un producto
 if (isset($_POST['eliminar_producto'])) {
     $id_producto = $_POST['eliminar_producto'];
 
     $sql = "DELETE FROM producte WHERE id_producte = $id_producto AND id_usuari = $id_usuario";
     $conn->query($sql);
 
+    // Redirigir para evitar reenvío de formulario
     header("Location: pagina-usuario.php");
     exit();
 }
 
-//tancarem la connexió
+// Cerrar la conexión
 $conn->close();
 ?>
 
@@ -60,6 +61,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Usuario</title>
+    <!-- Enlaces a hojas de estilo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -96,6 +98,7 @@ $conn->close();
 
     <div class="container mt-5">
         <h1>Mis Productos</h1>
+        <!-- Mostrar los productos del usuario -->
         <?php if (count($productos_usuario) > 0): ?>
             <table class="table">
                 <thead>
