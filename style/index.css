@@ -2,6 +2,16 @@ body.index section.vender {
   margin-top: 30px;
   text-align: center;
 }
+body.index section.vender .frase-img {
+  margin-top: 30px;
+}
+body.index section.vender .frase-img h2 {
+  font-family: "Inconsolata";
+  font-weight: 300;
+}
+body.index section.vender img {
+  width: 100%;
+}
 body.index section.vender p {
   font-size: 35px;
   font-weight: 200;
@@ -9,14 +19,18 @@ body.index section.vender p {
   letter-spacing: 2px;
   margin-bottom: 50px;
 }
-body.index section.vender a {
+body.index section.vender .boton-crear {
+  margin-top: 40px;
+}
+body.index section.vender .boton-crear a {
   text-decoration: none;
   color: #ececec;
-  padding: 7px 50px 7px 50px;
-  background-color: #44749D;
-  font-size: 20px;
+  padding: 8px 40px 8px 40px;
+  background-color: #5D412E;
+  font-size: 23px;
   border-radius: 5px;
   font-weight: 300;
+  font-family: "Karla", sans-serif;
 }
 body.index section.populares {
   margin-top: 70px;

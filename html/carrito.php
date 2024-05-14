@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
     <header>
         <div class="container">
             <!-- Barra de navegación -->
@@ -41,8 +42,69 @@
                     </div>
                 </div>
             </nav>
+=======
+<header>
+      <div class="container">
+        <div class="cabecera">
+          <div class="row">
+            <div class="col">
+              <a class="navbar-brand" href="./index.php">CoutureApp</a>
+            </div>
+            <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./html/pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-link-cart" href="./html/carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="./html/login.php"><i class="bi bi-house-door"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+>>>>>>> 4048a16879f568b61ce5ee955a1f5c257f8abf92
         </div>
+      </div>
+      <div class="flex-mobile">
+        
+      </div>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="buscador">
+            <form class="d-flex" role="search" action="resultados_busqueda.php" method="GET">
+              <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
+            </form>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./html/pagina-usuario.php">Camisa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./html/carrito.php">Camiseta</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./html/login.php">Pantalon</i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./html/login.php">Chaquetas</i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./html/login.php">Accesorios</i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
+
     <section class="populares">
         <div class="container">
             <h2>Carrito</h2>
