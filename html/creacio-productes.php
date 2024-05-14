@@ -42,29 +42,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen = $_FILES["imagen"]["tmp_name"];
     $marca = $_POST["marca"]; 
 
-    // Leer la imagen como datos binarios
+    // Leer el contenido binario de la imagen
     $imagenBinaria = file_get_contents($imagen);
 
-    // Preparar la consulta SQL
-    $sql = "INSERT INTO producte (nom, preu, foto, categorias, me_gusta, id_usuari, id_marcas) VALUES ('$titulo', '$precio', ?, '$categoria', 0, $id_usuario, $marca)";
+    // Escapar el contenido binario para evitar problemas de codificación
+    $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria);
 
-    // Preparar la declaración
-    $stmt = $conn->prepare($sql);
-
-    // Vincular parámetro para la imagen
-    $stmt->bind_param("b", $imagenBinaria); // "b" para datos binarios
+    // Preparar la consulta SQL con el contenido binario de la imagen
+    $sql = "INSERT INTO producte (nom, preu, foto, categorias, me_gusta, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', 0, $id_usuario, $marca)";
 
     // Ejecutar la consulta
-    if ($stmt->execute()) {
+    if ($conn->query($sql) === TRUE) {
         header("Location: ../index.php");
         exit();
     } else {
-        echo "<script>alert('Error al crear el producto: " . $conn->error . "');</script>"; // Alerta de error
+        echo "<script>alert('Error al crear el producto: " . $conn->error . "');</script>";
     }
-
-    // Cerrar la declaración y la conexión
-    $stmt->close();
-    $conn->close();
 }
 ?>
 
