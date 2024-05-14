@@ -94,7 +94,6 @@
       <div class="container">
         <h2>Artículos populares</h2>
       <?php
-      // Conexión a la base de datos
       $servername = "localhost";
       $username = "root";
       $password = "root";
@@ -102,95 +101,75 @@
 
       $conn = new mysqli($servername, $username, $password, $database);
 
-      // Verificar la conexión
       if ($conn->connect_error) {
           die("Conexión fallida: " . $conn->connect_error);
       }
 
-      // Variable que almacena el término de búsqueda
-      $searchTerm = $_GET['search'] ?? ''; // Si no se ha enviado un término de búsqueda, se asigna una cadena vacía
+      //variable per guardar la busqueda i si esta buida es fica un string buit
+      $searchTerm = $_GET['search'] ?? '';
 
-      // Consulta SQL para obtener los datos filtrados por el término de búsqueda
+      //consulta SQL del buscador que busca per la consulta que fem
       $sql = "SELECT p.*, u.nom_usuari 
               FROM producte p 
               INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-              WHERE p.nom LIKE '%$searchTerm%'"; // Filtrar por el nombre del producto que contenga el término de búsqueda
+              WHERE p.nom LIKE '%$searchTerm%'"; //filtre per el nom que contingui l'article que hem ficat en el buscador
       $result = $conn->query($sql);?>
 
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="row">
-            <?php
-            if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {?>
-            <div class="swiper-slide">
-              <div class="contenedor-articulo">
-                <div class="usuario">
-                    <img src="./img/user-line.svg" alt="">
-                    <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                </div>
-                <div class="imagen" style="text-align:center;">
-                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                </div>
-                <div class="contenido">
-                    <div class="row con-icon">
-                        <div class="col-6">
-                            <div class="c-1">
-                                <span> Nombre: <?php echo $row["nom"]; ?></span>
-                                <br>
-                                <span> Precio: <?php echo $row["preu"]; ?>€</span>
-                                <br>
-                                <span><?php echo $row["me_gusta"]; ?></span>
-                                <br>
-                            </div>
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        <?php
+        if ($result->num_rows > 0) {
+            foreach ($result as $row) { ?>
+                <div class="swiper-slide">
+                    <div class="contenedor-articulo">
+                        <div class="usuario">
+                            <img src="./img/user-line.svg" alt="">
+                            <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
                         </div>
-                        <div class="col-6">
-                            <div class="c-2">
-                                <div class="row h-b">
-                                    <button type="button" class="boton-corazon">
-                                        <img src="./img/heart.svg" alt="">
-                                    </button>
-                                    <button type="button" class="boton-corazon" onclick="agregarAlCarrito(<?php echo $row["id_producte"]; ?>)">
-                                        <img src="./img/bag.svg" alt="">
-                                    </button>
+                        <button type="button" class="boton-corazon">
+                            <img src="./img/heart.svg" alt="">
+                        </button>
+                        <div class="imagen" style="text-align:center;">
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                        </div>
+                        <div class="contenido">
+                            <div class="row con-icon">
+                                <div class="col-6">
+                                    <div class="c-1">
+                                        <span> Nombre: <?php echo $row["nom"]; ?></span>
+                                        <br>
+                                        <span> Precio: <?php echo $row["preu"]; ?>€</span>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="c-2">
+                                        <div class="row h-b">
+                                            <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+                                                <img src="./img/bag.svg" alt="">
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-              </div>
-              <?php }
-                } else {
-                    echo "0 resultados";
-                }
-                $conn->close();
-              ?>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-     
-      <script>
-      var contadorCarrito = 0;
-
-      function agregarAlCarrito(idProducto) {
-          // Incrementa el contador
-          contadorCarrito++;
-          // Actualiza el contador en la interfaz
-          document.getElementById("contadorCarrito").textContent = contadorCarrito;
-          $.ajax({
-              url: 'agregar_al_carrito.php',
-              type: 'POST',
-              data: { id: idProducto },
-              success: function(response) {
-                  // Maneja la respuesta del servidor si es necesario
-              }
-          });
-      }
-      </script>
+        <?php }
+        } else {
+            echo "0 resultados";
+        }
+        $conn->close();
+        ?>
+    </div>
+    <div class="swiper-button-next">
+      <i class="bi bi-arrow-right"></i>
+    </div>
+    <div class="swiper-button-prev">
+      <i class="bi bi-arrow-left"></i>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
     </section>
     <footer>
       <div class="background">
@@ -224,20 +203,37 @@
         </div>
       </div>
     </footer>
-
     <script>
-    var swiper = new Swiper(".mySwiper", {
-      cssMode: true,
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-      },
-      mousewheel: true,
-      keyboard: true,
+    var swiper = new Swiper('.mySwiper', {
+        slidesPerView: 3,
+        spaceBetween: 20,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
     });
-  </script>
+</script>
+<script>
+      var contadorCarrito = 0;
+
+      function agregarAlCarrito(idProducto) {
+          //incrementa el contador
+          contadorCarrito++;
+          //actualitza l'interfaç
+          document.getElementById("contadorCarrito").textContent = contadorCarrito;
+          $.ajax({
+              url: 'agregar_al_carrito.php',
+              type: 'POST',
+              data: { id: idProducto },
+              success: function(response) {
+              }
+          });
+      }
+      </script>
 </body>
 </html>

@@ -32,6 +32,35 @@ body.index section.vender .boton-crear a {
   font-weight: 300;
   font-family: "Karla", sans-serif;
 }
+body.index section.populares {
+  margin-top: 90px;
+}
+body.index section.populares .swiper .swiper-wrapper .swiper-slide {
+  padding: 60px;
+}
+body.index section.populares .swiper .swiper-pagination-bullet {
+  padding: 8px;
+}
+body.index section.populares .swiper .swiper-pagination-bullet-active {
+  background-color: #2d2d2d;
+}
+body.index section.populares .swiper .swiper-button-next, body.index section.populares .swiper .swiper-button-prev {
+  padding: 25px;
+  border: 3px solid;
+  border-radius: 100%;
+  background-color: #ececec;
+  color: #2d2d2d;
+  font-size: 40px;
+}
+body.index section.populares .swiper .swiper-button-next:after, body.index section.populares .swiper .swiper-button-prev:after {
+  display: none;
+}
+body.index section.populares .swiper .swiper-button-next {
+  transform: translateX(10px);
+}
+body.index section.populares .swiper .swiper-button-prev {
+  transform: translateX(-10px);
+}
 body.index section.novedades {
   margin-top: 100px;
 }

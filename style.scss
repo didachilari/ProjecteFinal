@@ -180,35 +180,43 @@ footer{
     }
 }
 .contenedor-articulo{
-    border: 1px solid black;
+    position: relative;
     .usuario{
-        padding: 10px 0 10px 20px;
-        border-bottom: 1px solid black;
+        padding: 10px 0;
         display: flex;
         align-items: center;
         gap: 10px;
     }
     .imagen{
-        border-bottom: 1px solid black;
         img{
             width: 100%;
-            object-fit: cover;
+            object-fit: contain;
             aspect-ratio: 1;
+        }
+    }
+    .boton-corazon{
+        position: absolute;
+        right: 0;
+        border: transparent;
+        background-color: white;
+        width: max-content;
+        img{
+            width: 30px;
         }
     }
     .contenido{
         .con-icon{
             align-items: center;
-            .c-1{
-                padding-left: 20px;
-            }
             .c-2{
                 .h-b{
                     flex-direction: column;
                     align-content:end;
-                    padding-right: 20px;
                     gap: 5px;
-                    button.boton-corazon{
+                    position: relative;
+                    button.boton-carro{
+                        position: absolute;
+                        right: 0;
+                        bottom: -35px;
                         border: transparent;
                         background-color: transparent;
                         width: max-content;

@@ -35,10 +35,35 @@ body.index{
         }
     }
     section.populares{
-        
-        .contenedor-articulo{
-            .usuario{
-
+        margin-top: 90px;
+        .swiper{
+            .swiper-wrapper{
+                .swiper-slide{
+                    padding: 60px;
+                }
+            }
+            .swiper-pagination-bullet{
+                padding: 8px;
+            }
+            .swiper-pagination-bullet-active{
+                background-color: #2d2d2d;
+            }
+            .swiper-button-next, .swiper-button-prev{
+                padding: 25px;
+                border: 3px solid;
+                border-radius: 100%;
+                background-color: #ececec;
+                color: #2d2d2d;
+                font-size: 40px;
+                &:after{
+                    display: none;                
+                }
+            }
+            .swiper-button-next{
+                transform: translateX(10px);
+            }
+            .swiper-button-prev{
+                transform: translateX(-10px);
             }
         }
     }
