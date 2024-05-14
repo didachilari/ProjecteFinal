@@ -11,42 +11,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <!-- Barra de navegación -->
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">CoutureApp</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Formulario de búsqueda -->
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search"></i> Buscar</button>
-                        </form>
-                        <!-- Íconos de usuario, carrito e inicio -->
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="bi bi-cart"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+<header>
+      <div class="container">
+        <div class="cabecera">
+          <div class="row">
+            <div class="col">
+              <a class="navbar-brand" href="./../index.php">CoutureApp</a>
+            </div>
+            <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="./html/pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-link-cart" href="./html/carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div class="flex-mobile">
         
       </div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg">
         <div class="container">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -135,5 +126,37 @@
             ?>
         </div>
     </section>
+<footer>
+  <div class="background">
+    <div class="container">
+      <div class="row general">
+        <div class="col izquierda">
+          <div class="row">
+            <div class="col titulo">
+              <a class="navbar-brand" href="./../index.php">CoutureApp</a>
+            </div>
+            <div class="col">
+              <a href="./../index.php">Avisos legales</a>
+            </div>
+            <div class="col">
+              <a href="./../index.php">Proteccion de datos</a>
+            </div>
+          </div>
+        </div>
+        <div class="col derecha">
+          <div class="row">
+            <div class="col-4">
+              <p>Síguenos por:</p>
+            </div>
+            <div class="col-3 rrss">
+              <a href="www.instagram.com"><i class="bi bi-instagram"></i></a>
+              <a href="www.facebook.com"><i class="bi bi-facebook"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

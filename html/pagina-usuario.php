@@ -71,7 +71,7 @@ $conn->close();
         <div class="cabecera">
           <div class="row">
             <div class="col">
-              <a class="navbar-brand" href="./index.php">CoutureApp</a>
+              <a class="navbar-brand" href="./../index.php">CoutureApp</a>
             </div>
             <div class="col">
               <ul class="navbar-nav">
@@ -92,7 +92,7 @@ $conn->close();
       <div class="flex-mobile">
         
       </div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+           <nav class="navbar navbar-expand-lg">
         <div class="container">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -172,5 +172,38 @@ $conn->close();
             <p>No tienes ningún producto aún.</p>
         <?php endif; ?>
     </div>
+
+    <footer>
+      <div class="background">
+        <div class="container">
+          <div class="row general">
+            <div class="col izquierda">
+              <div class="row">
+                <div class="col titulo">
+                  <a class="navbar-brand" href="./../index.php">CoutureApp</a>
+                </div>
+                <div class="col">
+                  <a href="./../index.php">Avisos legales</a>
+                </div>
+                <div class="col">
+                  <a href="./../index.php">Proteccion de datos</a>
+                </div>
+              </div>
+            </div>
+            <div class="col derecha">
+              <div class="row">
+                <div class="col-4">
+                  <p>Síguenos por:</p>
+                </div>
+                <div class="col-3 rrss">
+                  <a href="www.instagram.com"><i class="bi bi-instagram"></i></a>
+                  <a href="www.facebook.com"><i class="bi bi-facebook"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 </html>
