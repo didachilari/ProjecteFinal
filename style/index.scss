@@ -67,6 +67,39 @@ body.index{
             }
         }
     }
+    section.marcas{
+        margin-top: 50px;
+        .background-claro{
+            padding: 30px 0;
+            background-color: #654632;
+            .contenido{
+                h2,p{
+                    color: #ececec;
+                }
+                h2{
+                    margin-bottom: 10px;
+                }
+                p{
+                    font-size: 23px;
+                    width: 55%;
+                }
+            }
+            .imagenes{
+                display: flex;
+                .imagen{
+                    width: 50%;
+                    img{
+                        pad: 10px;
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .background-oscuro{
+            background-color: #5D412E;
+        }
+    }
     section.novedades{
         margin-top: 100px;
         .articulos{

@@ -67,6 +67,9 @@
                 <a class="nav-link" href="./html/login.php">Chaquetas</i></a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="./html/login.php">Calzado</i></a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="./html/login.php">Accesorios</i></a>
               </li>
             </ul>
@@ -136,7 +139,7 @@
                             <div class="row con-icon">
                                 <div class="col-6">
                                     <div class="c-1">
-                                        <span> Nombre: <?php echo $row["nom"]; ?></span>
+                                        <span><?php echo $row["nom"]; ?></span>
                                         <br>
                                         <span> Precio: <?php echo $row["preu"]; ?>€</span>
                                         <br>
@@ -170,6 +173,63 @@
     </div>
     <div class="swiper-pagination"></div>
 </div>
+    </section>
+
+    <section class="marcas">
+      <div class="background-claro">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 contenido">
+              <h2>Encuentra tu marca</h2>
+              <p>Todas tus marcas favoritas en un solo click</p>
+            </div>
+            <div class="col-lg-5 imagenes">
+              <div class="imagen">
+                <img src="./img/polo.png" alt="modelo polo">
+              </div>
+              <div class="imagen">
+                <img src="./img/polo2.png" alt="modelo polo2">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "root";
+        $database = "couture";
+
+        // Crear conexión
+        $conn = new mysqli($servername, $username, $password, $database);
+
+        // Verificar conexión
+        if ($conn->connect_error) {
+          die("Conexión fallida: " . $conn->connect_error);
+      }
+
+          $sql = "SELECT nom, foto_marca FROM marcas";
+          $result2 = $conn->query($sql);
+        ?>
+
+      <div class="background-oscuro">
+        <div class="container">
+          <?php foreach ($result2 as $marca){ ?>
+              <tr>
+                <td><?php echo $marca['nom']; ?></td>
+                <td>
+                  <?php if (!empty ($marca['foto_marca'])){ ?>
+                      <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
+                  <?php }else{ ?>
+                      No image
+                  <?php } ?>
+                </td>
+              </tr>
+          <?php } ?>
+        </div>
+      </div>
     </section>
     <footer>
       <div class="background">
