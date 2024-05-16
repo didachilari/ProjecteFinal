@@ -5,7 +5,7 @@ session_start();
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -175,6 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             ?>
                         </select>
                     </div>
+                    <a href="crear_marca.php" class="btn btn-primary">Crear Marca</a>
                     <div class="my-3">
                         <label for="precio" class="form-label">Precio:</label>
                         <input type="number" id="precio" name="precio" min="0" step="0.01" class="form-control" required>
