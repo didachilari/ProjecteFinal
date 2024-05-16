@@ -216,18 +216,28 @@
 
       <div class="background-oscuro">
         <div class="container">
-          <?php foreach ($result2 as $marca){ ?>
-              <tr>
-                <td><?php echo $marca['nom']; ?></td>
-                <td>
-                  <?php if (!empty ($marca['foto_marca'])){ ?>
-                      <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
-                  <?php }else{ ?>
-                      No image
-                  <?php } ?>
-                </td>
-              </tr>
-          <?php } ?>
+        <div class="swiper mySwiper2">
+          <div class="swiper-wrapper">
+            <?php foreach ($result2 as $marca){ ?>
+              <div class="swiper-slide contenedor-marca">
+                <div class="imagen-marca">
+                <?php if (!empty ($marca['foto_marca'])){ ?>
+                        <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
+                    <?php }else{ ?>
+                        No image
+                    <?php } ?>
+                </div>
+                <div class="nombre-marca">
+                  <span>
+                    <?php echo $marca['nom']; ?>
+                  </span>
+                </div>
+              </div>
+            <?php } ?>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
         </div>
       </div>
     </section>
@@ -271,6 +281,7 @@
             el: '.swiper-pagination',
             clickable: true,
             dynamicBullets: true,
+            loop: true,
         },
         navigation: {
             nextEl: '.swiper-button-next',
@@ -278,6 +289,16 @@
         },
     });
 </script>
+<script>
+    var swiper = new Swiper(".mySwiper2", {
+      slidesPerView: 4,
+        spaceBetween: 30,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
 <script>
       var contadorCarrito = 0;
 
