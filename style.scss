@@ -24,16 +24,9 @@ header{
     padding-top: 10px;
     
     a{
-        --bs-navbar-brand-font-size:2rem;
-        transition: all 0.5s ease;
-        span{
-            color: #ca6c24;
-        }
+        --bs-navbar-brand-font-size:30px;
         @media (max-width:992px) {
-            --bs-navbar-brand-font-size:1.8rem;
-        }
-        &:hover{
-            --bs-navbar-brand-font-size:2.1rem;
+            --bs-navbar-brand-font-size:25px;
         }
     }
     .cabecera{
@@ -85,7 +78,6 @@ header{
     nav{
         .container{
             flex-direction: row-reverse;
-            gap: 20px;
             .navbar-collapse{
                 form{
                     width: 90%;
@@ -102,21 +94,12 @@ header{
                         width: max-content;
                         .nav-link{
                             --bs-nav-link-color: #323232;
-                            --bs-nav-link-font-size: 1rem;
-                            transition: 0.5s ease;
+                            --bs-nav-link-font-size: 20px;
+
+                        }
                         &:hover{
                             --bs-nav-link-hover-color:#934c14;
-                            transform: scale(1.2);
-                        } 
-                        }
-
-                        @media (max-width:992px) {
-                            width: 100%;
-                            .nav-link{
-                                margin: 5px 0;
-                                text-align: center;
-                            }
-                        }         
+                        }           
                     }
                 }
             }
@@ -183,10 +166,10 @@ footer{
                         margin-bottom: 10px;
                     }
                     .rrss{
-                        text-align: end;
                         a{
                             padding: 5px;
-                            color: #ffffff;
+                            background-color: #E6E6E6;
+                            color: #323232;
                             margin: 0 5px;
                             font-size: 30px;
                         }

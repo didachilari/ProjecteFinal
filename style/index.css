@@ -91,7 +91,6 @@ body.index section.marcas .background-claro .imagenes .imagen img {
 }
 body.index section.marcas .background-oscuro {
   background-color: #5D412E;
-  padding: 20px 0;
 }
 body.index section.marcas .background-oscuro .mySwiper2 {
   min-height: 100%;

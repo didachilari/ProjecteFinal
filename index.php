@@ -19,7 +19,7 @@
         <div class="cabecera">
           <div class="row">
             <div class="col">
-              <a class="navbar-brand" href="./index.php">Couture<span>App<span></a>
+              <a class="navbar-brand" href="./index.php">CoutureApp</a>
             </div>
             <div class="col">
               <ul class="navbar-nav">
@@ -48,7 +48,7 @@
           <div class="buscador">
             <form class="d-flex" role="search" action="resultados_busqueda.php" method="GET">
               <button class="btn" type="submit"><i class="bi bi-search"></i></button>
-              <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="search">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
             </form>
           </div>
 
@@ -180,7 +180,7 @@
               <h2>Encuentra tu marca</h2>
               <p>Todas tus marcas favoritas en un solo click</p>
             </div>
-            <div class="col-lg-6 imagenes">
+            <div class="col-lg-5 imagenes">
               <div class="imagen">
                 <img src="./img/polo.png" alt="modelo polo">
               </div>
@@ -221,7 +221,7 @@
                 <?php if (!empty ($marca['foto_marca'])){ ?>
                         <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
                     <?php }else{ ?>
-                        Foto marca
+                        No image
                     <?php } ?>
                 </div>
                 <div class="nombre-marca">
