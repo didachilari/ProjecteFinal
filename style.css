@@ -23,12 +23,19 @@ header {
   padding-top: 10px;
 }
 header a {
-  --bs-navbar-brand-font-size:30px;
+  --bs-navbar-brand-font-size:2rem;
+  transition: all 0.5s ease;
+}
+header a span {
+  color: #ca6c24;
 }
 @media (max-width: 992px) {
   header a {
-    --bs-navbar-brand-font-size:25px;
+    --bs-navbar-brand-font-size:1.8rem;
   }
+}
+header a:hover {
+  --bs-navbar-brand-font-size:2.1rem;
 }
 header .cabecera .navbar-nav {
   flex-direction: row;
@@ -75,6 +82,7 @@ header .cabecera .navbar-nav .nav-item .nav-link-cart .contador-carrito {
 }
 header nav .container {
   flex-direction: row-reverse;
+  gap: 20px;
 }
 header nav .container .navbar-collapse form {
   width: 90%;
@@ -94,10 +102,21 @@ header nav .container .navbar-collapse .navbar-nav .nav-item {
 }
 header nav .container .navbar-collapse .navbar-nav .nav-item .nav-link {
   --bs-nav-link-color: #323232;
-  --bs-nav-link-font-size: 20px;
+  --bs-nav-link-font-size: 1rem;
+  transition: 0.5s ease;
 }
-header nav .container .navbar-collapse .navbar-nav .nav-item:hover {
+header nav .container .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   --bs-nav-link-hover-color:#934c14;
+  transform: scale(1.2);
+}
+@media (max-width: 992px) {
+  header nav .container .navbar-collapse .navbar-nav .nav-item {
+    width: 100%;
+  }
+  header nav .container .navbar-collapse .navbar-nav .nav-item .nav-link {
+    margin: 5px 0;
+    text-align: center;
+  }
 }
 @media (min-width: 992px) {
   header nav .container .buscador {
@@ -154,10 +173,12 @@ footer .background .general .derecha .row p {
   color: #E6E6E6;
   margin-bottom: 10px;
 }
+footer .background .general .derecha .row .rrss {
+  text-align: end;
+}
 footer .background .general .derecha .row .rrss a {
   padding: 5px;
-  background-color: #E6E6E6;
-  color: #323232;
+  color: #ffffff;
   margin: 0 5px;
   font-size: 30px;
 }
