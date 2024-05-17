@@ -125,20 +125,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./html/pagina-usuario.php">Camisa</a>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="camisa.php">Camisa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/carrito.php">Camiseta</a>
+                <a class="nav-link" href="camiseta.php">Camiseta</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/login.php">Pantalon</i></a>
+                <a class="nav-link" href="pantalon.php">Pantalon</i></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/login.php">Chaquetas</i></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./html/login.php">Accesorios</i></a>
+                <a class="nav-link" href="chaquetas.php">Chaquetas</i></a>
               </li>
             </ul>
           </div>

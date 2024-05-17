@@ -55,20 +55,20 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./html/pagina-usuario.php">Camisa</a>
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./html/camisa.php">Camisa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/carrito.php">Camiseta</a>
+                <a class="nav-link" href="./html/camiseta.php">Camiseta</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/login.php">Pantalon</i></a>
+                <a class="nav-link" href="./html/pantalon.php">Pantalon</i></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/login.php">Chaquetas</i></a>
+                <a class="nav-link" href="./html/chaquetas.php">Chaquetas</i></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./html/login.php">Accesorios</i></a>
+                <a class="nav-link" href="./html/calzado.php">Calzado</i></a>
               </li>
             </ul>
           </div>
