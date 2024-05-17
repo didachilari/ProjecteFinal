@@ -1,15 +1,6 @@
 <?php
-// Inicia la sesión para acceder a los datos del carrito
+// Iniciar sesión
 session_start();
-
-// Verifica si el usuario ha iniciado sesión
-if (!isset($_SESSION['id_usuario'])) {
-    header("Location: login.php");
-    exit();
-}
-
-// Obtener el ID del usuario autenticado
-$id_usuario = $_SESSION['id_usuario'];
 
 // Conexión a la base de datos
 $servername = "localhost";
@@ -24,35 +15,35 @@ if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
 
-// Obtener los productos del usuario con el nombre de la marca
-$sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca, p.categorias 
-        FROM producte p 
-        INNER JOIN marcas m ON p.id_marcas = m.id_marcas 
-        WHERE p.id_usuari = $id_usuario";
-$result = $conn->query($sql);
+// Verificar si se envió el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los datos del formulario
+    $nombre = $_POST["nombre"];
+    
+    // Verificar si se ha subido un archivo
+    if (isset($_FILES["foto"])) {
+        $foto = $_FILES["foto"]["tmp_name"];
 
-// Array para almacenar los productos del usuario
-$productos_usuario = [];
+        // Leer contenido binario de la imagen
+        $fotoBinaria = file_get_contents($foto);
 
-// Obtener los productos del resultado de la consulta
-while ($row = $result->fetch_assoc()) {
-    $productos_usuario[] = $row;
+        // Escapar el contenido binario para evitar problemas de codificación
+        $fotoBinariaEscapada = $conn->real_escape_string($fotoBinaria);
+
+        // Preparar la consulta SQL
+        $sql = "INSERT INTO marcas (nom, foto_marca) VALUES ('$nombre', '$fotoBinariaEscapada')";
+
+        // Ejecutar la consulta
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>alert('Marca agregada correctamente');</script>";
+        } else {
+            echo "<script>alert('Error al agregar la marca: " . $conn->error . "');</script>";
+        }
+    } else {
+        // Mostrar mensaje de error si no se seleccionó una foto
+        echo "<script>alert('Por favor, seleccione una foto.');</script>";
+    }
 }
-
-// Función para eliminar un producto
-if (isset($_POST['eliminar_producto'])) {
-    $id_producto = $_POST['eliminar_producto'];
-
-    $sql = "DELETE FROM producte WHERE id_producte = $id_producto AND id_usuari = $id_usuario";
-    $conn->query($sql);
-
-    // Redirigir para evitar reenvío de formulario
-    header("Location: pagina-usuario.php");
-    exit();
-}
-
-// Cerrar la conexión
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -60,12 +51,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Usuario</title>
-    <!-- Enlaces a hojas de estilo -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../style.css">
+    <title>Agregar Marca</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href=".././style.css">
 </head>
-<body>
+<body class="creacio">
 <header>
       <div class="container">
         <div class="cabecera">
@@ -82,7 +75,7 @@ $conn->close();
                   <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+                <a class="nav-link" href="./login.php"><i class="bi bi-house-door"></i></a>
                 </li>
               </ul>
             </div>
@@ -118,58 +111,30 @@ $conn->close();
               <li class="nav-item">
                 <a class="nav-link" href="chaquetas.php">Chaquetas</i></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="calzado.php">Calzado</i></a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
 
-
     <div class="container mt-5">
-        <h1>Mis Productos</h1>
-        <!-- Mostrar los productos del usuario -->
-        <?php if (count($productos_usuario) > 0): ?>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Precio</th>
-                        <th>Marca</th>
-                        <th>Categoría</th>
-                        <th>Foto</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($productos_usuario as $producto): ?>
-                        <tr>
-                            <td><?php echo $producto['nom']; ?></td>
-                            <td><?php echo $producto['preu']; ?></td>
-                            <td><?php echo $producto['nombre_marca']; ?></td>
-                            <td><?php echo $producto['categorias']; ?></td>
-                            <td>
-                                <?php if(isset($producto['foto']) && !empty($producto['foto'])): ?>
-                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['foto']); ?>" alt="" style="max-width: 500px; max-height: 500px;">
-                                <?php else: ?>
-                                    <p>No disponible</p>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <form action="" method="POST">
-                                    <input type="hidden" name="eliminar_producto" value="<?php echo $producto['id_producte']; ?>">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                                <a href="editar-productes.php?id=<?php echo $producto['id_producte']; ?>" class="btn btn-primary">Editar</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p>No tienes ningún producto aún.</p>
-        <?php endif; ?>
+        <h2 class="mb-4">Agregar Marca</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre de la Marca:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="foto">Foto de la Marca:</label>
+                <input type="file" class="form-control-file" id="foto" name="foto" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="creacio-productes.php" class="btn btn-secondary">Tornar</a>
+        </form>
     </div>
-
     <footer>
       <div class="background">
         <div class="container">
@@ -204,3 +169,4 @@ $conn->close();
     </footer>
 </body>
 </html>
+
