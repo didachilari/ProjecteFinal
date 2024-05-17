@@ -224,30 +224,35 @@ footer{
     .contenido{
         .con-icon{
             align-items: center;
-            .c-2{
-                .h-b{
-                    flex-direction: column;
-                    align-content:end;
-                    gap: 5px;
-                    position: relative;
-                    button.boton-carro{
-                        position: absolute;
-                        right: 0;
-                        bottom: -35px;
-                        border: transparent;
-                        background-color: transparent;
-                        width: max-content;
+            height: 60px;
+            .carro{
+                height: 100%;
+                .carrito{
+                    height: 100%;
+                    .h-b{
+                        height: 100%;
+                        flex-direction: column;
+                        align-content:end;
+                        gap: 5px;
+                        position: relative;
+                        button.boton-carro{
+                            position: absolute;
+                            right: 0;
+                            bottom: 0;
+                            border: transparent;
+                            background-color: transparent;
+                            width: max-content;
+                            img{
+                                width: 30px;
+                            }
+                        }
                         img{
-                            width: 30px;
+                            width: 50px;
                         }
                     }
-                    img{
-                        width: 50px;
-                    }
+    
                 }
-
             }
-
         }
     }
 }

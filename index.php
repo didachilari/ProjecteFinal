@@ -142,8 +142,8 @@
                                         <br>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div class="c-2">
+                                <div class="col-6 carro">
+                                    <div class="carrito">
                                         <div class="row h-b">
                                             <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
                                                 <img src="./img/bag.svg" alt="">
@@ -232,8 +232,12 @@
               </div>
             <?php } ?>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next">
+          <i class="bi bi-arrow-right"></i>
+          </div>
+          <div class="swiper-button-prev">
+          <i class="bi bi-arrow-left"></i>
+          </div>
         </div>
         </div>
       </div>
@@ -284,6 +288,9 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
+      allowSlidePrev: true,
+      allowSlideNext: true,
+      loop:true
     });
 </script>
 <script>
@@ -294,6 +301,9 @@
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      allowSlidePrev: true,
+      allowSlideNext: true,
+      loop:true
     });
   </script>
 <script>
@@ -312,7 +322,6 @@
               }
           });
       }
-      
       </script>
 </body>
 </html>
