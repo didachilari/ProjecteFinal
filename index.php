@@ -283,7 +283,6 @@ $result = $conn->query($sql);
           </div>
         </div>
       </div>
-<<<<<<< HEAD
     </div>
   </div>
 </footer>
@@ -313,13 +312,12 @@ var swiper = new Swiper(".mySwiper2", {
   },
 });
 </script>
-=======
 
 
       <?php
         $servername = "localhost";
         $username = "root";
-        $password = "root";
+        $password = "";
         $database = "couture";
 
         // Crear conexión
@@ -419,7 +417,6 @@ var swiper = new Swiper(".mySwiper2", {
       },
     });
   </script>
->>>>>>> parent of c3f9afa (changes)
 <script>
   var contadorCarrito = 0;
 
@@ -451,23 +448,5 @@ function validar() {
 
 </script>
 
-<<<<<<< HEAD
-=======
-      function agregarAlCarrito(idProducto) {
-          //incrementa el contador
-          contadorCarrito++;
-          //actualitza l'interfaç
-          document.getElementById("contadorCarrito").textContent = contadorCarrito;
-          $.ajax({
-              url: 'agregar_al_carrito.php',
-              type: 'POST',
-              data: { id: idProducto },
-              success: function(response) {
-              }
-          });
-      }
-      
-      </script>
->>>>>>> parent of c3f9afa (changes)
 </body>
 </html>
