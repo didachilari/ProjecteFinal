@@ -185,6 +185,7 @@ footer .background .general .derecha .row .rrss a {
 
 .contenedor-articulo {
   position: relative;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .contenedor-articulo .usuario {
   padding: 10px 0;
@@ -212,26 +213,23 @@ footer .background .general .derecha .row .rrss a {
 .contenedor-articulo .contenido .con-icon {
   align-items: center;
 }
-.contenedor-articulo .contenido .con-icon .c-2 .h-b {
-  flex-direction: column;
-  align-content: end;
-  gap: 5px;
-  position: relative;
+.contenedor-articulo .contenido .con-icon .carro {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
-.contenedor-articulo .contenido .con-icon .c-2 .h-b button.boton-carro {
+.contenedor-articulo .contenido .con-icon .carro .boton-carro {
+  padding: 0;
   position: absolute;
   right: 0;
-  bottom: -35px;
+  bottom: 0;
   border: transparent;
   background-color: transparent;
   width: -moz-max-content;
   width: max-content;
 }
-.contenedor-articulo .contenido .con-icon .c-2 .h-b button.boton-carro img {
+.contenedor-articulo .contenido .con-icon .carro .boton-carro img {
   width: 30px;
-}
-.contenedor-articulo .contenido .con-icon .c-2 .h-b img {
-  width: 50px;
 }
 
 form label {

@@ -95,6 +95,7 @@ body.index section.marcas .background-oscuro {
 }
 body.index section.marcas .background-oscuro .mySwiper2 {
   min-height: 100%;
+  padding: 0 50px;
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .imagen-marca {
   padding: 5px;
@@ -111,6 +112,20 @@ body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .nombre-marca {
   color: white;
+}
+body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next, body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev {
+  padding: 25px;
+  color: #ffffff;
+  font-size: 40px;
+}
+body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next:after, body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev:after {
+  display: none;
+}
+body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next {
+  transform: translateX(10px);
+}
+body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev {
+  transform: translateX(-10px);
 }
 body.index section.novedades {
   margin-top: 100px;

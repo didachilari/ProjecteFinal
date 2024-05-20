@@ -1,3 +1,7 @@
+<?php
+$id_usuario = $_SESSION['id_usuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,7 +96,7 @@
     <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -112,60 +116,59 @@ $sql = "SELECT p.*, u.nom_usuari
 $result = $conn->query($sql);
 ?>
 <div class="swiper mySwiper">
-<div class="swiper-wrapper">
-    <?php
-    
-    if ($result->num_rows > 0) {
-        foreach ($result as $row) { ?>
-            <div class="swiper-slide">
-                <div class="contenedor-articulo">
-                    <div class="usuario">
-                        <img src="./img/user-line.svg" alt="">
-                        <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                    </div>
-                    <button type="button" class="boton-corazon">
-                        <img src="./img/heart.svg" alt="">
-                    </button>
-                    <div class="imagen" style="text-align:center;">
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                    </div>
-                    <div class="contenido">
-                        <div class="row con-icon">
-                            <div class="col-6">
-                                <div class="c-1">
-                                    <span><?php echo $row["nom"]; ?></span>
-                                    <br>
-                                    <span> Precio: <?php echo $row["preu"]; ?>€</span>
-                                    <br>
+    <div class="swiper-wrapper">
+        <?php
+        if ($result->num_rows > 0) {
+            foreach ($result as $row) { ?>
+                <div class="swiper-slide">
+                    <div class="contenedor-articulo">
+                        <div class="usuario">
+                            <img src="./img/user-line.svg" alt="">
+                            <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+                        </div>
+                        <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
+                            <img src="./img/heart.svg" alt="">
+                        </button>
+                        <div class="imagen" style="text-align:center;">
+                            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                        </div>
+                        <div class="contenido">
+                            <div class="row con-icon">
+                                <div class="col-6">
+                                    <div class="c-1">
+                                        <span><?php echo $row["nom"]; ?></span>
+                                        <br>
+                                        <span> Precio: <?php echo $row["preu"]; ?>€</span>
+                                        <br>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="c-2">
-                                    <div class="row h-b">
-                                        <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
-                                            <img src="./img/bag.svg" alt="">
-                                        </button>
+                                <div class="col-6 carro">
+                                    <div class="carrito">
+                                        <div class="row h-b">
+                                            <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+                                                <img src="./img/bag.svg" alt="">
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-    <?php }
-    } else {
-        echo "0 resultados";
-    }
-    $conn->close();
-    ?>
-</div>
-<div class="swiper-button-next">
-  <i class="bi bi-arrow-right"></i>
-</div>
-<div class="swiper-button-prev">
-  <i class="bi bi-arrow-left"></i>
-</div>
-<div class="swiper-pagination"></div>
+        <?php }
+        } else {
+            echo "0 resultados";
+        }
+        $conn->close();
+        ?>
+    </div>
+    <div class="swiper-button-next">
+      <i class="bi bi-arrow-right"></i>
+    </div>
+    <div class="swiper-button-prev">
+      <i class="bi bi-arrow-left"></i>
+    </div>
+    <div class="swiper-pagination"></div>
 </div>
 </section>
 
@@ -193,7 +196,7 @@ $result = $conn->query($sql);
   <?php
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "root";
     $database = "couture";
 
     // Crear conexión
@@ -205,7 +208,7 @@ $result = $conn->query($sql);
   }
   $servername = "localhost";
   $username = "root";
-  $password = "";
+  $password = "root";
   $database = "couture";
   
   $conn = new mysqli($servername, $username, $password, $database);
@@ -248,8 +251,12 @@ $result = $conn->query($sql);
           </div>
         <?php } ?>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+      <div class="swiper-button-prev">
+        <i class="bi bi-arrow-left"></i>
+      </div>
     </div>
     </div>
   </div>
@@ -290,11 +297,11 @@ $result = $conn->query($sql);
 var swiper = new Swiper('.mySwiper', {
     slidesPerView: 3,
     spaceBetween: 20,
+    loop: true,
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
         dynamicBullets: true,
-        loop: true,
     },
     navigation: {
         nextEl: '.swiper-button-next',
@@ -305,7 +312,8 @@ var swiper = new Swiper('.mySwiper', {
 <script>
 var swiper = new Swiper(".mySwiper2", {
   slidesPerView: 4,
-    spaceBetween: 30,
+    spaceBetween: 50,
+    loop: true,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
