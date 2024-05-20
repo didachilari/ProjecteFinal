@@ -211,34 +211,26 @@ footer .background .general .derecha .row .rrss a {
 }
 .contenedor-articulo .contenido .con-icon {
   align-items: center;
-  height: 60px;
 }
-.contenedor-articulo .contenido .con-icon .carro {
-  height: 100%;
-}
-.contenedor-articulo .contenido .con-icon .carro .carrito {
-  height: 100%;
-}
-.contenedor-articulo .contenido .con-icon .carro .carrito .h-b {
-  height: 100%;
+.contenedor-articulo .contenido .con-icon .c-2 .h-b {
   flex-direction: column;
   align-content: end;
   gap: 5px;
   position: relative;
 }
-.contenedor-articulo .contenido .con-icon .carro .carrito .h-b button.boton-carro {
+.contenedor-articulo .contenido .con-icon .c-2 .h-b button.boton-carro {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -35px;
   border: transparent;
   background-color: transparent;
   width: -moz-max-content;
   width: max-content;
 }
-.contenedor-articulo .contenido .con-icon .carro .carrito .h-b button.boton-carro img {
+.contenedor-articulo .contenido .con-icon .c-2 .h-b button.boton-carro img {
   width: 30px;
 }
-.contenedor-articulo .contenido .con-icon .carro .carrito .h-b img {
+.contenedor-articulo .contenido .con-icon .c-2 .h-b img {
   width: 50px;
 }
 
