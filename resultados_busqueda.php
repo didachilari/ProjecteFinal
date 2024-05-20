@@ -78,7 +78,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $database = "couture";
 
 // Crear conexión

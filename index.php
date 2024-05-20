@@ -96,7 +96,7 @@ $id_usuario = $_SESSION['id_usuario'];
     <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -196,7 +196,7 @@ $result = $conn->query($sql);
   <?php
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "root";
     $database = "couture";
 
     // Crear conexión
@@ -208,7 +208,7 @@ $result = $conn->query($sql);
   }
   $servername = "localhost";
   $username = "root";
-  $password = "";
+  $password = "root";
   $database = "couture";
   
   $conn = new mysqli($servername, $username, $password, $database);
@@ -251,8 +251,12 @@ $result = $conn->query($sql);
           </div>
         <?php } ?>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next">
+        <i class="bi bi-arrow-right"></i>
+      </div>
+      <div class="swiper-button-prev">
+        <i class="bi bi-arrow-left"></i>
+      </div>
     </div>
     </div>
   </div>
@@ -293,11 +297,11 @@ $result = $conn->query($sql);
 var swiper = new Swiper('.mySwiper', {
     slidesPerView: 3,
     spaceBetween: 20,
+    loop: true,
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
         dynamicBullets: true,
-        loop: true,
     },
     navigation: {
         nextEl: '.swiper-button-next',
@@ -308,7 +312,8 @@ var swiper = new Swiper('.mySwiper', {
 <script>
 var swiper = new Swiper(".mySwiper2", {
   slidesPerView: 4,
-    spaceBetween: 30,
+    spaceBetween: 50,
+    loop: true,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
