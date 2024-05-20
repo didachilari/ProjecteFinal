@@ -23,7 +23,7 @@ $id_usuario = $_SESSION['id_usuario'];
     <div class="cabecera">
       <div class="row">
         <div class="col">
-          <a class="navbar-brand" href="./index.php">CoutureApp</a>
+          <a class="navbar-brand" href="./index.php">Couture<span>App</span></a>
         </div>
         <div class="col">
           <ul class="navbar-nav">

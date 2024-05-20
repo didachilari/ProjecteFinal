@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="cabecera">
           <div class="row">
             <div class="col">
-              <a class="navbar-brand" href="./../index.php">CoutureApp</a>
+              <a class="navbar-brand" href="./../index.php">Couture<span>App</span></a>
             </div>
             <div class="col">
               <ul class="navbar-nav">
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col izquierda">
               <div class="row">
                 <div class="col titulo">
-                  <a class="navbar-brand" href="./../index.php">CoutureApp</a>
+                  <a class="navbar-brand" href="./../index.php">Couture<span>App</span></a>
                 </div>
                 <div class="col">
                   <a href="./../index.php">Avisos legales</a>
