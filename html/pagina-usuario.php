@@ -14,7 +14,8 @@ $id_usuario = $_SESSION['id_usuario'];
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = "root";
+  $password = "";
+
 
 $database = "couture";
 

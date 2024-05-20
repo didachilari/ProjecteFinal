@@ -8,7 +8,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
 $servername = "localhost";
 $username = "root";
-$password = "root";
+  $password = "";
+
 
 $database = "couture";
 

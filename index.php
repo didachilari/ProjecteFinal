@@ -96,7 +96,8 @@ $id_usuario = $_SESSION['id_usuario'];
     <?php
 $servername = "localhost";
 $username = "root";
-$password = "root";
+  $password = "";
+
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -194,13 +195,6 @@ $result = $conn->query($sql);
 
 
   <?php
-<<<<<<< HEAD
-=======
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $database = "couture";
->>>>>>> parent of 7db5768 (a)
 
     // Crear conexión
     $conn = new mysqli($servername, $username, $password, $database);
@@ -211,7 +205,8 @@ $result = $conn->query($sql);
   }
   $servername = "localhost";
   $username = "root";
-  $password = "root";
+    $password = "";
+
 
   $database = "couture";
   
