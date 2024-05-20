@@ -196,7 +196,7 @@ $result = $conn->query($sql);
   <?php
     $servername = "localhost";
     $username = "root";
-    $password = "root";
+    $password = "";
     $database = "couture";
 
     // Crear conexión

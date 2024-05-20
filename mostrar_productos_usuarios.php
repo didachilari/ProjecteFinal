@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Productos del Usuario</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
@@ -58,13 +55,13 @@
             <a class="nav-link" href="./html/camiseta.php">Camiseta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./html/pantalon.php">Pantalon</i></a>
+            <a class="nav-link" href="./html/pantalon.php">Pantalon</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./html/chaquetas.php">Chaquetas</i></a>
+            <a class="nav-link" href="./html/chaquetas.php">Chaquetas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./html/calzado.php">Calzado</i></a>
+            <a class="nav-link" href="./html/calzado.php">Calzado</a>
           </li>
         </ul>
       </div>
@@ -88,37 +85,40 @@
         die("Conexión fallida: " . $conn->connect_error);
     }
 
-    // Obtener ID del usuario (puedes ajustarlo según tu lógica)
-    $userId = 1; // Esto es solo un ejemplo. Cambia según tu lógica.
+    $usuario = $_GET['usuario'] ?? '';
 
-    // Consulta SQL para obtener los productos del usuario
-    $sql = "SELECT p.*, u.nom_usuari 
-            FROM producte p 
-            INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-            WHERE p.id_usuari = $userId";
+    if (!empty($usuario)) {
+        // Consulta SQL para obtener los productos del usuario
+        $sql = "SELECT p.*, u.nom_usuari 
+                FROM producte p 
+                INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+                WHERE u.nom_usuari LIKE '%$usuario%'";
 
-    $result = $conn->query($sql);
+        $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        echo "<h2>Productos de " . $row['nom_usuari'] . "</h2>";
-        echo '<div class="row">';
-        do {
-            echo "<div class='col-md-4'>";
-            echo "<div class='card mb-4'>";
-            echo "<div class='card-body'>";
-            echo "<h5 class='card-title'>" . $row['nom'] . "</h5>";
-            echo "<p class='card-text'>Precio: " . $row['preu'] . "€</p>";
-            echo "<div class='imagen' style='text-align:center;'>";
-            echo "<img src='data:image/jpeg;base64," . base64_encode($row['foto']) . "' alt='' class='img-fluid'>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
-        } while ($row = $result->fetch_assoc());
-        echo '</div>';
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            echo "<h2>Productos de " . htmlspecialchars($row['nom_usuari']) . "</h2>";
+            echo '<div class="row">';
+            do {
+                echo "<div class='col-md-4'>";
+                echo "<div class='card mb-4'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . htmlspecialchars($row['nom']) . "</h5>";
+                echo "<p class='card-text'>Precio: " . htmlspecialchars($row['preu']) . "€</p>";
+                echo "<div class='imagen' style='text-align:center;'>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($row['foto']) . "' alt='' class='img-fluid'>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            } while ($row = $result->fetch_assoc());
+            echo '</div>';
+        } else {
+            echo '<p>No se encontraron productos para este usuario.</p>';
+        }
     } else {
-        echo '<p>No se encontraron productos para este usuario.</p>';
+        echo '<p>No se proporcionó ningún usuario.</p>';
     }
 
     $conn->close();
@@ -152,5 +152,8 @@
       });
   }
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
