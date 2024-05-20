@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Resultados de Búsqueda</title>
+    <title>Productos del Usuario</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
@@ -70,7 +73,7 @@
 </header>
 
 <div class="container">
-    <h1>Resultados de Búsqueda</h1>
+    <h1>Productos del Usuario</h1>
     <?php
     $servername = "localhost";
     $username = "root";
@@ -85,65 +88,43 @@
         die("Conexión fallida: " . $conn->connect_error);
     }
 
-    $searchTerm = $_GET['search'] ?? '';
+    // Obtener ID del usuario (puedes ajustarlo según tu lógica)
+    $userId = 1; // Esto es solo un ejemplo. Cambia según tu lógica.
 
-    if (!empty($searchTerm)) {
-        // Consulta SQL para verificar si el término de búsqueda es un nombre de usuario
-        $sqlUsuario = "SELECT id_usuari FROM usuario WHERE nom_usuari LIKE '%$searchTerm%'";
-        $resultUsuario = $conn->query($sqlUsuario);
+    // Consulta SQL para obtener los productos del usuario
+    $sql = "SELECT p.*, u.nom_usuari 
+            FROM producte p 
+            INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+            WHERE p.id_usuari = $userId";
 
-        if ($resultUsuario->num_rows > 0) {
-            // Redirigir a mostrar_productos_usuarios.php si el término de búsqueda es un usuario
-            header("Location: mostrar_productos_usuarios.php?usuario=" . urlencode($searchTerm));
-            exit();
-        }
+    $result = $conn->query($sql);
 
-        // Consulta SQL del buscador que busca por la consulta que realizamos
-        $sql = "SELECT p.*, u.nom_usuari 
-                FROM producte p 
-                INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-                WHERE p.nom LIKE '%$searchTerm%' OR u.nom_usuari LIKE '%$searchTerm%'";
-
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            echo '<div class="row">';
-            while ($row = $result->fetch_assoc()) {
-                echo "<div class='col-md-4'>";
-                echo "<div class='card mb-4'>";
-                echo "<div class='usuario'>";
-                echo "<img src='./img/user-line.svg' alt=''>";
-                echo "<span class='n-usuario'>" . $row["nom_usuari"] . "</span>";
-                echo "</div>";
-                echo "<button type='button' class='boton-corazon'>";
-                echo "<img src='./img/heart.svg' alt=''>";
-                echo "</button>";
-                echo "<div class='imagen' style='text-align:center;'>";
-                echo "<img src='data:image/jpeg;base64," . base64_encode($row['foto']) . "' alt=''>";
-                echo "</div>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>" . $row['nom'] . "</h5>";
-                echo "<p class='card-text'>Precio: " . $row['preu'] . "€</p>";
-                echo "<p class='card-text'>Usuario: " . $row['nom_usuari'] . "</p>";
-                echo "<button type='button' class='boton-carro' onclick='agregarAlCarrito(" . $row['id_producte'] . ")'>";
-                echo "<img src='./img/bag.svg' alt=''>";
-                echo "</button>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            echo '</div>';
-        } else {
-            echo '<p>No se encontraron resultados</p>';
-        }
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo "<h2>Productos de " . $row['nom_usuari'] . "</h2>";
+        echo '<div class="row">';
+        do {
+            echo "<div class='col-md-4'>";
+            echo "<div class='card mb-4'>";
+            echo "<div class='card-body'>";
+            echo "<h5 class='card-title'>" . $row['nom'] . "</h5>";
+            echo "<p class='card-text'>Precio: " . $row['preu'] . "€</p>";
+            echo "<div class='imagen' style='text-align:center;'>";
+            echo "<img src='data:image/jpeg;base64," . base64_encode($row['foto']) . "' alt='' class='img-fluid'>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+        } while ($row = $result->fetch_assoc());
+        echo '</div>';
     } else {
-        header("Location: index.php");
-        exit();
+        echo '<p>No se encontraron productos para este usuario.</p>';
     }
 
     $conn->close();
     ?>
 </div>
+
 <script>
     function validar() {
         var searchInput = document.getElementById('searchInput').value;
@@ -171,8 +152,5 @@
       });
   }
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

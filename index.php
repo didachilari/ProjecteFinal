@@ -340,8 +340,6 @@ function validar() {
     return true;
     
 }
-
 </script>
-
 </body>
 </html>
