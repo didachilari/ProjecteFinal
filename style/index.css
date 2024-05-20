@@ -1,3 +1,7 @@
+body.index section {
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
 body.index section.vender {
   margin-top: 30px;
   text-align: center;
@@ -60,9 +64,6 @@ body.index section.populares .mySwiper .swiper-button-next {
 }
 body.index section.populares .mySwiper .swiper-button-prev {
   transform: translateX(-10px);
-}
-body.index section.marcas {
-  margin-top: 50px;
 }
 body.index section.marcas .background-claro {
   padding: 30px 0;

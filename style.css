@@ -9,12 +9,17 @@ html {
 }
 
 p {
-  font-size: 20px;
+  font-size: 1rem;
   font-family: "Karla", sans-serif;
 }
 
+h1 {
+  font-size: 3rem;
+  font-family: "Inder", sans-serif;
+}
+
 h2 {
-  height: 32px;
+  font-size: 2rem;
   font-family: "Inder", sans-serif;
 }
 
@@ -185,10 +190,10 @@ footer .background .general .derecha .row .rrss a {
 
 .contenedor-articulo {
   position: relative;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75);
 }
 .contenedor-articulo .usuario {
-  padding: 10px 0;
+  padding: 10px 0 10px 5px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -212,6 +217,11 @@ footer .background .general .derecha .row .rrss a {
 }
 .contenedor-articulo .contenido .con-icon {
   align-items: center;
+}
+.contenedor-articulo .contenido .con-icon .c-1 {
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-bottom: 10px;
 }
 .contenedor-articulo .contenido .con-icon .carro {
   display: flex;

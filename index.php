@@ -257,6 +257,8 @@ $result = $conn->query($sql);
     </div>
   </div>
 </section>
+
+section.
 <footer>
   <div class="background">
     <div class="container">
