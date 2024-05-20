@@ -23,7 +23,7 @@ $id_usuario = $_SESSION['id_usuario'];
     <div class="cabecera">
       <div class="row">
         <div class="col">
-          <a class="navbar-brand" href="./index.php">CoutureApp</a>
+          <a class="navbar-brand" href="./index.php">Couture<span>App</span></a>
         </div>
         <div class="col">
           <ul class="navbar-nav">
@@ -180,7 +180,7 @@ $result = $conn->query($sql);
           <h2>Encuentra tu marca</h2>
           <p>Todas tus marcas favoritas en un solo click</p>
         </div>
-        <div class="col-lg-5 imagenes">
+        <div class="col-lg-6 imagenes">
           <div class="imagen">
             <img src="./img/polo.png" alt="modelo polo">
           </div>
@@ -194,10 +194,6 @@ $result = $conn->query($sql);
 
 
   <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "couture";
 
     // Crear conexión
     $conn = new mysqli($servername, $username, $password, $database);
@@ -268,7 +264,7 @@ $result = $conn->query($sql);
         <div class="col izquierda">
           <div class="row">
             <div class="col titulo">
-              <a class="navbar-brand" href="./index.php">CoutureApp</a>
+              <a class="navbar-brand" href="./index.php">Couture<span>App</span></a>
             </div>
             <div class="col">
               <a href="./index.php">Avisos legales</a>
