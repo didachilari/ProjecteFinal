@@ -5,7 +5,7 @@ session_start();
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);

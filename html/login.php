@@ -5,7 +5,7 @@ session_start();
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $database = "couture";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -29,10 +29,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $_SESSION['id_usuario'] = $row['id_usuari']; // Guardar el ID del usuario en la sesión
         $_SESSION['usuario'] = $usuario; // También puedes guardar otros datos del usuario si lo necesitas
-        header("Location: ./../index.php");
-        exit(); 
-    }
-     else {
+        $_SESSION['admin'] = $row['admin']; // Guardar el estado de administrador
+
+        // Redirigir según el estado de administrador
+        if ($row['admin']) {
+            header("Location: ./crear_marca.php");
+        } else {
+            header("Location: ./../index.php");
+        }
+        exit();
+    } else {
         // Credenciales incorrectas
         $mensaje = "Usuari o contrasenya incorrectes!";
         echo '<script>alert("' . $mensaje . '");</script>';
@@ -55,21 +61,16 @@ $conn->close();
 <body class="login">        
     <div class="container">
         <div class="inicisessio">
-
             <div class="logo">CoutureAPP</div>
             <form id="loginform" action="login.php" method="post"> 
                 <input type="text" name="usuario" placeholder="Nombre usuario" required>
-                
                 <input type="password" placeholder="Contraseña" name="password" required>
-                
                 <button type="submit" title="IniciarSession" name="IniciarSession" class="boton-incisessio">Iniciar Sesión</button>
             </form>
             <div class="pie-form">
                 <a href="./registre.php">Crear Cuenta</a>
             </div>
         </div>
-    
     </div>
 </body>
 </html>
-
