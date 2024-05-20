@@ -127,7 +127,7 @@ $result = $conn->query($sql);
                             <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
                         </div>
                         <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
-                            <img src="./img/heart.svg" alt="">
+                          <img src="./img/heart.svg" alt="">
                         </button>
                         <div class="imagen" style="text-align:center;">
                             <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
@@ -211,7 +211,8 @@ $result = $conn->query($sql);
   }
   $servername = "localhost";
   $username = "root";
-  $password = "";
+  $password = "root";
+
   $database = "couture";
   
   $conn = new mysqli($servername, $username, $password, $database);
@@ -265,7 +266,9 @@ $result = $conn->query($sql);
   </div>
 </section>
 
-section.
+<section class="camisetas">
+ ¡
+</section>
 <footer>
   <div class="background">
     <div class="container">

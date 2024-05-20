@@ -84,7 +84,8 @@
                 // Conexión a la base de datos
                 $servername = "localhost";
                 $username = "root";
-                $password = "";
+                $password = "root";
+
                 $database = "couture";
                 // Crea la conexión
                 $conn = new mysqli($servername, $username, $password, $database);
