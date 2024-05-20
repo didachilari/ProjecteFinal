@@ -1,3 +1,7 @@
+<?php
+$id_usuario = $_SESSION['id_usuario'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,7 +130,7 @@
                             <img src="./img/user-line.svg" alt="">
                             <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
                         </div>
-                        <button type="button" class="boton-corazon">
+                        <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
                             <img src="./img/heart.svg" alt="">
                         </button>
                         <div class="imagen" style="text-align:center;">
