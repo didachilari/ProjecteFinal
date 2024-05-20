@@ -55,13 +55,13 @@
             <a class="nav-link" href="./html/camiseta.php">Camiseta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./html/pantalon.php">Pantalon</a>
+            <a class="nav-link" href="./html/pantalon.php">Pantalon</i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./html/chaquetas.php">Chaquetas</a>
+            <a class="nav-link" href="./html/chaquetas.php">Chaquetas</i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./html/calzado.php">Calzado</a>
+            <a class="nav-link" href="./html/calzado.php">Calzado</i></a>
           </li>
         </ul>
       </div>
