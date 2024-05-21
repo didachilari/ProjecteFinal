@@ -6,18 +6,7 @@ if (!isset($_SESSION['id_usuario'])) {
     exit();
 }
 
-$servername = "localhost";
-$username = "root";
-  $password = "";
-
-
-$database = "couture";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
+include "./../functions/db_connection.php";
 
 if (!isset($_GET['id'])) {
     header("Location: pagina-usuario.php");

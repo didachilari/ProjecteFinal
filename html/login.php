@@ -1,21 +1,7 @@
 <?php
 // Iniciar la sesión
 session_start();
-
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-  $password = "";
-
-
-$database = "couture";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
+include "./../functions/db_connection.php";
 
 // Verificar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

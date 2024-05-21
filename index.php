@@ -1,5 +1,7 @@
 <?php
 $id_usuario = $_SESSION['id_usuario'];
+session_start();
+include './functions/db_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -94,27 +96,16 @@ $id_usuario = $_SESSION['id_usuario'];
   <div class="container">
     <h2>Artículos populares</h2>
     <?php
-$servername = "localhost";
-$username = "root";
-  $password = "";
-
-$database = "couture";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
 
 // Variable para guardar la búsqueda y si está vacía se asigna un string vacío
 $searchTerm = $_GET['search'] ?? '';
 
 // Consulta SQL del buscador que busca por la consulta que realizamos
-$sql = "SELECT p.*, u.nom_usuari 
+        $sql = "SELECT p.*, u.nom_usuari 
         FROM producte p 
         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
         WHERE p.nom LIKE '%$searchTerm%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
-$result = $conn->query($sql);
+        $result = $conn->query($sql);
 ?>
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
@@ -195,38 +186,9 @@ $result = $conn->query($sql);
 
 
   <?php
-
-    // Crear conexión
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Verificar conexión
-    if ($conn->connect_error) {
-      die("Conexión fallida: " . $conn->connect_error);
-  }
-  $servername = "localhost";
-  $username = "root";
-    $password = "";
-
-
-  $database = "couture";
-  
-  $conn = new mysqli($servername, $username, $password, $database);
-  
-  if ($conn->connect_error) {
-      die("Conexión fallida: " . $conn->connect_error);
-  }
-  
-  // Variable para guardar la búsqueda y si está vacía se asigna un string vacío
-  $searchTerm = $_GET['search'] ?? '';
-  
-  // Consulta SQL del buscador que busca por la consulta que realizamos
-  $sql = "SELECT p.*, u.nom_usuari 
-          FROM producte p 
-          INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-          WHERE p.nom LIKE '%$searchTerm%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
-  $result = $conn->query($sql);
-      $sql = "SELECT nom, foto_marca FROM marcas";
-      $result2 = $conn->query($sql);
+    include './functions/db_connection.php';
+    $sql1 = "SELECT nom, foto_marca FROM marcas";
+    $result2 = $conn->query($sql1);
     ?>
 
   <div class="background-oscuro">
