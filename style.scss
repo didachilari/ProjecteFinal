@@ -1,4 +1,5 @@
 @import url(./style/index.css);
+@import url(./style/colors.css);
 @import url(./style/login.css);
 @import url(./fonts/fonts.css);
 @import url(./style/creacio.css);
@@ -8,6 +9,9 @@
 html{
     position: relative;
     height: 100vh;
+}
+body{
+    margin-top: 150px;
 }
 p{
     font-size: 1rem;
@@ -31,10 +35,17 @@ h2{
         margin-bottom: 30px;
     }
 }
+.background-semiblack{
+    background-color: var(--semiblack-color);
+
+}
 header{
-    background-color: #ecececcb;
-    padding-top: 10px;
-    
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 200;
+    background-color: rgb(236 236 236);
     a{
         --bs-navbar-brand-font-size:2rem;
         color: #323232;
@@ -259,6 +270,7 @@ footer{
                     border: transparent;
                     background-color: transparent;
                     width: max-content;
+                    padding: 0 3px;
                     img{
                         width: 30px;
                     }

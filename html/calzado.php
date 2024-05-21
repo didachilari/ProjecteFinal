@@ -101,7 +101,7 @@ $result = $conn->query($sql);
                             </div>
                             <div class="contenido">
                                 <div class="row con-icon">
-                                    <div class="col-6">
+                                    <div class="col-10">
                                         <div class="c-1">
                                             <span><?php echo $row["nom"]; ?></span>
                                             <br>
@@ -109,7 +109,7 @@ $result = $conn->query($sql);
                                             <br>
                                         </div>
                                     </div>
-                                    <div class="col-6 carro">
+                                    <div class="col-2 carro">
                                         <div class="carrito">
                                             <div class="row h-b">
                                                 <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">

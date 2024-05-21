@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria); 
 
     //preparar la consulta sql
-    $sql = "INSERT INTO producte (nom, preu, foto, categorias, me_gusta, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', 0, $id_usuario, $marca)";
+    $sql = "INSERT INTO producte (nom, preu, foto, categorias, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', $id_usuario, $marca)";
 
     //ejectuar la consulta
     if ($conn->query($sql) === TRUE) {
@@ -175,8 +175,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </section>
-
-    <footer>
+</body>
+<footer>
       <div class="background">
         <div class="container">
           <div class="row general">
@@ -208,5 +208,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
     </footer>
-</body>
 </html>

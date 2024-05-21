@@ -1,4 +1,5 @@
 @import url(./style/index.css);
+@import url(./style/colors.css);
 @import url(./style/login.css);
 @import url(./fonts/fonts.css);
 @import url(./style/creacio.css);
@@ -6,6 +7,10 @@
 html {
   position: relative;
   height: 100vh;
+}
+
+body {
+  margin-top: 150px;
 }
 
 p {
@@ -34,9 +39,17 @@ h2 {
   }
 }
 
+.background-semiblack {
+  background-color: var(--semiblack-color);
+}
+
 header {
-  background-color: rgba(236, 236, 236, 0.7960784314);
-  padding-top: 10px;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 200;
+  background-color: rgb(236, 236, 236);
 }
 header a {
   --bs-navbar-brand-font-size:2rem;
@@ -253,6 +266,7 @@ footer .background .general .derecha .row .rrss a {
   background-color: transparent;
   width: -moz-max-content;
   width: max-content;
+  padding: 0 3px;
 }
 .contenedor-articulo .contenido .con-icon .carro .boton-carro img {
   width: 30px;
