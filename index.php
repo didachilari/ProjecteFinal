@@ -96,6 +96,14 @@ include '/functions/db_connection.php';
   <div class="container">
     <h2>Artículos populares</h2>
     <?php
+<<<<<<< HEAD
+=======
+$servername = "localhost";
+$username = "root";
+  $password = "";
+
+$database = "couture";
+>>>>>>> 43fb7540fd17e8bd0957b3ac7279f2838cf8f9ed
 
 
 // Variable para guardar la búsqueda y si está vacía se asigna un string vacío
@@ -197,7 +205,8 @@ $result = $conn->query($sql);
   }
   $servername = "localhost";
   $username = "root";
-  $password = "root";
+    $password = "";
+
 
   $database = "couture";
   

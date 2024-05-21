@@ -30,6 +30,7 @@ header{
     
     a{
         --bs-navbar-brand-font-size:2rem;
+        color: #323232;
         transition: all 0.5s ease;
         span{
             color: #ca6c24;
@@ -38,7 +39,8 @@ header{
             --bs-navbar-brand-font-size:1.8rem;
         }
         &:hover{
-            --bs-navbar-brand-font-size:2.1rem;
+            --bs-navbar-brand-font-size:2.3rem;
+            color: #323232;
         }
     }
     .cabecera{
@@ -52,6 +54,8 @@ header{
             }
             .nav-item{
                 .nav-link{
+                    --bs-nav-link-color: #323232;
+                    color: #323232;
                     --bs-nav-link-font-size: 23px;
                     @media (max-width:992px) {
                         --bs-nav-link-font-size: 20px;
@@ -107,6 +111,7 @@ header{
                         width: max-content;
                         .nav-link{
                             --bs-nav-link-color: #323232;
+                            color: #323232;
                             --bs-nav-link-font-size: 1rem;
                             transition: 0.5s ease;
                         &:hover{
