@@ -1,5 +1,7 @@
 <?php
 $id_usuario = $_SESSION['id_usuario'];
+
+include '/functions/db_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -94,16 +96,7 @@ $id_usuario = $_SESSION['id_usuario'];
   <div class="container">
     <h2>Artículos populares</h2>
     <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$database = "couture";
 
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
 
 // Variable para guardar la búsqueda y si está vacía se asigna un string vacío
 $searchTerm = $_GET['search'] ?? '';
