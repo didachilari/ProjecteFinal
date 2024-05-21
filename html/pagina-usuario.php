@@ -118,7 +118,7 @@ $conn->close();
 
 
     <div class="container mt-5">
-        <h1>Mis Productos</h1>
+        <h2>Mis Productos</h2>
         <!-- Mostrar los productos del usuario -->
         <?php if (count($productos_usuario) > 0): ?>
             <table class="table">

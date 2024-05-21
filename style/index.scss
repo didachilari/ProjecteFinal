@@ -1,10 +1,5 @@
 body.index{
-    section{
-        margin-top: 50px;
-        margin-bottom: 70px;
-    }
     section.vender{
-        margin-top: 30px;
         text-align: center;
         .frase-img{
             margin-top: 30px;
@@ -38,7 +33,6 @@ body.index{
         }
     }
     section.populares{
-        margin-top: 90px;
         .mySwiper{
             .swiper-wrapper{
                 .swiper-slide{
@@ -52,15 +46,7 @@ body.index{
                 background-color: #2d2d2d;
             }
             .swiper-button-next, .swiper-button-prev{
-                padding: 25px;
-                border: 3px solid;
-                border-radius: 100%;
-                background-color: #ececec;
                 color: #2d2d2d;
-                font-size: 40px;
-                &:after{
-                    display: none;                
-                }
             }
             .swiper-button-next{
                 transform: translateX(10px);
@@ -124,14 +110,6 @@ body.index{
                         }
                     }
                 }
-                .swiper-button-next, .swiper-button-prev{
-                    padding: 25px;
-                    color: #ffffff;
-                    font-size: 40px;
-                    &:after{
-                        display: none;                
-                    }
-                }
                 .swiper-button-next{
                     transform: translateX(10px);
                 }
@@ -142,7 +120,6 @@ body.index{
         }
     }
     section.novedades{
-        margin-top: 100px;
         .articulos{
             margin-top: 50px;
             .producto{
@@ -152,7 +129,6 @@ body.index{
         }
     }
     section.outfits{
-        margin-top: 100px;
         .articulos{
             margin-top: 50px;
             .producto{

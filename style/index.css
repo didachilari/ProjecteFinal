@@ -1,9 +1,4 @@
-body.index section {
-  margin-top: 50px;
-  margin-bottom: 70px;
-}
 body.index section.vender {
-  margin-top: 30px;
   text-align: center;
 }
 body.index section.vender .frase-img {
@@ -36,9 +31,6 @@ body.index section.vender .boton-crear a {
   font-weight: 300;
   font-family: "Karla", sans-serif;
 }
-body.index section.populares {
-  margin-top: 90px;
-}
 body.index section.populares .mySwiper .swiper-wrapper .swiper-slide {
   padding: 60px;
 }
@@ -49,15 +41,7 @@ body.index section.populares .mySwiper .swiper-pagination-bullet-active {
   background-color: #2d2d2d;
 }
 body.index section.populares .mySwiper .swiper-button-next, body.index section.populares .mySwiper .swiper-button-prev {
-  padding: 25px;
-  border: 3px solid;
-  border-radius: 100%;
-  background-color: #ececec;
   color: #2d2d2d;
-  font-size: 40px;
-}
-body.index section.populares .mySwiper .swiper-button-next:after, body.index section.populares .mySwiper .swiper-button-prev:after {
-  display: none;
 }
 body.index section.populares .mySwiper .swiper-button-next {
   transform: translateX(10px);
@@ -114,22 +98,11 @@ body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .nombre-marca {
   color: white;
 }
-body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next, body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev {
-  padding: 25px;
-  color: #ffffff;
-  font-size: 40px;
-}
-body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next:after, body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev:after {
-  display: none;
-}
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next {
   transform: translateX(10px);
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev {
   transform: translateX(-10px);
-}
-body.index section.novedades {
-  margin-top: 100px;
 }
 body.index section.novedades .articulos {
   margin-top: 50px;
@@ -137,9 +110,6 @@ body.index section.novedades .articulos {
 body.index section.novedades .articulos .producto {
   padding-top: 12px;
   padding-bottom: 12px;
-}
-body.index section.outfits {
-  margin-top: 100px;
 }
 body.index section.outfits .articulos {
   margin-top: 50px;

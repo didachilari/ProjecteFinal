@@ -175,8 +175,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </section>
-
-    <footer>
+</body>
+<footer>
       <div class="background">
         <div class="container">
           <div class="row general">
@@ -208,5 +208,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
       </div>
     </footer>
-</body>
 </html>

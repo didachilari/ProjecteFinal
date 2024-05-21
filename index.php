@@ -80,7 +80,7 @@ include './functions/db_connection.php';
     </div>
   </nav>
 </header>
-<section class="vender">
+<section class="vender margin-top-80-30">
 
   <div class="container">
     <img src="./img/img_index.png" alt="">
@@ -92,7 +92,7 @@ include './functions/db_connection.php';
     </div>
   </div>
 </section>
-<section class="populares">
+<section class="populares margin-top-80-30">
   <div class="container">
     <h2>Artículos populares</h2>
     <?php
@@ -126,7 +126,7 @@ $searchTerm = $_GET['search'] ?? '';
                         </div>
                         <div class="contenido">
                             <div class="row con-icon">
-                                <div class="col-6">
+                                <div class="col-10">
                                     <div class="c-1">
                                         <span><?php echo $row["nom"]; ?></span>
                                         <br>
@@ -134,7 +134,7 @@ $searchTerm = $_GET['search'] ?? '';
                                         <br>
                                     </div>
                                 </div>
-                                <div class="col-6 carro">
+                                <div class="col-2 carro">
                                     <div class="carrito">
                                         <div class="row h-b">
                                             <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
@@ -164,7 +164,7 @@ $searchTerm = $_GET['search'] ?? '';
 </div>
 </section>
 
-<section class="marcas">
+<section class="marcas margin-top-80-30">
   <div class="background-claro">
     <div class="container">
       <div class="row">
@@ -223,9 +223,55 @@ $searchTerm = $_GET['search'] ?? '';
   </div>
 </section>
 
-<section class="camisetas">
- ¡
-</section>
+<section class="categorias margin-top-80-30">
+
+  <?php 
+    include './functions/randomizer-categoria.php'; 
+    include './functions/db_connection.php';
+
+    $query = "SELECT * FROM producte WHERE categorias = '$category'";
+    $result = mysqli_query($conn, $query);
+  ?>
+
+    <div class="background-semiblack">
+      <div class="container">
+        <div class="swiper mySwiper3">
+          <div class="swiper-wrapper">
+            <?php
+            if ($result->num_rows > 0) {
+              foreach ($result as $row) { ?>
+                <div class="swiper-slide">
+                  <div class="contenedor-articulo">
+                    <div class="usuario">
+
+                      <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+                    </div>
+                    <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
+                      <img src="./img/heart.svg" alt="">
+                    </button>
+                    <div class="imagen" style="text-align:center;">
+                      <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                    </div>
+                  </div>
+                </div>
+            <?php }
+            } else {
+              echo "0 resultados";
+            }
+            $conn->close();
+            ?>
+          </div>
+          <div class="swiper-button-next">
+            <i class="bi bi-arrow-right"></i>
+          </div>
+          <div class="swiper-button-prev">
+            <i class="bi bi-arrow-left"></i>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 <footer>
   <div class="background">
     <div class="container">
@@ -276,6 +322,17 @@ var swiper = new Swiper('.mySwiper', {
 </script>
 <script>
 var swiper = new Swiper(".mySwiper2", {
+  slidesPerView: 4,
+    spaceBetween: 50,
+    loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
+</script>
+<script>
+var swiper = new Swiper(".mySwiper3", {
   slidesPerView: 4,
     spaceBetween: 50,
     loop: true,
