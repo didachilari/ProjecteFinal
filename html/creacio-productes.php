@@ -23,22 +23,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: Sesión de usuario no encontrada.");
     }
 
-    // Obtener los datos del formulario
-    $titulo = $_POST["titulo"];
-    $descripcion = $_POST["descripcion"];
-    $categoria = $_POST["categoria"]; // Obtener la categoría seleccionada
-    $precio = $_POST["precio"];
-    $imagen = $_FILES["imagen"]["tmp_name"];
-    $marca = $_POST["marca"]; 
+   // Obtener los datos del formulario
+$titulo = $_POST["titulo"];
+$descripcion = $_POST["descripcion"]; // Cambia "descripcio" por "descripcion"
+$categoria = $_POST["categoria"]; 
+$precio = $_POST["precio"];
+$imagen = $_FILES["imagen"]["tmp_name"];
+$marca = $_POST["marca"]; 
 
-    //leer contenido binario de la img
-    $imagenBinaria = file_get_contents($imagen);
+//leer contenido binario de la img
+$imagenBinaria = file_get_contents($imagen);
 
-    //escapar el contenido binario para evitar problemas de codificación
-    $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria); 
+//escapar el contenido binario para evitar problemas de codificación
+$imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria); 
 
-    //preparar la consulta sql
-    $sql = "INSERT INTO producte (nom, preu, foto, categorias, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', $id_usuario, $marca)";
+//preparar la consulta sql
+$sql = "INSERT INTO producte (nom, preu, foto, descripcio, categorias, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$descripcion', '$categoria', $id_usuario, $marca)";
+
 
     //ejectuar la consulta
     if ($conn->query($sql) === TRUE) {
