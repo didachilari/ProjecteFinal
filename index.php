@@ -52,7 +52,7 @@ include './functions/db_connection.php';
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="buscador">
-        <form class="d-flex" role="search" action="resultados_busqueda.php" method="GET" onsubmit="return validar()">
+        <form class="d-flex" role="search" action="./html/resultados_busqueda.php" method="GET" onsubmit="return validar()">
           <button class="btn" type="submit"><i class="bi bi-search"></i></button>
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">
         </form>
@@ -223,8 +223,8 @@ $searchTerm = $_GET['search'] ?? '';
   </div>
 </section>
 
-<section class="camisetas">
- ¡
+<section class="categorias">
+
 </section>
 <footer>
   <div class="background">

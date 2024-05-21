@@ -162,7 +162,7 @@
       // Actualiza la interfaz
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: 'agregar_al_carrito.php',
+          url: './agregar_al_carrito.php',
           type: 'POST',
           data: { id: idProducto },
           success: function(response) {

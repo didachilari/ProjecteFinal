@@ -49,15 +49,7 @@ body.index section.populares .mySwiper .swiper-pagination-bullet-active {
   background-color: #2d2d2d;
 }
 body.index section.populares .mySwiper .swiper-button-next, body.index section.populares .mySwiper .swiper-button-prev {
-  padding: 25px;
-  border: 3px solid;
-  border-radius: 100%;
-  background-color: #ececec;
   color: #2d2d2d;
-  font-size: 40px;
-}
-body.index section.populares .mySwiper .swiper-button-next:after, body.index section.populares .mySwiper .swiper-button-prev:after {
-  display: none;
 }
 body.index section.populares .mySwiper .swiper-button-next {
   transform: translateX(10px);
@@ -113,14 +105,6 @@ body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .nombre-marca {
   color: white;
-}
-body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next, body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev {
-  padding: 25px;
-  color: #ffffff;
-  font-size: 40px;
-}
-body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next:after, body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-prev:after {
-  display: none;
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next {
   transform: translateX(10px);

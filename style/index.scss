@@ -52,15 +52,7 @@ body.index{
                 background-color: #2d2d2d;
             }
             .swiper-button-next, .swiper-button-prev{
-                padding: 25px;
-                border: 3px solid;
-                border-radius: 100%;
-                background-color: #ececec;
                 color: #2d2d2d;
-                font-size: 40px;
-                &:after{
-                    display: none;                
-                }
             }
             .swiper-button-next{
                 transform: translateX(10px);
@@ -122,14 +114,6 @@ body.index{
                         .nombre-marca{
                             color: white;
                         }
-                    }
-                }
-                .swiper-button-next, .swiper-button-prev{
-                    padding: 25px;
-                    color: #ffffff;
-                    font-size: 40px;
-                    &:after{
-                        display: none;                
                     }
                 }
                 .swiper-button-next{
