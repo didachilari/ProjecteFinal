@@ -353,7 +353,7 @@ var swiper = new Swiper(".mySwiper3", {
       //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: 'agregar_al_carrito.php',
+          url: './functions/agregar_al_carrito.php',
           type: 'POST',
           data: { id: idProducto },
           success: function(response) {
