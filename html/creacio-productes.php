@@ -2,20 +2,7 @@
 // Iniciar sesión
 session_start();
 
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-  $password = "";
-
-
-$database = "couture";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
+include "./../functions/db_connection.php";
 
 // Obtener marcas de la base de datos
 $sql_marcas = "SELECT id_marcas, nom FROM marcas";

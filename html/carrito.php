@@ -1,17 +1,7 @@
 <?php
 session_start();
 
-// Establecer conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "couture";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+include "./../functions/db_connection.php";
 
 // Inicializar el carrito si está vacío
 if (!isset($_SESSION['carrito'])) {

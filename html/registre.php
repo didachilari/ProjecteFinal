@@ -1,22 +1,7 @@
 <?php
 // Verificar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conectar a la base de datos
-    $servername = "localhost";
-    $username = "root";
-      $password = "";
-
-
-    $database = "couture";
-
-    // Crear conexión
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Comprobar la conexión
-    if ($conn->connect_error) {
-        die("Connexió fallida: " . $conn->connect_error);
-    }
-
+    include "./../functions/db_connection.php";
     // Obtener los datos del formulario
     $nom = $_POST["nom"];
     $cognoms = $_POST["cognoms"];

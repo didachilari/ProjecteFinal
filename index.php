@@ -106,7 +106,6 @@ $searchTerm = $_GET['search'] ?? '';
         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
         WHERE p.nom LIKE '%$searchTerm%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
         $result = $conn->query($sql);
-        include './functions/me_gusta.php';
 ?>
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">

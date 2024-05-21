@@ -11,20 +11,7 @@ if (!isset($_SESSION['id_usuario'])) {
 // Obtener el ID del usuario autenticado
 $id_usuario = $_SESSION['id_usuario'];
 
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-  $password = "";
-
-
-$database = "couture";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
+include "./../functions/db_connection.php";
 
 // Obtener los productos del usuario con el nombre de la marca
 $sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca, p.categorias 
