@@ -1,134 +1,64 @@
-<!doctype html>
-<html>
+<?php
+require 'vendor/autoload.php';
+
+\Stripe\Stripe::setApiKey("sk_test_51PEn8fF6jOXWWkOuhlkC1Vn8H0tqoo4C8Pdc3QkWIcggs9EzgHXKhX7iJnLT2Q4A2qRi5UFywcmlbgtzeunzYJmO00jjKT2SMj");
+
+/* Verifica si se recibió el valor total */
+if (!isset($_GET['total'])) {
+    die("Error: Total no especificado.");
+}
+
+$total = (int)$_GET['total'];
+
+$YOUR_DOMAIN = 'http://localhost:8080';
+
+try {
+    $checkout_session = \Stripe\Checkout\Session::create([
+        'payment_method_types' => ['card'],
+        'line_items' => [[
+            'price_data' => [
+                'currency' => 'eur',
+                'product_data' => [
+                    'name' => 'Total del Carrito',
+                ],
+                'unit_amount' => $total,
+            ],
+            'quantity' => 1,
+        ]],
+        'mode' => 'payment',
+        'success_url' => $YOUR_DOMAIN . '/success.html',
+    ]);
+} catch (Exception $e) {
+    echo 'Error: ' . $e->getMessage();
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <style>
-    .StripeElement {
-      background-color: white;
-      height: 40px;
-      padding: 10px 12px;
-      border-radius: 4px;
-      border: 1px solid transparent;
-      box-shadow: 0 1px 3px 0 #e6ebf1;
-      -webkit-transition: box-shadow 150ms ease;
-      transition: box-shadow 150ms ease;
-      margin-bottom: 10px; /* Agregar margen inferior para separar los campos */
-    }
-
-    .StripeElement--focus {
-      box-shadow: 0 1px 3px 0 #cfd7df;
-    }
-
-    .StripeElement--invalid {
-      border-color: #fa755a;
-    }
-
-    .StripeElement--webkit-autofill {
-      background-color: #fefde5 !important;
-    }
-  </style>
-  <script src="https://js.stripe.com/v3/"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra</title>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-  <form action="CreateCharge.php" method="post" id="payment-form">
-    <div class="form-row">
-      <label for="name">Nombre</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <div class="form-row">
-      <label for="email">Correo Electrónico</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-row">
-      <label for="phone">Teléfono</label>
-      <input type="tel" id="phone" name="phone" required>
-    </div>
-    <div class="form-row">
-      <label for="address">Dirección</label>
-      <input type="text" id="address" name="address" required>
-    </div>
-    <div class="form-row">
-      <label for="card-element">Tarjeta de Crédito o Débito</label>
-      <div id="card-element">
-        <!-- A Stripe Element will be inserted here. -->
-      </div>
-      <!-- Used to display form errors. -->
-      <div id="card-errors" role="alert"></div>
-    </div>
-    <button type="submit">Pagar</button>
-  </form>
-  <script>
-    // Create a Stripe client.
-    var stripe = Stripe('pk_test_51PEn8fF6jOXWWkOuAqgNaFW41ZqbUIu5EiSSpYj6oLdSrYJmGohr6ngrpVP83Hd4h9JP8nXV5Zu7sLFcmv0YEpf200a2AZx2SJ');
+    <h1>Finalizar Compra</h1>
+    <button id="checkout-button">Pagar con Stripe</button>
 
-    // Create an instance of Elements.
-    var elements = stripe.elements();
+    <script type="text/javascript">
+        var stripe = Stripe('pk_test_51PEn8fF6jOXWWkOuAqgNaFW41ZqbUIu5EiSSpYj6oLdSrYJmGohr6ngrpVP83Hd4h9JP8nXV5Zu7sLFcmv0YEpf200a2AZx2SJ');
+        var checkoutButton = document.getElementById('checkout-button');
 
-    // Custom styling can be passed to options when creating an Element.
-    // (Note that this demo uses a wider set of styles than the guide below.)
-    var style = {
-      base: {
-        color: '#32325d',
-        lineHeight: '18px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#aab7c4'
-        }
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-      }
-    };
-
-    // Create an instance of the card Element.
-    var card = elements.create('card', {style: style});
-
-    // Add an instance of the card Element into the `card-element` <div>.
-    card.mount('#card-element');
-
-    // Handle real-time validation errors from the card Element.
-    card.addEventListener('change', function(event) {
-      var displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-      } else {
-        displayError.textContent = '';
-      }
-    });
-
-    // Handle form submission.
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      stripe.createToken(card).then(function(result) {
-        if (result.error) {
-          // Inform the user if there was an error.
-          var errorElement = document.getElementById('card-errors');
-          errorElement.textContent = result.error.message;
-        } else {
-          // Send the token to your server.
-          stripeTokenHandler(result.token);
-        }
-      });
-    });
-
-    function stripeTokenHandler(token) {
-      // Insert the token ID into the form so it gets submitted to the server
-      var form = document.getElementById('payment-form');
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeToken');
-      hiddenInput.setAttribute('value', token.id);
-      form.appendChild(hiddenInput);
-
-      // Submit the form
-      form.submit();
-    }
-    
-  </script>
+        checkoutButton.addEventListener('click', function () {
+            stripe.redirectToCheckout({
+                sessionId: '<?= $checkout_session->id ?>'
+            }).then(function (result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-

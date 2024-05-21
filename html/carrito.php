@@ -56,7 +56,7 @@ if (isset($_POST['decrease'])) {
 // Función para finalizar la compra
 if (isset($_POST['finalize'])) {
     $_SESSION['carrito'] = []; // Limpiar el carrito
-    header('Location: success.php');
+    header('Location: finalizar_compra.php?total=' . $_POST['total']);
     exit();
 }
 ?>
@@ -71,7 +71,6 @@ if (isset($_POST['finalize'])) {
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="./../style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 <header>
@@ -190,8 +189,9 @@ if (isset($_POST['finalize'])) {
                 <h4>Total: <span id="total"><?= number_format($total, 2) ?>€</span></h4>
             </div>
             <div class="d-flex justify-content-end mt-3">
-                <form action="" method="post">
-                    <button type="submit" name="finalize" class="btn btn-primary">Finalizar Compra</button>
+                <form action="finalizar_compra.php" method="get">
+                    <input type="hidden" id="total_input" name="total" value="<?= number_format($total * 100, 0, '', '') ?>"> <!-- Multiplicamos el total por 100 para convertir a centavos -->
+                    <button type="submit" class="btn btn-primary">Finalizar Compra</button>
                 </form>
             </div>
         </div>
@@ -258,9 +258,11 @@ if (isset($_POST['finalize'])) {
             });
             // Actualizar el total en la página
             document.getElementById('total').innerText = total.toFixed(2) + '€';
+            // Actualizar el valor del input oculto con el total en centavos
+            document.getElementById('total_input').value = Math.round(total * 100);
         }
+        
     </script>
     
     </body>
     </html>
-    
