@@ -13,4 +13,3 @@ $idProducto = $_POST['id'];
 // Agrega el ID del producto a la sesión del carrito
 $_SESSION['carrito'][] = $idProducto;
 ?>
-sd

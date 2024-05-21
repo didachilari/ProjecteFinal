@@ -23,6 +23,17 @@ h2 {
   font-family: "Inder", sans-serif;
 }
 
+.margin-top-80-30 {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+@media screen and (max-width: 992px) {
+  .margin-top-80-30 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
 header {
   background-color: rgba(236, 236, 236, 0.7960784314);
   padding-top: 10px;
