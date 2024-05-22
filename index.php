@@ -274,6 +274,7 @@ $searchTerm = $_GET['search'] ?? '';
       </div>
     </div>
   </section>
+  
 <footer>
   <div class="background">
     <div class="container">

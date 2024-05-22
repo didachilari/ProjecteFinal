@@ -73,7 +73,55 @@
 </header>
 <div class="container">
   
-?>
+  <h2>Busquedas de usuario</h2>
+  <?php
+    include "./../functions/db_connection.php";
+
+    // Obtener el término de búsqueda del nombre de usuario desde la URL
+    $searchTerm = $_GET['search'];
+
+    // Consulta SQL para obtener el ID del usuario basado en el nombre de usuario buscado
+    $sql_user_id = "SELECT id_usuari FROM usuario WHERE nom_usuari LIKE '%$searchTerm%'";
+    $result_user_id = $conn->query($sql_user_id);
+
+    if ($result_user_id->num_rows > 0) {
+        $row_user_id = $result_user_id->fetch_assoc();
+        $userId = $row_user_id['id_usuari'];
+
+        // Consulta SQL para obtener los productos del usuario según el ID de usuario
+        $sql_products = "SELECT p.*, u.nom_usuari 
+                         FROM producte p 
+                         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+                         WHERE p.id_usuari = $userId";
+        
+        $result_products = $conn->query($sql_products);
+
+        if ($result_products->num_rows > 0) {
+            echo "<h2>Productos de $searchTerm</h2>";
+            echo '<div class="row">';
+            while ($row_product = $result_products->fetch_assoc()) {
+                echo "<div class='col-md-4'>";
+                echo "<div class='card mb-4'>";
+                echo "<div class='card-body'>";
+                echo "<h5 class='card-title'>" . $row_product['nom'] . "</h5>";
+                echo "<p class='card-text'>Precio: " . $row_product['preu'] . "€</p>";
+                echo "<div class='imagen' style='text-align:center;'>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($row_product['foto']) . "' alt='' class='img-fluid'>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
+            echo '</div>';
+        } else {
+            echo "<p>No se encontraron productos para el usuario: $searchTerm</p>";
+        }
+    } else {
+        echo "<p>No se encontró ningún usuario con el nombre: $searchTerm</p>";
+    }
+
+    $conn->close();
+    ?>
 
 </div>
 
