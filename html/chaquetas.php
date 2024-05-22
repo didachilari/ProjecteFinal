@@ -165,7 +165,8 @@ $result = $conn->query($sql);
       </div>
     </div>
   </div>
-</footer><script>
+</footer>
+<script>
   var contadorCarrito = 0;
 
   function agregarAlCarrito(idProducto) {
