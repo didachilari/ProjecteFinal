@@ -177,11 +177,11 @@ $result = $conn->query($sql);
       //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: './functions/agregar_al_carrito.php',
-          type: 'POST',
-          data: { id: idProducto },
-          success: function(response) {
-          }
+        url: './../functions/agregar_al_carrito.php',
+        type: 'POST',
+        data: { id: idProducto },
+        success: function(response) {
+        }
       });
   }
 </script>
