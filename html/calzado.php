@@ -165,4 +165,34 @@ $result = $conn->query($sql);
       </div>
     </div>
   </div>
-</footer>
+</footer><script>
+  var contadorCarrito = 0;
+
+  function agregarAlCarrito(idProducto) {
+      //incrementa el contador
+      contadorCarrito++;
+      //actualitza l'interfaç
+      document.getElementById("contadorCarrito").textContent = contadorCarrito;
+      $.ajax({
+          url: './functions/agregar_al_carrito.php',
+          type: 'POST',
+          data: { id: idProducto },
+          success: function(response) {
+          }
+      });
+  }
+</script>
+<script>
+function validar() {
+    var searchInput = document.getElementById('searchInput').value;
+    if (searchInput.trim() === "") {
+        // Evita que el formulario se envíe si el campo de búsqueda está vacío
+        return false;
+    }
+    // Permite que el formulario se envíe si hay texto en el campo de búsqueda
+    return true;
+    
+}
+</script>
+</body>
+</html>

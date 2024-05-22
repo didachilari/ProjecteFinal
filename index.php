@@ -122,8 +122,10 @@ $searchTerm = $_GET['search'] ?? '';
                           <img src="./img/heart.svg" alt="">
                         </button>
                         <div class="imagen" style="text-align:center;">
-                            <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                        </div>
+                                <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                                </a>
+                            </div>
                         <div class="contenido">
                             <div class="row con-icon">
                                 <div class="col-10">
@@ -352,7 +354,7 @@ var swiper = new Swiper(".mySwiper3", {
       //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: 'agregar_al_carrito.php',
+          url: './functions/agregar_al_carrito.php',
           type: 'POST',
           data: { id: idProducto },
           success: function(response) {
