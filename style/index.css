@@ -118,6 +118,9 @@ body.index section.outfits .articulos .producto {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+body.index section.categorias .contenedor-articulo {
+  background-color: white;
+}
 
 .boton-corazon img {
   width: 10px;

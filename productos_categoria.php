@@ -1,16 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-  $password = "";
-
-
-$dbname = "couture";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}
+include './functions/db_connection.php';
 
 $categoria = $_POST['categoria'];
 

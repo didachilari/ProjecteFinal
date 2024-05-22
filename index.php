@@ -112,43 +112,43 @@ $searchTerm = $_GET['search'] ?? '';
         <?php
         if ($result->num_rows > 0) {
             foreach ($result as $row) { ?>
-                <div class="swiper-slide">
-                    <div class="contenedor-articulo">
-                        <div class="usuario">
-                            <img src="./img/user-line.svg" alt="">
-                            <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                        </div>
-                        <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
-                          <img src="./img/heart.svg" alt="">
-                        </button>
-                        <div class="imagen" style="text-align:center;">
-                                <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                                </a>
-                            </div>
-                        <div class="contenido">
-                            <div class="row con-icon">
-                                <div class="col-10">
-                                    <div class="c-1">
-                                        <span><?php echo $row["nom"]; ?></span>
-                                        <br>
-                                        <span> Precio: <?php echo $row["preu"]; ?>€</span>
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="col-2 carro">
-                                    <div class="carrito">
-                                        <div class="row h-b">
-                                            <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
-                                                <img src="./img/bag.svg" alt="">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="swiper-slide">
+                  <div class="contenedor-articulo">
+                      <div class="usuario">
+                          <img src="./img/user-line.svg" alt="">
+                          <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+                      </div>
+                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
+                        <img src="./img/heart.svg" alt="">
+                      </button>
+                      <div class="imagen" style="text-align:center;">
+                              <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                              </a>
+                          </div>
+                      <div class="contenido">
+                          <div class="row con-icon">
+                              <div class="col-10">
+                                  <div class="c-1">
+                                      <span><?php echo $row["nom"]; ?></span>
+                                      <br>
+                                      <span> Precio: <?php echo $row["preu"]; ?>€</span>
+                                      <br>
+                                  </div>
+                              </div>
+                              <div class="col-2 carro">
+                                  <div class="carrito">
+                                      <div class="row h-b">
+                                          <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+                                              <img src="./img/bag.svg" alt="">
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
         <?php }
         } else {
             echo "0 resultados";
@@ -242,20 +242,43 @@ $searchTerm = $_GET['search'] ?? '';
             <?php
             if ($result->num_rows > 0) {
               foreach ($result as $row) { ?>
-                <div class="swiper-slide">
+<div class="swiper-slide">
                   <div class="contenedor-articulo">
-                    <div class="usuario">
-
-                      <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                    </div>
-                    <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
-                      <img src="./img/heart.svg" alt="">
-                    </button>
-                    <div class="imagen" style="text-align:center;">
-                      <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                    </div>
+                      <div class="usuario">
+                          <img src="./img/user-line.svg" alt="">
+                          <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+                      </div>
+                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
+                        <img src="./img/heart.svg" alt="">
+                      </button>
+                      <div class="imagen" style="text-align:center;">
+                              <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                              </a>
+                          </div>
+                      <div class="contenido">
+                          <div class="row con-icon">
+                              <div class="col-10">
+                                  <div class="c-1">
+                                      <span><?php echo $row["nom"]; ?></span>
+                                      <br>
+                                      <span> Precio: <?php echo $row["preu"]; ?>€</span>
+                                      <br>
+                                  </div>
+                              </div>
+                              <div class="col-2 carro">
+                                  <div class="carrito">
+                                      <div class="row h-b">
+                                          <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+                                              <img src="./img/bag.svg" alt="">
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </div>
+              </div>
             <?php }
             } else {
               echo "0 resultados";

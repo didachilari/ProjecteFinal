@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./../style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Resultados de Búsqueda</title>
 </head>
 <body>
@@ -174,7 +175,7 @@ $result = $conn->query($sql);
       //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: './functions/agregar_al_carrito.php',
+          url: './../functions/agregar_al_carrito.php',
           type: 'POST',
           data: { id: idProducto },
           success: function(response) {
