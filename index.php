@@ -239,9 +239,11 @@ $searchTerm = $_GET['search'] ?? '';
         <div class="col-lg-6 contenido">
           <h2>Encuentra tu estilo</h2>
         </div>
-        <div class="col-lg-6 video">
-          <div class="imagen">
-            <video src="" autoplay></video>
+          <div class="col-lg-6 video">
+            <div class="videos">
+              <video src="./img/anuncio.mp4" autoplay muted playsinline>
+              </video>
+            </div>
           </div>
         </div>
       </div>

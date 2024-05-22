@@ -118,6 +118,14 @@ body.index section.outfits .articulos .producto {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+body.index section.categorias .background-black {
+  background-color: #101010;
+  padding: 30px 0;
+  color: white;
+}
+body.index section.categorias .background-black .video video {
+  width: 100%;
+}
 body.index section.categorias .contenedor-articulo {
   background-color: white;
 }
