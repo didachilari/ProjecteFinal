@@ -189,12 +189,11 @@ $searchTerm = $_GET['search'] ?? '';
     </div>
   </div>
 
-
   <?php
     include './functions/db_connection.php';
-    $sql1 = "SELECT nom, foto_marca FROM marcas";
+    $sql1 = "SELECT id_marcas, nom, foto_marca FROM marcas";
     $result2 = $conn->query($sql1);
-    ?>
+  ?>
 
   <div class="background-oscuro">
     <div class="container">
@@ -203,15 +202,19 @@ $searchTerm = $_GET['search'] ?? '';
         <?php foreach ($result2 as $marca){ ?>
           <div class="swiper-slide contenedor-marca">
             <div class="imagen-marca">
-            <?php if (!empty ($marca['foto_marca'])){ ?>
-                    <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
-                <?php }else{ ?>
-                    No image
-                <?php } ?>
+              <?php if (!empty ($marca['foto_marca'])){ ?>
+                <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">
+                  <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
+                </a>
+              <?php } else { ?>
+                <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">No image</a>
+              <?php } ?>
             </div>
             <div class="nombre-marca">
               <span>
-                <?php echo $marca['nom']; ?>
+                <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">
+                  <?php echo $marca['nom']; ?>
+                </a>
               </span>
             </div>
           </div>
@@ -227,6 +230,7 @@ $searchTerm = $_GET['search'] ?? '';
     </div>
   </div>
 </section>
+
 
 <section class="categorias margin-top-80-30">
 
