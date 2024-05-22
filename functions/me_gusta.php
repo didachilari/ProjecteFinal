@@ -1,53 +1,50 @@
-<?php
+<?php 
+include './functions/db_connection.php';
 session_start();
-include './db_connection.php';
 
-if (!isset($_SESSION['id_usuario'])) {
-    echo json_encode(['status' => 'error', 'message' => 'Usuario no autenticado']);
-    exit;
-}
+// Habilitar la visualización de errores
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$id_usuario = $_SESSION['id_usuario'];
-$id_producte = $_POST['id_producte'];
+function me_gusta() {
+    global $conn;
 
-if (!$id_producte) {
-    echo json_encode(['status' => 'error', 'message' => 'ID de producto no proporcionado']);
-    exit;
-}
-
-$conn = OpenCon();
-
-// Comprobar si ya existe el registro
-$sql_check = "SELECT * FROM me_gusta WHERE id_usuario = $id_usuario AND id_producte = $id_producte";
-$stmt_check = $conn->prepare($sql_check);
-$stmt_check->bind_param("ii", $id_usuario, $id_producte);
-$stmt_check->execute();
-$result = $stmt_check->get_result();
-
-if ($result->num_rows > 0) {
-    // Si existe, eliminar el registro
-    $sql_delete = "DELETE FROM me_gusta WHERE id_usuario = $id_usuario AND id_producte = $id_producte";
-    $stmt_delete = $conn->prepare($sql_delete);
-    $stmt_delete->bind_param("ii", $id_usuario, $id_producte);
-    if ($stmt_delete->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Me gusta eliminado']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Error al eliminar el me gusta']);
+    if (!isset($_SESSION['id_usuario'])) {
+        echo json_encode(['status' => 'error', 'message' => 'Usuario no autenticado']);
+        exit;
     }
-    $stmt_delete->close();
-} else {
-    // Si no existe, insertar el registro
-    $sql_insert = "INSERT INTO me_gusta (id_usuario, id_producte) VALUES ($id_usuario, $id_producte)";
-    $stmt_insert = $conn->prepare($sql_insert);
-    $stmt_insert->bind_param("ii", $id_usuario, $id_producte);
-    if ($stmt_insert->execute()) {
-        echo json_encode(['status' => 'success', 'message' => 'Me gusta agregado']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Error al agregar el me gusta']);
+
+    $id_usuario = $_SESSION['id_usuario'];
+    $id_producte = $_POST['id_producte'];
+
+    try {
+        $stmt_check = $conn->prepare("SELECT * FROM me_gusta WHERE id_usuario = ? AND id_producte = ?");
+        $stmt_check->bind_param("ii", $id_usuario, $id_producte);
+        $stmt_check->execute();
+        $result_check = $stmt_check->get_result();
+
+        if ($result_check->num_rows > 0) {
+            $stmt_delete = $conn->prepare("DELETE FROM me_gusta WHERE id_usuario = ? AND id_producte = ?");
+            $stmt_delete->bind_param("ii", $id_usuario, $id_producte);
+            $stmt_delete->execute();
+            $stmt_delete->close();
+
+            echo json_encode(['status' => 'success', 'message' => 'Me gusta eliminado correctamente']);
+        } else {
+            $stmt_insert = $conn->prepare("INSERT INTO me_gusta (id_usuario, id_producte) VALUES (?, ?)");
+            $stmt_insert->bind_param("ii", $id_usuario, $id_producte);
+            $stmt_insert->execute();
+            $stmt_insert->close();
+
+            echo json_encode(['status' => 'success', 'message' => 'Me gusta agregado correctamente']);
+        }
+
+        $stmt_check->close();
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => 'Se produjo un error: ' . $e->getMessage()]);
     }
-    $stmt_insert->close();
 }
 
-$stmt_check->close();
-$conn->close();
+me_gusta();
 ?>
