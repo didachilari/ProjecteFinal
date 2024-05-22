@@ -98,9 +98,9 @@ $result = $conn->query($sql);
                                 <img src="./../img/heart.svg" alt="">
                             </button>
                             <div class="imagen" style="text-align:center;">
-                            <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                                </a>
+                              <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                              </a>
                             </div>
                             <div class="contenido">
                                 <div class="row con-icon">
