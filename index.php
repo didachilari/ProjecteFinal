@@ -118,7 +118,10 @@ $searchTerm = $_GET['search'] ?? '';
                           <img src="./img/user-line.svg" alt="">
                           <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
                       </div>
-                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
+
+                      <!-- Añadir me_gusta -->
+                      <?php include './functions/db_connection.php'; ?>
+                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>" onclick="me_gusta(<?php echo $row['id_producte']; ?>)">
                         <img src="./img/heart.svg" alt="">
                       </button>
                       <div class="imagen" style="text-align:center;">
@@ -230,7 +233,20 @@ $searchTerm = $_GET['search'] ?? '';
 
 
 <section class="categorias margin-top-80-30">
-
+  <div class="background-black">
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-6 contenido">
+          <h2>Encuentra tu estilo</h2>
+        </div>
+        <div class="col-lg-6 video">
+          <div class="imagen">
+            <video src="" autoplay></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <?php 
     include './functions/randomizer-categoria.php'; 
     include './functions/db_connection.php';
@@ -246,7 +262,7 @@ $searchTerm = $_GET['search'] ?? '';
             <?php
             if ($result->num_rows > 0) {
               foreach ($result as $row) { ?>
-<div class="swiper-slide">
+                <div class="swiper-slide">
                   <div class="contenedor-articulo">
                       <div class="usuario">
                           <img src="./img/user-line.svg" alt="">
@@ -399,6 +415,29 @@ function validar() {
     // Permite que el formulario se envíe si hay texto en el campo de búsqueda
     return true;
     
+}
+</script>
+<script>
+function me_gusta(id_producte) {
+    $.ajax({
+        url: './functions/me_gusta.php', // Cambia 'ruta_a_tu_php/me_gusta.php' por la ruta correcta
+        type: 'POST',
+        data: { id_producte: id_producte },
+        success: function(response) {
+            console.log("Respuesta del servidor:", response);  // Mostrar la respuesta completa en la consola
+            try {
+                var result = JSON.parse(response);
+                alert(result.message); // Muestra el mensaje recibido del servidor
+            } catch (e) {
+                console.error("Error al parsear JSON:", e);
+                console.error("Respuesta recibida:", response);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error en la solicitud Ajax:', error);
+            console.error('Respuesta del servidor:', xhr.responseText);
+        }
+    });
 }
 </script>
 </body>
