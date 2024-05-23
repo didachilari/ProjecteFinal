@@ -1,5 +1,6 @@
 <?php
-include "./db_connection.php";
+
+include "db_connection.php";
 $randomNumber = rand(1, 4);
 
 // Assign the category based on the random number

@@ -4,10 +4,11 @@ include "./../functions/db_connection.php";
 // Obtener el ID del producto desde la URL
 $productId = $_GET['id'];
 
-// Consulta SQL para obtener los detalles del producto
-$sql = "SELECT p.*, u.nom_usuari 
+// Consulta SQL para obtener los detalles del producto, incluyendo el nombre de la marca
+$sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
         FROM producte p
         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+        INNER JOIN marcas m ON p.id_marcas = m.id_marcas
         WHERE p.id_producte = $productId";
 
 $result = $conn->query($sql);
@@ -82,13 +83,14 @@ $conn->close();
             <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="Imagen del Producto">
         </div>
         <div class="product-details">
-    <h2><?php echo $row['nom']; ?></h2>
-    <p><strong>Descripción:</strong> <?php echo $row['descripcio']; ?></p> <!-- Agregar esta línea para mostrar la descripción -->
-    <p><strong>Precio:</strong> <?php echo $row['preu']; ?>€</p>
-    <p><strong>Categoría:</strong> <?php echo $row['categorias']; ?></p>
-    <p><strong>Marca:</strong> <?php echo $row['id_marcas']; ?></p>
-    <p><strong>Subido por:</strong> <?php echo $row['nom_usuari']; ?></p>
-</div>
+            <h2><?php echo $row['nom']; ?></h2>
+            <p><strong>Descripción:</strong> <?php echo $row['descripcio']; ?></p>
+            <p><strong>Precio:</strong> <?php echo $row['preu']; ?>€</p>
+            <p><strong>Categoría:</strong> <?php echo $row['categorias']; ?></p>
+            <p><strong>Marca:</strong> <?php echo $row['nom_marca']; ?></p> <!-- Se muestra el nombre de la marca -->
+            <p><strong>Talla:</strong> <?php echo $row['talla']; ?></p>
+            <p><strong>Subido por:</strong> <?php echo $row['nom_usuari']; ?></p>
+        </div>
     </div>
 </body>
 </html>

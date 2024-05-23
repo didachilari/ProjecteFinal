@@ -1,6 +1,6 @@
 <?php
-$id_usuario = $_SESSION['id_usuario'];
 session_start();
+$id_usuario = $_SESSION['id_usuario'];
 include './functions/db_connection.php';
 ?>
 
