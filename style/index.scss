@@ -92,6 +92,10 @@ body.index{
                 padding: 0 50px;
                 .swiper-wrapper{
                     .swiper-slide{
+                        a{
+                            text-decoration: none;
+                            color: white;
+                        }
                         .imagen-marca{
                             padding: 5px;
                             width: 100%;

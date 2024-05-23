@@ -1,0 +1,51 @@
+body.carrito .compra {
+  margin-bottom: 50px;
+}
+body.carrito .compra .producto {
+  border-bottom: 1px solid #b1b1b1;
+  padding: 10px 0;
+}
+body.carrito .compra .producto img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body.carrito .compra .producto form .btn {
+  padding: 0;
+}
+body.carrito .compra .producto form .btn i {
+  font-size: 32px;
+}
+body.carrito .compra .pago .recuadro {
+  background-color: #E6E6E6;
+  width: 80%;
+  padding: 20px 30px;
+  border-radius: 10px;
+}
+body.carrito .compra .pago .recuadro .texto {
+  border-bottom: 1px solid #42240C;
+}
+body.carrito .compra .pago .recuadro .texto h3 {
+  font-size: 30px;
+}
+body.carrito .compra .pago .recuadro .envios {
+  margin-top: 10px;
+}
+body.carrito .compra .pago .recuadro .total h4, body.carrito .compra .pago .recuadro .envios h4 {
+  font-size: 25px;
+}
+body.carrito .compra .pago .recuadro .total h4 span, body.carrito .compra .pago .recuadro .envios h4 span {
+  font-size: 20px;
+  font-weight: normal;
+}
+body.carrito .compra .pago .recuadro .total {
+  border-bottom: 1px solid #42240C;
+}
+body.carrito .compra .pago .recuadro form .btn {
+  background-color: #934c14;
+  color: white;
+}
+body.carrito .compra .pago .recuadro form .btn:hover {
+  background-color: #65330c;
+}/*# sourceMappingURL=carrito.css.map */

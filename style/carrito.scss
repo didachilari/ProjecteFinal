@@ -1,0 +1,60 @@
+body.carrito{
+    .compra{
+        margin-bottom: 50px;
+        .producto{
+            border-bottom: 1px solid #b1b1b1;
+            padding: 10px 0;
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+            form{
+                .btn{
+                    padding: 0;
+                    i{
+                        font-size: 32px;
+                    }
+                }
+            }
+        }
+        .pago{
+            .recuadro{
+                background-color: #E6E6E6;
+                width: 80%;
+                padding: 20px 30px;
+                border-radius: 10px;
+                .texto{
+                    h3{
+                        font-size: 30px;
+                    }
+                    border-bottom: 1px solid #42240C;
+                }
+                .envios{
+                    margin-top: 10px;
+                }
+                .total, .envios{
+                    h4{
+                        font-size: 25px;
+                        span{
+                            font-size: 20px;
+                            font-weight: normal;
+                        }
+                    }
+                }
+                .total{
+                    border-bottom: 1px solid #42240C;
+                }
+                form{
+                    .btn{
+                        background-color: #934c14;
+                        color: white;
+                        &:hover{
+                            background-color: #65330c;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

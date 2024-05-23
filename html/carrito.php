@@ -44,7 +44,7 @@ if (isset($_POST['finalize'])) {
     <link rel="stylesheet" href="./../style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body class="carrito">
 <header>
       <div class="container">
         <div class="cabecera">
@@ -108,60 +108,67 @@ if (isset($_POST['finalize'])) {
 <section class="populares">
     <div class="container">
         <h2>Carrito de Compras</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                // Verifica si hay productos en el carrito
-                if (!empty($_SESSION['carrito'])) {
-                    // Obtiene los productos del carrito
-                    $productosID = implode(',', $_SESSION['carrito']);
-                    $sql = "SELECT * FROM producte WHERE id_producte IN ($productosID)";
-                    $result = $conn->query($sql);
+        <div class="compra">
+            <div class="row">
+                <div class="col-lg-5">
+                    <?php
+                    // Verifica si hay productos en el carrito
+                    if (!empty($_SESSION['carrito'])) {
+                        // Obtiene los productos del carrito
+                        $productosID = implode(',', $_SESSION['carrito']);
+                        $sql = "SELECT * FROM producte WHERE id_producte IN ($productosID)";
+                        $result = $conn->query($sql);
 
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $subtotal = $row['preu'];
-                            $total += $subtotal;
-                            $imageData = base64_encode($row['foto']);
-                            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-
-                            echo "<tr>
-                                    <td><img src='{$imageSrc}' alt='{$row['nom']}' style='width: 100px; height: auto;'></td>
-                                    <td>{$row['nom']}</td>
-                                    <td>{$row['preu']}€</td>
-                                    <td>
-                                        <form action='' method='post'>
-                                            <input type='hidden' name='id_producte' value='{$row['id_producte']}'>
-                                            <button type='submit' name='remove' class='btn btn-danger'>Eliminar</button>
-                                        </form>
-                                    </td>
-                                  </tr>";
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $subtotal = $row['preu'];
+                                $total += $subtotal;
+                                $imageData = base64_encode($row['foto']);
+                                $imageSrc = 'data:image/jpeg;base64,' . $imageData;?>
+                                <div class="producto">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <img src='<?php echo $imageSrc; ?>' alt='<?php echo $row['nom']; ?>'>
+                                        </div>
+                                        <div class="col-6">
+                                            <h3><?php echo $row['nom']; ?></h3>
+                                            <p><?php echo $row['preu'] ?>€</p>
+                                            <form action='' method='post'>
+                                                <input type='hidden' name='id_producte' value="<?php echo $row['id_producte']; ?>">
+                                                <button type='submit' name='remove' class='btn'><i class="bi bi-trash-fill"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php }
+                        } else {
+                            echo '<tr><td colspan="4">No hay productos en el carrito.</td></tr>';
                         }
                     } else {
-                        echo '<tr><td colspan="4">No hay productos en el carrito.</td></tr>';
+                        echo '<tr><td colspan="4">El carrito está vacío.</td></tr>';
                     }
-                } else {
-                    echo '<tr><td colspan="4">El carrito está vacío.</td></tr>';
-                }
-                ?>
-            </tbody>
-        </table>
-        <div class="d-flex justify-content-end">
-            <h4>Total: <span id="total"><?= number_format($total, 2) ?>€</span></h4>
-        </div>
-        <div class="d-flex justify-content-end mt-3">
-            <form action="finalizar_compra.php" method="get">
-                <input type="hidden" id="total_input" name="total" value="<?= number_format($total * 100, 0, '', '') ?>"> <!-- Multiplicamos el total por 100 para convertir a centavos -->
-                <button type="submit" class="btn btn-primary">Finalizar Compra</button>
-            </form>
+                    ?>
+                </div>
+                <div class="col-lg-5 offset-2 pago">
+                    <div class="recuadro">
+                        <div class="texto">
+                            <h3>Resumen</h3>
+                        </div>
+                        <div class="envios">
+                            <h4>Envios y gastos: <span>gratuitos</span></h4>
+                        </div>
+                        <div class="d-flex justify-content-start total">
+                            <h4>Total: <span id="total"><?= number_format($total, 2) ?>€</span></h4>
+                        </div>
+                        <div class="d-flex justify-content-start mt-3 mb-1 pagar">
+                            <form action="finalizar_compra.php" method="get">
+                                <input type="hidden" id="total_input" name="total" value="<?= number_format($total * 100, 0, '', '') ?>">
+                                <button type="submit" class="btn">Finalizar Compra</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

@@ -82,6 +82,10 @@ body.index section.marcas .background-oscuro .mySwiper2 {
   min-height: 100%;
   padding: 0 50px;
 }
+body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide a {
+  text-decoration: none;
+  color: white;
+}
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .imagen-marca {
   padding: 5px;
   width: 100%;
