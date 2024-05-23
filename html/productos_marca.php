@@ -59,8 +59,7 @@ $result = $conn->query($sql);
       <div class="buscador">
         <form class="d-flex" role="search" action="resultados_busqueda.php" method="GET" onsubmit="return validar()">
           <button class="btn" type="submit"><i class="bi bi-search"></i></button>
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">
-        </form>
+          <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">        </form>
       </div>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

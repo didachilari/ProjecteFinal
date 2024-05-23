@@ -74,7 +74,7 @@ $conn->close();
                 <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="logout.php">Cerrar Sesión</a>
+                  <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i></a>
                 </li>
               </ul>
             </div>
