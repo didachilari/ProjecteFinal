@@ -136,6 +136,7 @@ $searchTerm = $_GET['search'] ?? '';
                                   <div class="c-1">
                                       <p><?php echo $row["nom"]; ?></p>
                                       <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                      <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
                                       <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
                                   </div>
                               </div>
@@ -288,6 +289,7 @@ $searchTerm = $_GET['search'] ?? '';
                                   <div class="c-1">
                                     <p><?php echo $row["nom"]; ?></p>
                                     <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                    <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
                                     <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
                                   </div>
                               </div>

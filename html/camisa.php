@@ -76,9 +76,9 @@ include "./../functions/db_connection.php";
 
 // Realizar consulta SQL para obtener productos de la categoría "Camisa"
 $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
-FROM producte p 
-INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-INNER JOIN marcas m ON p.id_marcas = m.id_marcas
+    FROM producte p 
+    INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+    INNER JOIN marcas m ON p.id_marcas = m.id_marcas
     WHERE categorias LIKE '%Camisa%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
 $result = $conn->query($sql);
 ?>
@@ -99,7 +99,7 @@ $result = $conn->query($sql);
                                 <img src="./../img/heart.svg" alt="">
                             </button>
                             <div class="imagen" style="text-align:center;">
-                            <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                            <a href="./detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
                                     <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
                                 </a>
                             </div>
@@ -109,6 +109,7 @@ $result = $conn->query($sql);
                                         <div class="c-1">
                                           <p><?php echo $row["nom"]; ?></p>
                                           <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                          <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
                                           <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
                                         </div>
                                     </div>

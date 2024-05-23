@@ -26,21 +26,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $titulo = $_POST["titulo"];
     $descripcion = $_POST["descripcion"];
-    $categoria = $_POST["categoria"]; // Obtener la categoría seleccionada
+    $categoria = $_POST["categoria"];
+    $talla = $_POST["talla"];
     $precio = $_POST["precio"];
     $imagen = $_FILES["imagen"]["tmp_name"];
     $marca = $_POST["marca"]; 
 
-    //leer contenido binario de la img
+    // leer contenido binario de la img
     $imagenBinaria = file_get_contents($imagen);
 
-    //escapar el contenido binario para evitar problemas de codificación
+    // escapar el contenido binario para evitar problemas de codificación
     $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria); 
 
-    //preparar la consulta sql
-    $sql = "INSERT INTO producte (nom, preu, foto, categorias, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', $id_usuario, $marca)";
+    // preparar la consulta sql
+    $sql = "INSERT INTO producte (nom, preu, foto, categorias, talla, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', '$talla', $id_usuario, $marca)";
 
-    //ejectuar la consulta
+    // ejecutar la consulta
     if ($conn->query($sql) === TRUE) {
         header("Location: ../index.php");
         exit();
@@ -124,7 +125,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </nav>
     </header>
 
-
     <section class="form-producto">
         <div class="container">
             <h2 class="my-5">Pujar artículo</h2>
@@ -151,6 +151,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="pantalon">Pantalon</option>
                             <option value="abrigo">Abrigo</option>
                             <option value="calzado">Calzado</option>
+                        </select>
+                    </div>
+                    <div class="my-3">
+                        <label for="talla" class="form-label">Talla:</label>
+                        <select id="talla" name="talla" class="form-select" required>
+                            <option value="">Selecciona una talla</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
                         </select>
                     </div>
                     <div class="my-3">
