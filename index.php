@@ -330,7 +330,7 @@ $searchTerm = $_GET['search'] ?? '';
               <a class="navbar-brand" href="./index.php">Couture<span>App</span></a>
             </div>
             <div class="col">
-              <a href="./index.php">Avisos legales</a>
+              <a href="./html/avis_legal.html">Avisos legales</a>
             </div>
             <div class="col">
               <a href="./index.php">Proteccion de datos</a>

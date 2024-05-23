@@ -1,0 +1,28 @@
+body.usuario table img {
+  width: auto;
+  height: 70px;
+  margin: 0;
+}
+body.usuario td {
+  height: 90px;
+}
+body.usuario td.buttons {
+  gap: 10px;
+}
+body.usuario td.buttons .btn {
+  width: 120px;
+  margin: 5px 0;
+}
+body.usuario td.buttons .btn-danger {
+  --bs-btn-bg: #b72c39;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-bg: #721b24;
+  --bs-btn-hover-border-color: transparent;
+}
+body.usuario td.buttons .btn-primary {
+  height: -moz-max-content;
+  height: max-content;
+  --bs-btn-bg: #00a6ff;
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-border-color: transparent;
+}/*# sourceMappingURL=pagina_usuario.css.map */

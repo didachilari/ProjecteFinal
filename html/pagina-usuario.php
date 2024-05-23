@@ -54,7 +54,7 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
 </head>
-<body>
+<body class="usuario">
 <header>
       <div class="container">
         <div class="cabecera">
@@ -141,12 +141,12 @@ $conn->close();
                             <td><?php echo $producto['categorias']; ?></td>
                             <td>
                                 <?php if(isset($producto['foto']) && !empty($producto['foto'])): ?>
-                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['foto']); ?>" alt="" style="max-width: 500px; max-height: 500px;">
+                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['foto']); ?>" alt="imagen producto">
                                 <?php else: ?>
                                     <p>No disponible</p>
                                 <?php endif; ?>
                             </td>
-                            <td>
+                            <td class="buttons">
                                 <form action="" method="POST">
                                     <input type="hidden" name="eliminar_producto" value="<?php echo $producto['id_producte']; ?>">
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
