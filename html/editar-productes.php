@@ -1,4 +1,5 @@
 <?php
+//iniciarem la sessió
 session_start();
 
 if (!isset($_SESSION['id_usuario'])) {
@@ -15,9 +16,11 @@ if (!isset($_GET['id'])) {
 
 $id_producto = $_GET['id'];
 
+//mostrarem les dades del producte per poder editar-lo si no esta aquest producte doncs...
 $sql = "SELECT id_producte, nom, preu, foto, id_marcas, categorias FROM producte WHERE id_producte = $id_producto";
 $result = $conn->query($sql);
 
+//...mostrarem un missatge
 if (!$result || $result->num_rows == 0) {
     echo "El producto no existe.";
     exit();
@@ -25,6 +28,7 @@ if (!$result || $result->num_rows == 0) {
 
 $producto = $result->fetch_assoc();
 
+//farem una consulta a les id de les marques per mostrar el nom de la marca
 $sql_marcas = "SELECT id_marcas, nom FROM marcas";
 $result_marcas = $conn->query($sql_marcas);
 
@@ -33,22 +37,22 @@ if (!$result_marcas) {
     exit();
 }
 
-// Procesamiento del formulario
+//farem el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener la nueva categoría del formulario
+    //obtindrem la nova categoria
     $categoria = $_POST['categoria'];
 
-    // Actualizar la categoría del producto en la base de datos
+    //actualitzarem la categoria del producte a la bbdd
     $sql_update_categoria = "UPDATE producte SET categorias = '$categoria' WHERE id_producte = $id_producto";
 
     if ($conn->query($sql_update_categoria) === TRUE) {
-        // Procesar la imagen si se proporcionó
+        //mostrarem la imatge
         if ($_FILES['foto']['size'] > 0) {
-            // Leer la imagen como datos binarios
+            //leegirem la imatge amb dades binaries
             $imagen_temp = $_FILES['foto']['tmp_name'];
             $imagen_contenido = file_get_contents($imagen_temp);
 
-            // Actualizar la imagen en la base de datos
+            //actualitzarem la imatge amb bbdd
             $sql_update_imagen = "UPDATE producte SET foto = ? WHERE id_producte = $id_producto";
             $stmt_update_imagen = $conn->prepare($sql_update_imagen);
             $stmt_update_imagen->bind_param("b", $imagen_contenido); // "b" para datos binarios
@@ -57,8 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Error al actualizar la imagen: " . $conn->error;
             }
         }
-        
-        // Redireccionar a alguna página o mostrar un mensaje de éxito
     } else {
         echo "Error al actualizar la categoría: " . $conn->error;
     }

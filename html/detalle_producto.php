@@ -1,10 +1,10 @@
 <?php
 include "./../functions/db_connection.php";
 
-// Obtener el ID del producto desde la URL
+//obtindrem la ID del producte
 $productId = $_GET['id'];
 
-// Consulta SQL para obtener los detalles del producto, incluyendo el nombre de la marca
+//farem una consulta a la bbdd per mostrar els detalls del producte
 $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
         FROM producte p
         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
@@ -87,7 +87,7 @@ $conn->close();
             <p><strong>Descripción:</strong> <?php echo $row['descripcio']; ?></p>
             <p><strong>Precio:</strong> <?php echo $row['preu']; ?>€</p>
             <p><strong>Categoría:</strong> <?php echo $row['categorias']; ?></p>
-            <p><strong>Marca:</strong> <?php echo $row['nom_marca']; ?></p> <!-- Se muestra el nombre de la marca -->
+            <p><strong>Marca:</strong> <?php echo $row['nom_marca']; ?></p>
             <p><strong>Talla:</strong> <?php echo $row['talla']; ?></p>
             <p><strong>Subido por:</strong> <?php echo $row['nom_usuari']; ?></p>
         </div>

@@ -1,10 +1,10 @@
 <?php
-// Iniciar sesión
+//iniciarem la sessió
 session_start();
 
 include "./../functions/db_connection.php";
 
-// Obtener marcas de la base de datos
+//farem una consulta a la bbdd per obtenir les marques
 $sql_marcas = "SELECT id_marcas, nom FROM marcas";
 $result_marcas = $conn->query($sql_marcas);
 $marcas = [];
@@ -14,16 +14,17 @@ if ($result_marcas->num_rows > 0) {
     }
 }
 
-// Verificar si se envió el formulario
+//verificarem s'hi s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener el ID del usuario de la sesión
+    //s'hi ha iniciat sessió obtindrem el seu id 
     if(isset($_SESSION['id_usuario'])) {
         $id_usuario = $_SESSION['id_usuario'];
     } else {
+      //si no ha iniciat sessió doncs que mostri l'error
         die("Error: Sesión de usuario no encontrada.");
     }
 
-    // Obtener los datos del formulario
+    //obtindrem les dades del formulari
     $titulo = $_POST["titulo"];
     $descripcion = $_POST["descripcion"];
     $categoria = $_POST["categoria"];
@@ -32,16 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen = $_FILES["imagen"]["tmp_name"];
     $marca = $_POST["marca"]; 
 
-    // leer contenido binario de la img
+    //leegirem el contingut de la imatge en forma binaria
     $imagenBinaria = file_get_contents($imagen);
 
-    // escapar el contenido binario para evitar problemas de codificación
+    //escapaerem el contingut binari per evitar els problemes de codificació
     $imagenBinariaEscapada = $conn->real_escape_string($imagenBinaria); 
 
-    // preparar la consulta sql
+    //farem una consulta a la bbdd per insertar el producte que em creat
     $sql = "INSERT INTO producte (nom, preu, foto, categorias, talla, id_usuari, id_marcas) VALUES ('$titulo', '$precio', '$imagenBinariaEscapada', '$categoria', '$talla', $id_usuario, $marca)";
 
-    // ejecutar la consulta
+    //executar la consulta
     if ($conn->query($sql) === TRUE) {
         header("Location: ../index.php");
         exit();
@@ -57,8 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Productos</title>
-
-    <!-- Enlaces a hojas de estilo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
@@ -170,6 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <select id="marca" name="marca" class="form-select" required>
                             <option value="">Selecciona una marca</option>
                             <?php
+                            //recorrerem les marques que hi ha a la bbdd amb un foreach
                             foreach ($marcas as $id => $marca) {
                                 echo "<option value='$id'>$marca</option>";
                             }

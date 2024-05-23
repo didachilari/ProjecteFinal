@@ -1,46 +1,45 @@
 <?php
-// Inicia la sesión para acceder a los datos del carrito
+//iniciarem la sessió
 session_start();
 
-// Verifica si el usuario ha iniciado sesión
+//verificarem si l'usuari a iniciat la sessió
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php");
     exit();
 }
 
-// Obtener el ID del usuario autenticado
+//obtindrem l'ID de l'usuari que a iniciat sessió
 $id_usuario = $_SESSION['id_usuario'];
 
 include "./../functions/db_connection.php";
 
-// Obtener los productos del usuario con el nombre de la marca
+//farem una consulta a la bbdd i obtindrem tots els productes de l'usuari 
 $sql = "SELECT p.id_producte, p.nom, p.preu, p.foto, m.nom AS nombre_marca, p.categorias 
         FROM producte p 
         INNER JOIN marcas m ON p.id_marcas = m.id_marcas 
         WHERE p.id_usuari = $id_usuario";
 $result = $conn->query($sql);
 
-// Array para almacenar los productos del usuario
+//farem un array per emmagatzemar els productes de l'usuari
 $productos_usuario = [];
 
-// Obtener los productos del resultado de la consulta
+//el resultat de la consulta que fem obtindrem els productes
 while ($row = $result->fetch_assoc()) {
     $productos_usuario[] = $row;
 }
 
-// Función para eliminar un producto
+//funció per eliminar el producte
 if (isset($_POST['eliminar_producto'])) {
     $id_producto = $_POST['eliminar_producto'];
 
     $sql = "DELETE FROM producte WHERE id_producte = $id_producto AND id_usuari = $id_usuario";
     $conn->query($sql);
 
-    // Redirigir para evitar reenvío de formulario
     header("Location: pagina-usuario.php");
     exit();
 }
 
-// Cerrar la conexión
+//tancarem connexió
 $conn->close();
 ?>
 
@@ -50,7 +49,6 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Usuario</title>
-    <!-- Enlaces a hojas de estilo -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -119,7 +117,7 @@ $conn->close();
 
     <div class="container mt-5">
         <h2>Mis Productos</h2>
-        <!-- Mostrar los productos del usuario -->
+        <!-- Mostrarem tots els productes de l'usuari -->
         <?php if (count($productos_usuario) > 0): ?>
             <table class="table">
                 <thead>

@@ -4,7 +4,7 @@ include '../functions/db_connection.php';
 
 $id_marca = $_GET['id'];
 
-// Consulta SQL para obtener los productos de la marca seleccionada
+//farem una consulta a la bbdd per obtenir els productes de la marca seleccionada
   $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
     FROM producte p 
     INNER JOIN usuario u ON p.id_usuari = u.id_usuari
@@ -188,21 +188,33 @@ var swiper = new Swiper('.mySwiper', {
 });
 </script>
 <script>
+  //el contador s'inicialitza en valor 0 i se va incrementant el numero cada cop que l'usuari afegeix un producte al carrito
   var contadorCarrito = 0;
-
+  //aquesta funció el que fa es que cada cop que l'usuari li doni al botó doncs el contador del carrito sumi i es mostri el producte afegit al carrito
   function agregarAlCarrito(idProducto) {
-      //incrementa el contador
       contadorCarrito++;
-      //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: '../functions/agregar_al_carrito.php',
-          type: 'POST',
-          data: { id: idProducto },
-          success: function(response) {
-          }
+        url: './../functions/agregar_al_carrito.php',
+        type: 'POST',
+        data: { id: idProducto },
+        success: function(response) {
+        }
       });
   }
 </script>
+<script>
+//aquesta funció el que fa es que si el buscador no li pasem ningun parametre doncs que es quedi en aquesta pàgina sino que mostri el resultat de la busqueda feta 
+function validar() {
+    var searchInput = document.getElementById('searchInput').value;
+    if (searchInput.trim() === "") {
+        return false;
+    }
+    return true;
+}
+</script>
+</body>
+</html>
+
 </body>
 </html>

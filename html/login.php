@@ -1,33 +1,34 @@
 <?php
-// Iniciar la sesión
+//iniciarem la sessió
 session_start();
 include "./../functions/db_connection.php";
 
-// Verificar si se envió el formulario
+//verificarem si s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['password'];
 
-    // Consulta para verificar las credenciales
+    //farem una consulta a la bbdd per verificar si l'usuari i contrasenya esta creada
     $sql = "SELECT * FROM usuario WHERE nom_usuari = '$usuario' AND contrasenya = '$contrasena'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Inicio de sesión exitoso
+        //inici de sessió exitos
         $row = $result->fetch_assoc();
-        $_SESSION['id_usuario'] = $row['id_usuari']; // Guardar el ID del usuario en la sesión
-        $_SESSION['usuario'] = $usuario; // También puedes guardar otros datos del usuario si lo necesitas
-        $_SESSION['admin'] = $row['admin']; // Guardar el estado de administrador
+        $_SESSION['id_usuario'] = $row['id_usuari']; 
+        $_SESSION['usuario'] = $usuario; 
+        $_SESSION['admin'] = $row['admin'];
 
-        // Redirigir según el estado de administrador
+        //si l'usuari es admin doncs que vagi aquesta pàgina sino...
         if ($row['admin']) {
             header("Location: ./crear_marca.php");
         } else {
+            //...aquesta pàgina
             header("Location: ./../index.php");
         }
         exit();
     } else {
-        // Credenciales incorrectas
+        //inici de sessió incorrecte
         $mensaje = "Usuari o contrasenya incorrectes!";
         echo '<script>alert("' . $mensaje . '");</script>';
     }

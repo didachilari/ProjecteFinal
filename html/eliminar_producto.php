@@ -1,23 +1,23 @@
 <?php
-// Inicia la sesión para acceder a los datos del carrito
+//iniciarem la sessió
 session_start();
 
-// Verifica si se recibió el ID del producto a eliminar
+//aqui verificarem s'hi s'ha rebut la ID del producte que volem eliminar
 if(isset($_POST['id_producte'])) {
-    // Obtiene el ID del producto desde el formulario
+    //obtindrem la ID del producte desde el formulari
     $idProductoEliminar = $_POST['id_producte'];
 
-    // Busca el índice del producto en el carrito
-    $indice = array_search($idProductoEliminar, $_SESSION['carrito']);
+    //buscarem el id del producte en el carrito
+    $id = array_search($idProductoEliminar, $_SESSION['carrito']);
 
-    // Si el producto está en el carrito, lo elimina
-    if($indice !== false) {
-        unset($_SESSION['carrito'][$indice]);
-        // Reindexa el array de carrito
+    //s'hi el producte está en el carrito l'eliminara 
+    if($id !== false) {
+        unset($_SESSION['carrito'][$id]);
+        //actualitza l'array del carrito
         $_SESSION['carrito'] = array_values($_SESSION['carrito']);
     }
 }
-// Redirige de nuevo a la página del carrito
+//redireix a la pàgina del carrito
 header("Location: carrito.php");
 exit();
 ?>

@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./../style.css">
     <title>Resultados de Búsqueda</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
@@ -73,28 +76,20 @@
     <?php
     include './../functions/db_connection.php';
 
-    // Crear conexión
-    $conn = new mysqli($servername, $username, $password, $database);
-
-    // Verificar conexión
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
-
     $searchTerm = $_GET['search'] ?? '';
 
     if (!empty($searchTerm)) {
-        // Consulta SQL para verificar si el término de búsqueda es un nombre de usuario
+        //farem una consulta que verifiqui si el que em buscat es un usuari
         $sqlUsuario = "SELECT id_usuari FROM usuario WHERE nom_usuari LIKE '%$searchTerm%'";
         $resultUsuario = $conn->query($sqlUsuario);
 
         if ($resultUsuario->num_rows > 0) {
-            // Redirigir a mostrar_productos_usuarios.php si el término de búsqueda es un usuario
+            //si es un usuari que redirigi a la pàgina mostrar_productos_usuarios.php
             header("Location:mostrar_productos_usuarios.php?usuario=" . urlencode($searchTerm));
             exit();
         }
 
-        // Consulta SQL del buscador que busca por la consulta que realizamos
+        //farem una consulta
           $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
           FROM producte p 
           INNER JOIN usuario u ON p.id_usuari = u.id_usuari
@@ -192,34 +187,30 @@
   </div>
 </footer>
 <script>
-    function validar() {
-        var searchInput = document.getElementById('searchInput').value;
-        if (searchInput.trim() === "") {
-            return false;
-        }
-        return true;
-    }
-</script>
-<script>
+  //el contador s'inicialitza en valor 0 i se va incrementant el numero cada cop que l'usuari afegeix un producte al carrito
   var contadorCarrito = 0;
-
+  //aquesta funció el que fa es que cada cop que l'usuari li doni al botó doncs el contador del carrito sumi i es mostri el producte afegit al carrito
   function agregarAlCarrito(idProducto) {
-      // Incrementa el contador
       contadorCarrito++;
-      // Actualiza la interfaz
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-          url: './../functions/agregar_al_carrito.php',
-          type: 'POST',
-          data: { id: idProducto },
-          success: function(response) {
-              // Manejo de la respuesta si es necesario
-          }
+        url: './../functions/agregar_al_carrito.php',
+        type: 'POST',
+        data: { id: idProducto },
+        success: function(response) {
+        }
       });
   }
 </script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<script>
+//aquesta funció el que fa es que si el buscador no li pasem ningun parametre doncs que es quedi en aquesta pàgina sino que mostri el resultat de la busqueda feta 
+function validar() {
+    var searchInput = document.getElementById('searchInput').value;
+    if (searchInput.trim() === "") {
+        return false;
+    }
+    return true;
+}
+</script>
 </body>
 </html>

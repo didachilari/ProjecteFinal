@@ -2,12 +2,12 @@
 session_start();
 include "./../functions/db_connection.php";
 
-// Verificar si la sesión del carrito no está vacía
+//verificarem si la sessió del carrito no esta vuida
 if (!empty($_SESSION['carrito'])) {
-    // Obtener los IDs de los productos del carrito
+    //obtindrem els ID's dels productes que estan en el carrito
     $productosID = implode(',', $_SESSION['carrito']);
     
-    // Eliminar los productos comprados de la base de datos
+    //un cop comprat el producte doncs l'eliminarem de la bbdd
     $sql = "DELETE FROM producte WHERE id_producte IN ($productosID)";
     if ($conn->query($sql) === TRUE) {
         echo "Productos comprados eliminados correctamente.";
@@ -15,7 +15,7 @@ if (!empty($_SESSION['carrito'])) {
         echo "Error al eliminar los productos: " . $conn->error;
     }
     
-    // Limpiar el carrito de la sesión
+    //vuidarem el carrito
     $_SESSION['carrito'] = [];
 }
 

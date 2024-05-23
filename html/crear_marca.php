@@ -1,35 +1,35 @@
 <?php
-// Iniciar sesión
+//iniciarem la sessió
 session_start();
 
 include "./../functions/db_connection.php";
 
-// Verificar si se envió el formulario
+//verificarem s'hi s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
+    //obtindrem les dades del formulari
     $nombre = $_POST["nombre"];
     
-    // Verificar si se ha subido un archivo
+    //verificarem s'hi s'ha enviat la foto de la marca
     if (isset($_FILES["foto"])) {
         $foto = $_FILES["foto"]["tmp_name"];
 
-        // Leer contenido binario de la imagen
+        //leegirem el contingut de la imatge en forma binaria
         $fotoBinaria = file_get_contents($foto);
 
-        // Escapar el contenido binario para evitar problemas de codificación
+        //escapaerem el contingut binari per evitar els problemes de codificació
         $fotoBinariaEscapada = $conn->real_escape_string($fotoBinaria);
 
-        // Preparar la consulta SQL
+        //farem una consulta a la bbdd per insertar la marca que em creat
         $sql = "INSERT INTO marcas (nom, foto_marca) VALUES ('$nombre', '$fotoBinariaEscapada')";
 
-        // Ejecutar la consulta
+        //executar la consulta
         if ($conn->query($sql) === TRUE) {
             echo "<script>alert('Marca agregada correctamente');</script>";
         } else {
             echo "<script>alert('Error al agregar la marca: " . $conn->error . "');</script>";
         }
     } else {
-        // Mostrar mensaje de error si no se seleccionó una foto
+        //error si no em escollit cap imatge per al producte
         echo "<script>alert('Por favor, seleccione una foto.');</script>";
     }
 }

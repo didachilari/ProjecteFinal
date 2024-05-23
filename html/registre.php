@@ -1,8 +1,8 @@
 <?php
-// Verificar si el formulario ha sido enviado
+//verificarem s'hi s'ha enviat el formulari
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include "./../functions/db_connection.php";
-    // Obtener los datos del formulario
+    //obtindrem les dades del formulari
     $nom = $_POST["nom"];
     $cognoms = $_POST["cognoms"];
     $telf = $_POST["telf"];
@@ -12,25 +12,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_usuari = $_POST["nom_usuari"];
     $contrasenya = $_POST["contrasenya"];
 
-    // Verificar si todos los campos están llenos
+    //verificarem amb el !empty si tots els camps estan plens
     if (!empty($nom) && !empty($cognoms) && !empty($telf) && !empty($data_naixament) && !empty($correu) && !empty($dni) && !empty($nom_usuari) && !empty($contrasenya)) {
-        // Preparar la consulta SQL para insertar los datos en la base de datos
+        //farem una consulta per insertar els usuaris a la bbdd
         $sql = "INSERT INTO usuario (nom, cognoms, telf, data_naixament, correu, dni, nom_usuari, contrasenya) 
                 VALUES ('$nom', '$cognoms', '$telf', '$data_naixament', '$correu', '$dni', '$nom_usuari', '$contrasenya')";
 
-        // Ejecutar la consulta
+        //executar la consulta
         if ($conn->query($sql) === TRUE) {
-            // Después de crear, ir a login.php para iniciar sesión
+            //desprès de crear l'usuari, anirem al login.php per iniciar sessió
             header("Location: ./login.php");
             exit(); 
         } else {
-            // Si hay algún error al insertar en la base de datos
+            //s'hi ha algun error al fer la consulta de insertar que mostri l'error
             $mensaje = "No s'ha creat l'usuari!";
             echo '<script>alert("' . $mensaje . '");</script>';
         }
     } 
 
-    // Cerrar la conexión
+    //tancarem la connexió
     $conn->close();
 }
 ?>

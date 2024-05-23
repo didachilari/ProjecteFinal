@@ -97,15 +97,14 @@ include './functions/db_connection.php';
     <h2>Artículos populares</h2>
     <?php
 
-// Variable para guardar la búsqueda y si está vacía se asigna un string vacío
 $searchTerm = $_GET['search'] ?? '';
 
-// Consulta SQL del buscador que busca por la consulta que realizamos
+//farem la consulta
       $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
         FROM producte p 
         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
         INNER JOIN marcas m ON p.id_marcas = m.id_marcas
-        WHERE p.nom LIKE '%$searchTerm%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
+        WHERE p.nom LIKE '%$searchTerm%'";
         $result = $conn->query($sql);
 ?>
 <div class="swiper mySwiper">

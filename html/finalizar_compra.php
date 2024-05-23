@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 
 \Stripe\Stripe::setApiKey("sk_test_51PEn8fF6jOXWWkOuhlkC1Vn8H0tqoo4C8Pdc3QkWIcggs9EzgHXKhX7iJnLT2Q4A2qRi5UFywcmlbgtzeunzYJmO00jjKT2SMj");
 
-/* Verifica si se recibió el valor total */
+/*verificarem s'hi s'ha rebut el valor total*/
 if (!isset($_GET['total'])) {
     die("Error: Total no especificado.");
 }
