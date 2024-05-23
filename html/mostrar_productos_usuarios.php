@@ -70,7 +70,7 @@
     </div>
   </nav>
 </header>
-<div class="container">
+<div class="container mb-5">
   
   <h2>Busquedas de usuario</h2>
   <?php
@@ -88,33 +88,60 @@
         $userId = $row_user_id['id_usuari'];
 
         // Consulta SQL para obtener los productos del usuario según el ID de usuario
-        $sql_products = "SELECT p.*, u.nom_usuari 
-                         FROM producte p 
-                         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-                         WHERE p.id_usuari = $userId";
-        
+       $sql_products = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
+          FROM producte p 
+          INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+          INNER JOIN marcas m ON p.id_marcas = m.id_marcas
+          WHERE p.id_usuari = $userId";
         $result_products = $conn->query($sql_products);
 
-        if ($result_products->num_rows > 0) {
-            echo "<h2>Productos de $searchTerm</h2>";
-            echo '<div class="row">';
-            while ($row_product = $result_products->fetch_assoc()) {
-                echo "<div class='col-md-4'>";
-                echo "<div class='card mb-4'>";
-                echo "<div class='card-body'>";
-                echo "<h5 class='card-title'>" . $row_product['nom'] . "</h5>";
-                echo "<p class='card-text'>Precio: " . $row_product['preu'] . "€</p>";
-                echo "<div class='imagen' style='text-align:center;'>";
-                echo "<img src='data:image/jpeg;base64," . base64_encode($row_product['foto']) . "' alt='' class='img-fluid'>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-                echo "</div>";
-            }
-            echo '</div>';
-        } else {
-            echo "<p>No se encontraron productos para el usuario: $searchTerm</p>";
-        }
+        if ($result_products->num_rows > 0) {?>
+          <div class="row">
+          <?php while ($row = $result_products->fetch_assoc()) {?>
+            <div class="col-lg-3 col-md-4">
+              <div class="contenedor-articulo">
+                    <div class="usuario">
+                        <img src="./../img/user-line.svg" alt="">
+                        <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+                    </div>
+
+                    <!-- Añadir me_gusta -->
+                    <?php include './../functions/db_connection.php'; ?>
+                    <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>" onclick="me_gusta(<?php echo $row['id_producte']; ?>)">
+                      <img src="./../img/heart.svg" alt="">
+                    </button>
+                    <div class="imagen" style="text-align:center;">
+                            <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                                <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                            </a>
+                        </div>
+                    <div class="contenido">
+                        <div class="row con-icon">
+                            <div class="col-10">
+                                <div class="c-1">
+                                    <p><?php echo $row["nom"]; ?></p>
+                                    <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                    <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
+                                </div>
+                            </div>
+                            <div class="col-2 carro">
+                                <div class="carrito">
+                                    <div class="row h-b">
+                                        <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+                                            <img src="./../img/bag.svg" alt="">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+          <?php } ?>
+          </div>
+      <?php } else {
+          echo '<p>No se encontraron resultados</p>';
+      }
     } else {
         echo "<p>No se encontró ningún usuario con el nombre: $searchTerm</p>";
     }

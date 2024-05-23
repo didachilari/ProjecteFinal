@@ -1,0 +1,12 @@
+body.finalizar-compra .main button {
+  background-color: #934c14;
+  color: white;
+}
+body.finalizar-compra .main button:hover {
+  background-color: #65330c;
+}
+body.finalizar-compra footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}/*# sourceMappingURL=finalizar-compra.css.map */
