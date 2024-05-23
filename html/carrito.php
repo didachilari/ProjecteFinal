@@ -25,24 +25,6 @@ if (isset($_POST['remove'])) {
     $_SESSION['carrito'] = array_diff($_SESSION['carrito'], array($id));
 }
 
-// Función para aumentar la cantidad de un producto en el carrito
-if (isset($_POST['increase'])) {
-    $id = $_POST['id_producte'];
-    // Aumentar la cantidad del producto en el carrito
-    $_SESSION['carrito'][] = $id;
-}
-
-// Función para disminuir la cantidad de un producto en el carrito
-if (isset($_POST['decrease'])) {
-    $id = $_POST['id_producte'];
-    // Encontrar el índice del producto en el carrito
-    $index = array_search($id, $_SESSION['carrito']);
-    if ($index !== false) {
-        // Disminuir la cantidad del producto en el carrito
-        unset($_SESSION['carrito'][$index]);
-    }
-}
-
 // Función para finalizar la compra
 if (isset($_POST['finalize'])) {
     $_SESSION['carrito'] = []; // Limpiar el carrito
@@ -129,10 +111,9 @@ if (isset($_POST['finalize'])) {
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>Imagen</th>
                     <th>Producto</th>
                     <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
                     <th>Acción</th>
                 </tr>
             </thead>
@@ -149,110 +130,74 @@ if (isset($_POST['finalize'])) {
                         while ($row = $result->fetch_assoc()) {
                             $subtotal = $row['preu'];
                             $total += $subtotal;
+                            $imageData = base64_encode($row['foto']);
+                            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+
                             echo "<tr>
+                                    <td><img src='{$imageSrc}' alt='{$row['nom']}' style='width: 100px; height: auto;'></td>
                                     <td>{$row['nom']}</td>
-                                    <td id='precio_{$row['id_producte']}'>{$row['preu']}€</td>
+                                    <td>{$row['preu']}€</td>
                                     <td>
-                                    <div class='input-group'>
-                                    <input type='number' id='cantidad_{$row['id_producte']}' min='1' max='10' step='1' value='1' size='5' onchange='actualizaCantidad(this.value, {$row['id_producte']})'>
-                                    </div>
-                                        </td>
-                                        <td id='subtotal_{$row['id_producte']}'>{$subtotal}€</td>
-                                        <td>
-                                            <form action='' method='post'>
-                                                <input type='hidden' name='id_producte' value='{$row['id_producte']}'>
-                                                <button type='submit' name='remove' class='btn btn-danger'>Eliminar</button>
-                                            </form>
-                                        </td>
-                                      </tr>";
-                            }
-                        } else {
-                            echo '<tr><td colspan="5">No hay productos en el carrito.</td></tr>';
+                                        <form action='' method='post'>
+                                            <input type='hidden' name='id_producte' value='{$row['id_producte']}'>
+                                            <button type='submit' name='remove' class='btn btn-danger'>Eliminar</button>
+                                        </form>
+                                    </td>
+                                  </tr>";
                         }
                     } else {
-                        echo '<tr><td colspan="5">El carrito está vacío.</td></tr>';
+                        echo '<tr><td colspan="4">No hay productos en el carrito.</td></tr>';
                     }
-                    ?>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-end">
-                <h4>Total: <span id="total"><?= number_format($total, 2) ?>€</span></h4>
-            </div>
-            <div class="d-flex justify-content-end mt-3">
-                <form action="finalizar_compra.php" method="get">
-                    <input type="hidden" id="total_input" name="total" value="<?= number_format($total * 100, 0, '', '') ?>"> <!-- Multiplicamos el total por 100 para convertir a centavos -->
-                    <button type="submit" class="btn btn-primary">Finalizar Compra</button>
-                </form>
-            </div>
+                } else {
+                    echo '<tr><td colspan="4">El carrito está vacío.</td></tr>';
+                }
+                ?>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <h4>Total: <span id="total"><?= number_format($total, 2) ?>€</span></h4>
         </div>
-    </section>
-    
-    <footer>
-        <div class="background">
-            <div class="container">
-                <div class="row general">
-                    <div class="col izquierda">
-                        <div class="row">
-                            <div class="col titulo">
-                                <a class="navbar-brand" href="./../index.php">Couture<span>App</span></a>
-                            </div>
-                            <div class="col">
-                                <a href="./../index.php">Avisos legales</a>
-                            </div>
-                            <div class="col">
-                                <a href="./../index.php">Protección de datos</a>
-                            </div>
+        <div class="d-flex justify-content-end mt-3">
+            <form action="finalizar_compra.php" method="get">
+                <input type="hidden" id="total_input" name="total" value="<?= number_format($total * 100, 0, '', '') ?>"> <!-- Multiplicamos el total por 100 para convertir a centavos -->
+                <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="background">
+        <div class="container">
+            <div class="row general">
+                <div class="col izquierda">
+                    <div class="row">
+                        <div class="col titulo">
+                            <a class="navbar-brand" href="./../index.php">Couture<span>App</span></a>
+                        </div>
+                        <div class="col">
+                            <a href="./../index.php">Avisos legales</a>
+                        </div>
+                        <div class="col">
+                            <a href="./../index.php">Protección de datos</a>
                         </div>
                     </div>
-                    <div class="col derecha">
-                        <div class="row">
-                            <div class="col-4">
-                                <p>Síguenos por:</p>
-                            </div>
-                            <div class="col-3 rrss">
-                                <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
-                                <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
-                            </div>
+                </div>
+                <div class="col derecha">
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Síguenos por:</p>
+                        </div>
+                        <div class="col-3 rrss">
+                            <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    
-    <script>
-        function actualizaCantidad(cantidad, id) {
-            // Realizar la actualización solo si la cantidad es válida
-            if (cantidad >= 1 && cantidad <= 10) {
-                // Obtener el precio unitario del producto
-                let precioUnitario = parseFloat(document.getElementById('precio_' + id).innerText);
-                // Calcular el nuevo subtotal
-                let subtotal = cantidad * precioUnitario;
-                // Actualizar el subtotal en la tabla
-                document.getElementById('subtotal_' + id).innerText = subtotal.toFixed(2) + '€';
-                // Recalcular el total
-                recalcularTotal();
-            } else {
-                alert("La cantidad debe ser un número entre 1 y 10.");
-                // Restaurar la cantidad anterior
-                document.getElementById('cantidad_' + id).value = 1;
-            }
-        }
-    
-        function recalcularTotal() {
-            let total = 0;
-            // Obtener todos los subtotales y sumarlos para calcular el total
-            let subtotales = document.querySelectorAll('[id^="subtotal_"]');
-            subtotales.forEach(subtotal => {
-                total += parseFloat(subtotal.innerText);
-            });
-            // Actualizar el total en la página
-            document.getElementById('total').innerText = total.toFixed(2) + '€';
-            // Actualizar el valor del input oculto con el total en centavos
-            document.getElementById('total_input').value = Math.round(total * 100);
-        }
-        
-    </script>
-    
-    </body>
-    </html>
+    </div>
+</footer>
+
+</body>
+</html>
