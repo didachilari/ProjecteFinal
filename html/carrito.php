@@ -1,33 +1,34 @@
 <?php
+//iniciarem la sessió
 session_start();
 
 include "./../functions/db_connection.php";
 
-// Inicializar el carrito si está vacío
+//si la sessió del carrito esta vuida doncs la iniciarem
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = [];
 }
 
-// Inicializar la variable $total
+//la variable $total s'inicará amb valor 0
 $total = 0;
 
-// Función para añadir productos al carrito
-if (isset($_POST['add_to_cart'])) {
+//farem una funció per afegir els productes al carrito
+if (isset($_POST['afegir_productes_carrito'])) {
     $id = $_POST['id_producte'];
-    // Añadir el producto al carrito
+    //aquesta acció el que fa es afegir el producte al carrito
     $_SESSION['carrito'][] = $id;
 }
 
-// Función para eliminar un producto del carrito
-if (isset($_POST['remove'])) {
+//farem una funció per eliminar els productes al carrito
+if (isset($_POST['eliminar_producte_carrito'])) {
     $id = $_POST['id_producte'];
-    // Eliminar el producto del carrito
+    //aquesta acció el que fa es eliminar el producte al carrito
     $_SESSION['carrito'] = array_diff($_SESSION['carrito'], array($id));
 }
 
-// Función para finalizar la compra
-if (isset($_POST['finalize'])) {
-    $_SESSION['carrito'] = []; // Limpiar el carrito
+//farem una funció per finalitzar la compra
+if (isset($_POST['finalitzar_compra'])) {
+    $_SESSION['carrito'] = []; //limpiarem el carrito un cop finalitzat la compra
     header('Location: finalizar_compra.php?total=' . $_POST['total']);
     exit();
 }
@@ -38,9 +39,7 @@ if (isset($_POST['finalize'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="./../style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
@@ -112,9 +111,9 @@ if (isset($_POST['finalize'])) {
             <div class="row">
                 <div class="col-lg-5">
                     <?php
-                    // Verifica si hay productos en el carrito
+                    //amb el !empty comprobarem s'hi ha productes al carrito
                     if (!empty($_SESSION['carrito'])) {
-                        // Obtiene los productos del carrito
+                        //aqui convertirem l'array d'ID de productes en una cadena de text per obtenir els productes del carrito
                         $productosID = implode(',', $_SESSION['carrito']);
                         $sql = "SELECT * FROM producte WHERE id_producte IN ($productosID)";
                         $result = $conn->query($sql);
@@ -135,7 +134,7 @@ if (isset($_POST['finalize'])) {
                                             <p><?php echo $row['preu'] ?>€</p>
                                             <form action='' method='post'>
                                                 <input type='hidden' name='id_producte' value="<?php echo $row['id_producte']; ?>">
-                                                <button type='submit' name='remove' class='btn'><i class="bi bi-trash-fill"></i></button>
+                                                <button type='submit' name='eliminar_producte_carrito' class='btn'><i class="bi bi-trash-fill"></i></button>
                                             </form>
                                         </div>
                                     </div>
@@ -157,12 +156,13 @@ if (isset($_POST['finalize'])) {
                         <div class="envios">
                             <h4>Envios y gastos: <span>gratuitos</span></h4>
                         </div>
+                        <!-- per mostrar dos decimals es a dir desprès de la coma o punt que nomes mostri dos numero<?= number_format($total, 2) ?> -->
                         <div class="d-flex justify-content-start total">
                             <h4>Total: <span id="total"><?= number_format($total, 2) ?>€</span></h4>
                         </div>
                         <div class="d-flex justify-content-start mt-3 mb-1 pagar">
                             <form action="finalizar_compra.php" method="get">
-                                <input type="hidden" id="total_input" name="total" value="<?= number_format($total * 100, 0, '', '') ?>">
+                                <input type="hidden" id="total_input" name="total" value="<?= number_format($total, 2) ?>">
                                 <button type="submit" class="btn">Finalizar Compra</button>
                             </form>
                         </div>
@@ -205,6 +205,5 @@ if (isset($_POST['finalize'])) {
         </div>
     </div>
 </footer>
-
 </body>
 </html>
