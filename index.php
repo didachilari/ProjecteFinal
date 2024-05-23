@@ -125,11 +125,11 @@ $searchTerm = $_GET['search'] ?? '';
                       <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>" onclick="me_gusta(<?php echo $row['id_producte']; ?>)">
                         <img src="./img/heart.svg" alt="">
                       </button>
-                      <div class="imagen" style="text-align:center;">
-                              <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                              </a>
+                        <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                          <div class="imagen" style="text-align:center;">
+                              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
                           </div>
+                        </a>
                       <div class="contenido">
                           <div class="row con-icon">
                               <div class="col-10">
@@ -202,15 +202,15 @@ $searchTerm = $_GET['search'] ?? '';
       <div class="swiper-wrapper">
         <?php foreach ($result2 as $marca){ ?>
           <div class="swiper-slide contenedor-marca">
-            <div class="imagen-marca">
-              <?php if (!empty ($marca['foto_marca'])){ ?>
-                <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">
-                  <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
-                </a>
-              <?php } else { ?>
-                <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">No image</a>
-              <?php } ?>
-            </div>
+            <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">
+              <div class="imagen-marca">
+                <?php if (!empty ($marca['foto_marca'])){ ?>
+                    <img src="data:image/png;base64,<?php echo base64_encode($marca['foto_marca']); ?>" alt="Foto Marca">
+                <?php } else { ?>
+                  <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">No image</a>
+                <?php } ?>
+              </div>
+            </a>
             <div class="nombre-marca">
               <span>
                 <a href="./html/productos_marca.php?id=<?php echo $marca['id_marcas']; ?>">

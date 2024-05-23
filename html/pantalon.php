@@ -85,6 +85,7 @@ include "./../functions/db_connection.php";
 <section class="pantalon">
     <div class="margin-top-80-30">
         <div class="container">
+        <h2>Seccion Pantalones</h2>
             <?php if ($result->num_rows > 0) {?>
                 <div class="row">
                 <?php foreach ($result as $row) { ?>
