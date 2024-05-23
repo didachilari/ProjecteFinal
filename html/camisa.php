@@ -69,17 +69,16 @@
   </nav>
 </header>
 <?php
-// Iniciar sesión
+//iniciarem la sessió
 session_start();
 
 include "./../functions/db_connection.php";
-
-// Realizar consulta SQL para obtener productos de la categoría "Camisa"
+//farem un select per a que pugi mostrar el nom del usuari, el nom de la marca de la taula productes i una categoria especifica que es la de 'camisa'
 $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
     FROM producte p 
     INNER JOIN usuario u ON p.id_usuari = u.id_usuari
     INNER JOIN marcas m ON p.id_marcas = m.id_marcas
-    WHERE categorias LIKE '%Camisa%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
+    WHERE categorias LIKE '%Camisa%'";
 $result = $conn->query($sql);
 ?>
 <section class="camisa">
@@ -88,6 +87,7 @@ $result = $conn->query($sql);
           <h2>Seccion Camisa</h2>
             <?php if ($result->num_rows > 0) {?>
                 <div class="row">
+                <!-- amb un foreach recorrerem els productes que siguin de la categoria camisa -->
                 <?php foreach ($result as $row) { ?>
                     <div class="col-lg-3 col-md-4">
                         <div class="contenedor-articulo">
@@ -129,10 +129,11 @@ $result = $conn->query($sql);
                 <?php } ?>
                 </div>
             <?php
+            // si no hi ha cap productes amb aquesta caregoria que mostri això
             } else {
                 echo "0 resultados";
             }
-            // Cerrar la conexión
+            //tancarem la sessió
             $conn->close();
             ?>
         </div>
@@ -153,7 +154,6 @@ $result = $conn->query($sql);
             <div class="col">
               <a href="./../index.php">Proteccion de datos</a>
             </div>
-          </div>
         </div>
         <div class="col derecha">
           <div class="row">
@@ -169,13 +169,13 @@ $result = $conn->query($sql);
       </div>
     </div>
   </div>
-</footer><script>
+</footer>
+<script>
+  //el contador s'inicialitza en valor 0 i se va incrementant el numero cada cop que l'usuari afegeix un producte al carrito
   var contadorCarrito = 0;
-
+  //aquesta funció el que fa es que cada cop que l'usuari li doni al botó doncs el contador del carrito sumi i es mostri el producte afegit al carrito
   function agregarAlCarrito(idProducto) {
-      //incrementa el contador
       contadorCarrito++;
-      //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
         url: './../functions/agregar_al_carrito.php',
@@ -187,13 +187,12 @@ $result = $conn->query($sql);
   }
 </script>
 <script>
+//aquesta funció el que fa es que si el buscador no li pasem ningun parametre doncs que es quedi en aquesta pàgina sino que mostri el resultat de la busqueda feta 
 function validar() {
     var searchInput = document.getElementById('searchInput').value;
     if (searchInput.trim() === "") {
-        // Evita que el formulario se envíe si el campo de búsqueda está vacío
         return false;
     }
-    // Permite que el formulario se envíe si hay texto en el campo de búsqueda
     return true;
     
 }

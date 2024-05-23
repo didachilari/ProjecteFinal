@@ -1,4 +1,5 @@
 <?php
+  //connexió a la bbdd
   $servername = "localhost";
   $username = "root";
   $password = "";
