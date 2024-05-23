@@ -251,9 +251,15 @@ footer .background .general .derecha .row .rrss a {
   align-items: center;
 }
 .contenedor-articulo .contenido .con-icon .c-1 {
-  padding-top: 10px;
   padding-left: 5px;
-  padding-bottom: 10px;
+  padding: 10px 0 10px 5px;
+}
+.contenedor-articulo .contenido .con-icon .c-1 p {
+  margin: 0;
+}
+.contenedor-articulo .contenido .con-icon .c-1 p span {
+  font-size: 23px;
+  font-weight: 600;
 }
 .contenedor-articulo .contenido .con-icon .carro {
   display: flex;

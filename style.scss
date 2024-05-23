@@ -255,9 +255,15 @@ footer{
         .con-icon{
             align-items: center;
             .c-1{
-                padding-top: 10px;
                 padding-left: 5px;
-                padding-bottom: 10px;
+                padding: 10px 0 10px 5px;
+                p{
+                    margin: 0;
+                    span{
+                        font-size: 23px;
+                        font-weight: 600;
+                    }
+                }
             }
             .carro{
                 display: flex;

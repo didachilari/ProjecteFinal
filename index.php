@@ -54,7 +54,7 @@ include './functions/db_connection.php';
       <div class="buscador">
         <form class="d-flex" role="search" action="./html/resultados_busqueda.php" method="GET" onsubmit="return validar()">
           <button class="btn" type="submit"><i class="bi bi-search"></i></button>
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">
+          <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">
         </form>
       </div>
 
@@ -101,9 +101,10 @@ include './functions/db_connection.php';
 $searchTerm = $_GET['search'] ?? '';
 
 // Consulta SQL del buscador que busca por la consulta que realizamos
-        $sql = "SELECT p.*, u.nom_usuari 
+      $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
         FROM producte p 
         INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+        INNER JOIN marcas m ON p.id_marcas = m.id_marcas
         WHERE p.nom LIKE '%$searchTerm%'"; // Filtro por el nombre que contenga el artículo que hemos puesto en el buscador
         $result = $conn->query($sql);
 ?>
@@ -133,10 +134,9 @@ $searchTerm = $_GET['search'] ?? '';
                           <div class="row con-icon">
                               <div class="col-10">
                                   <div class="c-1">
-                                      <span><?php echo $row["nom"]; ?></span>
-                                      <br>
-                                      <span> Precio: <?php echo $row["preu"]; ?>€</span>
-                                      <br>
+                                      <p><?php echo $row["nom"]; ?></p>
+                                      <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                      <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
                                   </div>
                               </div>
                               <div class="col-2 carro">
@@ -253,7 +253,11 @@ $searchTerm = $_GET['search'] ?? '';
     include './functions/randomizer-categoria.php'; 
     include './functions/db_connection.php';
 
-    $query = "SELECT * FROM producte WHERE categorias = '$category'";
+    $query = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
+    FROM producte p 
+    INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+    INNER JOIN marcas m ON p.id_marcas = m.id_marcas
+    WHERE categorias = '$category'";
     $result = mysqli_query($conn, $query);
   ?>
 
@@ -282,10 +286,9 @@ $searchTerm = $_GET['search'] ?? '';
                           <div class="row con-icon">
                               <div class="col-10">
                                   <div class="c-1">
-                                      <span><?php echo $row["nom"]; ?></span>
-                                      <br>
-                                      <span> Precio: <?php echo $row["preu"]; ?>€</span>
-                                      <br>
+                                    <p><?php echo $row["nom"]; ?></p>
+                                    <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                    <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
                                   </div>
                               </div>
                               <div class="col-2 carro">
