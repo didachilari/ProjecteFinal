@@ -419,7 +419,7 @@ function validar() {
     
 }
 </script>
-<script>
+<!-- <script>
 function me_gusta(id_producte) {
     $.ajax({
         url: './functions/me_gusta.php', // Cambia 'ruta_a_tu_php/me_gusta.php' por la ruta correcta
@@ -441,6 +441,6 @@ function me_gusta(id_producte) {
         }
     });
 }
-</script>
+</script> -->
 </body>
 </html>
