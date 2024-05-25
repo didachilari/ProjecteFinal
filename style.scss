@@ -14,6 +14,8 @@ html{
 }
 body{
     margin-top: 150px;
+    position: relative;
+    min-height: 84vh;
 }
 p{
     font-size: 1rem;
@@ -180,9 +182,10 @@ header{
         } 
     }
     
-} 
+}
 footer{
-    
+    position: absolute;
+    width: 100%;
     .background{
         padding: 20px 0;
         background-color: #42240C;
@@ -238,7 +241,7 @@ footer{
     .imagen{
         img{
             width: 100%;
-            object-fit: contain;
+            object-fit: cover;
             aspect-ratio: 1;
         }
     }
@@ -261,7 +264,7 @@ footer{
                 p{
                     margin: 0;
                     span{
-                        font-size: 23px;
+                        font-size: 20px;
                         font-weight: 600;
                     }
                 }
@@ -310,6 +313,11 @@ form{
 }
 .mobile{
     display: none;
+}
+body.categorias{
+    footer{
+        bottom: 0;
+    }
 }
 @media (max-width:992px) {
     .desktop{

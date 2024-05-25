@@ -162,6 +162,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="L">L</option>
                             <option value="XL">XL</option>
                             <option value="XXL">XXL</option>
+                            <?php
+                            for ($i = 32; $i <= 50; $i++) {
+                              echo "<option value='$i'>$i</option>";
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="my-3">

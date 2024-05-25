@@ -81,9 +81,9 @@ include './functions/db_connection.php';
   </nav>
 </header>
 <section class="vender margin-top-80-30">
+<img src="./img/img_index.png" alt="">
 
   <div class="container">
-    <img src="./img/img_index.png" alt="">
     <div class="frase-img">
       <h2>Empieza a vender en solo un click</h2>
     </div>
@@ -99,71 +99,68 @@ include './functions/db_connection.php';
 
 $searchTerm = $_GET['search'] ?? '';
 
-      //farem la consulta
-      $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
-        FROM producte p 
-        INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-        INNER JOIN marcas m ON p.id_marcas = m.id_marcas
-        WHERE p.nom LIKE '%$searchTerm%'";
-        $result = $conn->query($sql);
+// Farem la consulta
+$sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
+  FROM producte p 
+  INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+  INNER JOIN marcas m ON p.id_marcas = m.id_marcas
+  WHERE p.nom LIKE '%$searchTerm%'
+  ORDER BY RAND()
+  LIMIT 8";
+$result = $conn->query($sql);
 ?>
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-        <?php
-        if ($result->num_rows > 0) {
-            foreach ($result as $row) { ?>
-              <div class="swiper-slide">
-                  <div class="contenedor-articulo">
-                      <div class="usuario">
-                          <img src="./img/user-line.svg" alt="">
-                          <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                      </div>
-
-                      <!-- Añadir me_gusta -->
-                      <?php include './functions/db_connection.php'; ?>
-                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>" onclick="me_gusta(<?php echo $row['id_producte']; ?>)">
-                        <img src="./img/heart.svg" alt="">
-                      </button>
-                        <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                          <div class="imagen" style="text-align:center;">
-                              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                          </div>
-                        </a>
-                      <div class="contenido">
-                          <div class="row con-icon">
-                              <div class="col-10">
-                                  <div class="c-1">
-                                      <p><?php echo $row["nom"]; ?></p>
-                                      <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
-                                      <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
-                                      <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
-                                  </div>
-                              </div>
-                              <div class="col-2 carro">
-                                  <div class="carrito">
-                                      <div class="row h-b">
-                                          <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
-                                              <img src="./img/bag.svg" alt="">
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-        <?php }
-        } else {
-            echo "0 resultados";
-        }
-        $conn->close();
-        ?>
+  <?php
+  if ($result->num_rows > 0) {
+      foreach ($result as $row) { ?>
+    <div class="swiper-slide">
+        <div class="contenedor-articulo">
+      <div class="usuario">
+          <img src="./img/user-line.svg" alt="">
+          <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+      </div>
+      <?php include './functions/db_connection.php'; ?>
+      <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+          <div class="imagen" style="text-align:center;">
+        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+          </div>
+      </a>
+      <div class="contenido">
+          <div class="row con-icon">
+        <div class="col-10">
+            <div class="c-1">
+          <p><?php echo $row["nom"]; ?></p>
+          <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+          <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
+          <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
+            </div>
+        </div>
+        <div class="col-2 carro">
+            <div class="carrito">
+          <div class="row h-b">
+              <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+            <img src="./img/bag.svg" alt="">
+              </button>
+          </div>
+            </div>
+        </div>
+          </div>
+      </div>
+        </div>
+    </div>
+  <?php }
+  } else {
+      echo "0 resultados";
+  }
+  $conn->close();
+  ?>
     </div>
     <div class="swiper-button-next">
-      <i class="bi bi-arrow-right"></i>
+  <i class="bi bi-arrow-right"></i>
     </div>
     <div class="swiper-button-prev">
-      <i class="bi bi-arrow-left"></i>
+  <i class="bi bi-arrow-left"></i>
     </div>
     <div class="swiper-pagination"></div>
 </div>
@@ -237,7 +234,7 @@ $searchTerm = $_GET['search'] ?? '';
   <div class="container">
       <div class="row">
         <div class="col-lg-6 contenido">
-          <h2>Encuentra tu estilo</h2>
+          <h2>Descubre tu estilo</h2>
         </div>
           <div class="col-lg-6 video">
             <div class="videos">
@@ -249,68 +246,51 @@ $searchTerm = $_GET['search'] ?? '';
       </div>
     </div>
   </div>
-  <?php 
-    include './functions/randomizer-categoria.php'; 
-    include './functions/db_connection.php';
-
-    $query = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
-    FROM producte p 
-    INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-    INNER JOIN marcas m ON p.id_marcas = m.id_marcas
-    WHERE categorias = '$category'";
-    $result = mysqli_query($conn, $query);
-  ?>
-
+  <section class="categoria">
     <div class="background-semiblack">
       <div class="container">
         <div class="swiper mySwiper3">
           <div class="swiper-wrapper">
-            <?php
-            if ($result->num_rows > 0) {
-              foreach ($result as $row) { ?>
-                <div class="swiper-slide">
-                  <div class="contenedor-articulo">
-                      <div class="usuario">
-                          <img src="./img/user-line.svg" alt="">
-                          <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                      </div>
-                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
-                        <img src="./img/heart.svg" alt="">
-                      </button>
-                      <div class="imagen" style="text-align:center;">
-                              <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                              </a>
-                          </div>
-                      <div class="contenido">
-                          <div class="row con-icon">
-                              <div class="col-10">
-                                  <div class="c-1">
-                                    <p><?php echo $row["nom"]; ?></p>
-                                    <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
-                                    <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
-                                    <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
-                                  </div>
-                              </div>
-                              <div class="col-2 carro">
-                                  <div class="carrito">
-                                      <div class="row h-b">
-                                          <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
-                                              <img src="./img/bag.svg" alt="">
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            <?php }
-            } else {
-              echo "0 resultados";
-            }
-            $conn->close();
-            ?>
+            <div class="swiper-slide">
+              <a href="./html/camiseta.php">
+                <div class="imagen">
+                  <img src="./img/camiseta.webp" alt="categoria camiseta">
+                </div>
+              </a>
+              <a href="./html/camiseta.php">Camiseta</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="./html/pantalon.php">
+                <div class="imagen">
+                  <img src="./img/pantalones.webp" alt="categoria camiseta">
+                </div>
+              </a>
+              <a href="./html/pantalon.php">Pantalon</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="./html/calzado.php">
+                <div class="imagen">
+                  <img src="./img/calzado.webp" alt="">
+                </div>
+              </a>
+              <a href="./html/calzado.php">Calzado</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="./html/chaquetas.php">
+                <div class="imagen">
+                  <img src="./img/chaqueta.webp" alt="">
+                </div>
+              </a>
+              <a href="./html/chaquetas.php">Chaquetas</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="./html/camisa.php">
+                <div class="imagen">
+                  <img src="./img/camisa.webp" alt="">
+                </div>
+              </a>
+              <a href="./html/camisa.php">Camisa</a>
+            </div>
           </div>
           <div class="swiper-button-next">
             <i class="bi bi-arrow-right"></i>
@@ -343,10 +323,10 @@ $searchTerm = $_GET['search'] ?? '';
         </div>
         <div class="col derecha">
           <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4">
               <p>Síguenos por:</p>
             </div>
-            <div class="col-3 rrss">
+            <div class="col-lg-3 rrss">
               <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
               <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
             </div>
@@ -358,9 +338,19 @@ $searchTerm = $_GET['search'] ?? '';
 </footer>
 <script>
 var swiper = new Swiper('.mySwiper', {
-    slidesPerView: 3,
+    slidesPerView: 1,
     spaceBetween: 20,
     loop: true,
+    breakpoints: {
+        770: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 0,
+        },
+      },
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
@@ -374,9 +364,19 @@ var swiper = new Swiper('.mySwiper', {
 </script>
 <script>
 var swiper = new Swiper(".mySwiper2", {
-  slidesPerView: 4,
+  slidesPerView: 1,
     spaceBetween: 50,
     loop: true,
+    breakpoints: {
+        770: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
@@ -385,9 +385,19 @@ var swiper = new Swiper(".mySwiper2", {
 </script>
 <script>
 var swiper = new Swiper(".mySwiper3", {
-  slidesPerView: 4,
-    spaceBetween: 50,
+  slidesPerView: 1,
+    spaceBetween: 10,
     loop: true,
+    breakpoints: {
+        770: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",

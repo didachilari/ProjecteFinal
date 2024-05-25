@@ -14,6 +14,8 @@ html {
 
 body {
   margin-top: 150px;
+  position: relative;
+  min-height: 84vh;
 }
 
 p {
@@ -184,6 +186,10 @@ header nav .container .navbar-toggler:focus {
   box-shadow: none;
 }
 
+footer {
+  position: absolute;
+  width: 100%;
+}
 footer .background {
   padding: 20px 0;
   background-color: #42240C;
@@ -233,8 +239,8 @@ footer .background .general .derecha .row .rrss a {
 }
 .contenedor-articulo .imagen img {
   width: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   aspect-ratio: 1;
 }
 .contenedor-articulo .boton-corazon {
@@ -259,7 +265,7 @@ footer .background .general .derecha .row .rrss a {
   margin: 0;
 }
 .contenedor-articulo .contenido .con-icon .c-1 p span {
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 600;
 }
 .contenedor-articulo .contenido .con-icon .carro {
@@ -306,6 +312,10 @@ form input, form textarea {
 
 .mobile {
   display: none;
+}
+
+body.categorias footer {
+  bottom: 0;
 }
 
 @media (max-width: 992px) {

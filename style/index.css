@@ -32,7 +32,7 @@ body.index section.vender .boton-crear a {
   font-family: "Karla", sans-serif;
 }
 body.index section.populares .mySwiper .swiper-wrapper .swiper-slide {
-  padding: 60px;
+  padding: 50px;
 }
 body.index section.populares .mySwiper .swiper-pagination-bullet {
   padding: 8px;
@@ -50,7 +50,7 @@ body.index section.populares .mySwiper .swiper-button-prev {
   transform: translateX(-10px);
 }
 body.index section.marcas .background-claro {
-  padding: 30px 0;
+  padding: 70px 0;
   background-color: #654632;
 }
 body.index section.marcas .background-claro .contenido h2, body.index section.marcas .background-claro .contenido p {
@@ -76,7 +76,7 @@ body.index section.marcas .background-claro .imagenes .imagen img {
 }
 body.index section.marcas .background-oscuro {
   background-color: #5D412E;
-  padding: 20px 0;
+  padding: 70px 0;
 }
 body.index section.marcas .background-oscuro .mySwiper2 {
   min-height: 100%;
@@ -90,17 +90,29 @@ body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-
   padding: 5px;
   width: 100%;
   height: 100%;
-  min-height: 400px;
+  height: 400px;
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media (max-width: 992px) {
+  body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .imagen-marca {
+    margin: auto;
+    width: 200px;
+    height: 300px;
+  }
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .imagen-marca img {
   width: 100%;
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .nombre-marca {
   color: white;
+}
+@media (max-width: 992px) {
+  body.index section.marcas .background-oscuro .mySwiper2 .swiper-wrapper .swiper-slide .nombre-marca {
+    text-align: center;
+  }
 }
 body.index section.marcas .background-oscuro .mySwiper2 .swiper-button-next {
   transform: translateX(10px);
@@ -124,14 +136,43 @@ body.index section.outfits .articulos .producto {
 }
 body.index section.categorias .background-black {
   background-color: #101010;
-  padding: 30px 0;
+  padding: 70px 0;
   color: white;
 }
 body.index section.categorias .background-black .video video {
   width: 100%;
 }
-body.index section.categorias .contenedor-articulo {
-  background-color: white;
+body.index section.categorias .background-semiblack {
+  background-color: #2d2d2d;
+  padding: 70px 0;
+}
+@media (min-width: 1024px) {
+  body.index section.categorias .background-semiblack .swiper {
+    padding: 0 45px;
+  }
+}
+@media (max-width: 992px) {
+  body.index section.categorias .background-semiblack .swiper .swiper-wrapper .swiper-slide {
+    text-align: center;
+  }
+}
+body.index section.categorias .background-semiblack .swiper .swiper-wrapper .swiper-slide a {
+  text-decoration: none;
+  color: white;
+}
+body.index section.categorias .background-semiblack .swiper .swiper-wrapper .swiper-slide a .imagen {
+  text-align: center;
+}
+body.index section.categorias .background-semiblack .swiper .swiper-wrapper .swiper-slide a .imagen img {
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 200px;
+}
+@media (min-width: 992px) {
+  body.index section.categorias .background-semiblack .swiper .swiper-wrapper .swiper-slide a {
+    padding-left: 10px;
+  }
 }
 
 .boton-corazon img {

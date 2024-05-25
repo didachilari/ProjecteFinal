@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Resultados de Búsqueda</title>
 </head>
-<body>
+<body class="categorias">
 <header>
   <div class="container">
     <div class="cabecera">

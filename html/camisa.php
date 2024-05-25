@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Resultados de Búsqueda</title>
 </head>
-<body>
+<body class="categorias">
 <header>
   <div class="container">
     <div class="cabecera">
@@ -81,64 +81,67 @@ $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
     WHERE categorias LIKE '%Camisa%'";
 $result = $conn->query($sql);
 ?>
-<section class="camisa">
-    <div class="margin-top-80-30">
-        <div class="container">
-          <h2>Seccion Camisa</h2>
-            <?php if ($result->num_rows > 0) {?>
-                <div class="row">
-                <!-- amb un foreach recorrerem els productes que siguin de la categoria camisa -->
-                <?php foreach ($result as $row) { ?>
-                    <div class="col-lg-3 col-md-4">
-                        <div class="contenedor-articulo">
-                            <div class="usuario">
-                                <img src="./../img/user-line.svg" alt="">
-                                <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
-                            </div>
-                            <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
-                                <img src="./../img/heart.svg" alt="">
-                            </button>
-                            <div class="imagen" style="text-align:center;">
-                            <a href="./detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                                    <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                                </a>
-                            </div>
-                            <div class="contenido">
-                                <div class="row con-icon">
-                                    <div class="col-10">
-                                        <div class="c-1">
-                                          <p><?php echo $row["nom"]; ?></p>
-                                          <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
-                                          <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
-                                          <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-2 carro">
-                                        <div class="carrito">
-                                            <div class="row h-b">
-                                                <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
-                                                    <img src="./../img/bag.svg" alt="">
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php } ?>
-                </div>
-            <?php
-            // si no hi ha cap productes amb aquesta caregoria que mostri això
-            } else {
-                echo "0 resultados";
-            }
-            //tancarem la sessió
-            $conn->close();
-            ?>
-        </div>
-    </div>
-</section>
+<main>
+    <section class="camisa">
+      <div class="margin-top-80-30">
+          <div class="container">
+            <h2>Seccion Camisa</h2>
+              <?php if ($result->num_rows > 0) {?>
+                  <div class="row">
+                  <!-- amb un foreach recorrerem els productes que siguin de la categoria camisa -->
+                  <?php foreach ($result as $row) { ?>
+                      <div class="col-lg-3 col-md-4">
+                          <div class="contenedor-articulo">
+                              <div class="usuario">
+                                  <img src="./../img/user-line.svg" alt="">
+                                  <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
+                              </div>
+                              <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>">
+                                  <img src="./../img/heart.svg" alt="">
+                              </button>
+                              <div class="imagen" style="text-align:center;">
+                              <a href="./detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                                      <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                                  </a>
+                              </div>
+                              <div class="contenido">
+                                  <div class="row con-icon">
+                                      <div class="col-10">
+                                          <div class="c-1">
+                                            <p><?php echo $row["nom"]; ?></p>
+                                            <p><span>Marca:</span> <?php echo $row["nom_marca"]; ?></p>
+                                            <p><span>Talla:</span> <?php echo $row["talla"]; ?></p> <!-- Añadido aquí -->
+                                            <p><span>Precio:</span> <?php echo $row["preu"]; ?>€</p>
+                                          </div>
+                                      </div>
+                                      <div class="col-2 carro">
+                                          <div class="carrito">
+                                              <div class="row h-b">
+                                                  <button type="button" class="boton-carro" onclick="agregarAlCarrito(<?php echo $row['id_producte']; ?>)">
+                                                      <img src="./../img/bag.svg" alt="">
+                                                  </button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  <?php } ?>
+                  </div>
+              <?php
+              // si no hi ha cap productes amb aquesta caregoria que mostri això
+              } else {
+                  echo "0 resultados";
+              }
+              //tancarem la sessió
+              $conn->close();
+              ?>
+          </div>
+      </div>
+  </section>
+</main>
+
 <footer>
   <div class="background">
     <div class="container">
@@ -146,21 +149,22 @@ $result = $conn->query($sql);
         <div class="col izquierda">
           <div class="row">
             <div class="col titulo">
-              <a class="navbar-brand" href="./../index.php">Couture<span>App</span></a>
+              <a class="navbar-brand" href="./index.php">Couture<span>App</span></a>
             </div>
             <div class="col">
-              <a href="./../index.php">Avisos legales</a>
+              <a href="./html/avis_legal.html">Avisos legales</a>
             </div>
             <div class="col">
-              <a href="./../index.php">Proteccion de datos</a>
+              <a href="./index.php">Proteccion de datos</a>
             </div>
+          </div>
         </div>
         <div class="col derecha">
           <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4">
               <p>Síguenos por:</p>
             </div>
-            <div class="col-3 rrss">
+            <div class="col-lg-3 rrss">
               <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
               <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
             </div>
