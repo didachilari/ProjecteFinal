@@ -405,11 +405,12 @@ var swiper = new Swiper(".mySwiper3", {
 });
 </script>
 <script>
-  //el contador s'inicialitza en valor 0 i se va incrementant el numero cada cop que l'usuari afegeix un producte al carrito
   var contadorCarrito = 0;
-  //aquesta funció el que fa es que cada cop que l'usuari li doni al botó doncs el contador del carrito sumi i es mostri el producte afegit al carrito
+
   function agregarAlCarrito(idProducto) {
+      //incrementa el contador
       contadorCarrito++;
+      //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
         url: './../functions/agregar_al_carrito.php',
@@ -421,13 +422,15 @@ var swiper = new Swiper(".mySwiper3", {
   }
 </script>
 <script>
-//aquesta funció el que fa es que si el buscador no li pasem ningun parametre doncs que es quedi en aquesta pàgina sino que mostri el resultat de la busqueda feta 
 function validar() {
     var searchInput = document.getElementById('searchInput').value;
     if (searchInput.trim() === "") {
+        // Evita que el formulario se envíe si el campo de búsqueda está vacío
         return false;
     }
+    // Permite que el formulario se envíe si hay texto en el campo de búsqueda
     return true;
+    
 }
 </script>
 <!-- <script>
