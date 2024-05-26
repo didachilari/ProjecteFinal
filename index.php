@@ -99,15 +99,13 @@ include './functions/db_connection.php';
 
 $searchTerm = $_GET['search'] ?? '';
 
-// Farem la consulta
-$sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
-  FROM producte p 
-  INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-  INNER JOIN marcas m ON p.id_marcas = m.id_marcas
-  WHERE p.nom LIKE '%$searchTerm%'
-  ORDER BY RAND()
-  LIMIT 8";
-$result = $conn->query($sql);
+      //farem la consulta
+      $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
+        FROM producte p 
+        INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+        INNER JOIN marcas m ON p.id_marcas = m.id_marcas
+        WHERE p.nom LIKE '%$searchTerm%'";
+        $result = $conn->query($sql);
 ?>
 <div class="swiper mySwiper">
     <div class="swiper-wrapper">
@@ -413,7 +411,7 @@ var swiper = new Swiper(".mySwiper3", {
       //actualitza l'interfaç
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
       $.ajax({
-        url: './functions/agregar_al_carrito.php',
+        url: './../functions/agregar_al_carrito.php',
         type: 'POST',
         data: { id: idProducto },
         success: function(response) {
