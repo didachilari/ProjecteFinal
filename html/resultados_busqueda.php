@@ -45,7 +45,8 @@
       <div class="buscador">
         <form class="d-flex" role="search" action="./resultados_busqueda.php" method="GET" onsubmit="return validar()">
           <button class="btn" type="submit"><i class="bi bi-search"></i></button>
-          <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">        </form>
+          <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">
+        </form>
       </div>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -57,13 +58,13 @@
             <a class="nav-link" href="./camiseta.php">Camiseta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pantalon.php">Pantalon</i></a>
+            <a class="nav-link" href="./pantalon.php">Pantalon</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./chaquetas.php">Chaquetas</i></a>
+            <a class="nav-link" href="./chaquetas.php">Chaquetas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./calzado.php">Calzado</i></a>
+            <a class="nav-link" href="./calzado.php">Calzado</a>
           </li>
         </ul>
       </div>
@@ -79,45 +80,39 @@
     $searchTerm = $_GET['search'] ?? '';
 
     if (!empty($searchTerm)) {
-        //farem una consulta que verifiqui si el que em buscat es un usuari
+        // Consulta para verificar si el término de búsqueda es un usuario
         $sqlUsuario = "SELECT id_usuari FROM usuario WHERE nom_usuari LIKE '%$searchTerm%'";
         $resultUsuario = $conn->query($sqlUsuario);
 
         if ($resultUsuario->num_rows > 0) {
-            //si es un usuari que redirigi a la pàgina mostrar_productos_usuarios.php
-            header("Location:mostrar_productos_usuarios.php?usuario=" . urlencode($searchTerm));
+            // Si es un usuario, redirigir a mostrar_productos_usuarios.php
+            header("Location: mostrar_productos_usuarios.php?usuario=" . urlencode($searchTerm));
             exit();
         }
 
-        //farem una consulta
-          $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
-          FROM producte p 
-          INNER JOIN usuario u ON p.id_usuari = u.id_usuari
-          INNER JOIN marcas m ON p.id_marcas = m.id_marcas
-          WHERE p.nom LIKE '%$searchTerm%' OR u.nom_usuari LIKE '%$searchTerm%'";
+        // Consulta para buscar productos
+        $sql = "SELECT p.*, u.nom_usuari, m.nom AS nom_marca
+                FROM producte p 
+                INNER JOIN usuario u ON p.id_usuari = u.id_usuari
+                INNER JOIN marcas m ON p.id_marcas = m.id_marcas
+                WHERE p.nom LIKE '%$searchTerm%' OR u.nom_usuari LIKE '%$searchTerm%'";
 
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {?>
+        if ($result->num_rows > 0) { ?>
             <div class="row">
-            <?php while ($row = $result->fetch_assoc()) {?>
+            <?php while ($row = $result->fetch_assoc()) { ?>
               <div class="col-lg-3 col-md-4">
                 <div class="contenedor-articulo">
                       <div class="usuario">
                           <img src="./../img/user-line.svg" alt="">
                           <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
                       </div>
-
-                      <!-- Añadir me_gusta -->
-                      <?php include './../functions/db_connection.php'; ?>
-                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>" onclick="me_gusta(<?php echo $row['id_producte']; ?>)">
-                        <img src="./../img/heart.svg" alt="">
-                      </button>
                       <div class="imagen" style="text-align:center;">
-                              <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
-                                  <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
-                              </a>
-                          </div>
+                          <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                              <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
+                          </a>
+                      </div>
                       <div class="contenido">
                           <div class="row con-icon">
                               <div class="col-10">
@@ -187,9 +182,7 @@
   </div>
 </footer>
 <script>
-  //el contador s'inicialitza en valor 0 i se va incrementant el numero cada cop que l'usuari afegeix un producte al carrito
   var contadorCarrito = 0;
-  //aquesta funció el que fa es que cada cop que l'usuari li doni al botó doncs el contador del carrito sumi i es mostri el producte afegit al carrito
   function agregarAlCarrito(idProducto) {
       contadorCarrito++;
       document.getElementById("contadorCarrito").textContent = contadorCarrito;
@@ -201,16 +194,14 @@
         }
       });
   }
-</script>
-<script>
-//aquesta funció el que fa es que si el buscador no li pasem ningun parametre doncs que es quedi en aquesta pàgina sino que mostri el resultat de la busqueda feta 
-function validar() {
-    var searchInput = document.getElementById('searchInput').value;
-    if (searchInput.trim() === "") {
-        return false;
-    }
-    return true;
-}
+
+  function validar() {
+      var searchInput = document.getElementById('searchInput').value;
+      if (searchInput.trim() === "") {
+          return false;
+      }
+      return true;
+  }
 </script>
 </body>
 </html>
