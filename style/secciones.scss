@@ -1,0 +1,11 @@
+body.secciones{
+    @media (max-width: 991px) {
+        .col-lg-3.col-6{
+            min-height: 420px;
+            margin:10px 0;
+            .contenedor-articulo{
+                min-height: 100%;
+            }
+        }
+    }
+}

@@ -8,6 +8,7 @@
 @import url(./style/finalizar-compra.css);
 @import url(./style/detall_producte.css);
 @import url(./style/productos-usuario.css);
+@import url(./style/secciones.css);
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 html {
   position: relative;
