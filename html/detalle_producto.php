@@ -117,7 +117,6 @@ $conn->close();
                                 <p><strong>Marca:</strong> <?php echo $row['nom_marca']; ?></p>
                                 <p><strong>Talla:</strong> <?php echo $row['talla']; ?></p>
                                 <p><strong>Subido por:</strong> <?php echo $row['nom_usuari']; ?></p>
-                                <button class="btn btn-success">Añadir Carrito</button>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body class="productos-usuario">
 <header>
   <div class="container">
     <div class="cabecera">
@@ -99,20 +99,16 @@
             if ($result_products->num_rows > 0) {?>
                 <div class="row">
                 <?php while ($row = $result_products->fetch_assoc()) {?>
-              <div class="col-lg-3 col-md-4">
+              <div class="col-lg-3 col-md-4 productos-usu">
                   <div class="contenedor-articulo">
                       <div class="usuario">
                           <img src="./../img/user-line.svg" alt="">
                           <span class="n-usuario"><?php echo $row["nom_usuari"]; ?></span>
                       </div>
 
-                      <!-- Añadir me_gusta -->
                       <?php include './../functions/db_connection.php'; ?>
-                      <button type="button" class="boton-corazon" data-id="<?php echo $row['id_producte']; ?>" onclick="me_gusta(<?php echo $row['id_producte']; ?>)">
-                          <img src="./../img/heart.svg" alt="">
-                      </button>
                       <div class="imagen" style="text-align:center;">
-                          <a href="./html/detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
+                          <a href="./detalle_producto.php?id=<?php echo $row['id_producte']; ?>">
                               <img src="data:image/jpeg;base64,<?php echo base64_encode($row['foto']); ?>" alt="">
                           </a>
                       </div>
