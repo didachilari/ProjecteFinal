@@ -64,7 +64,7 @@ try {
               <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+              <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
         </div>
@@ -135,7 +135,7 @@ try {
             <div class="col-4">
               <p>Síguenos por:</p>
             </div>
-            <div class="col-3 rrss">
+            <div class="col-lg-3 rrss">
               <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
               <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
             </div>

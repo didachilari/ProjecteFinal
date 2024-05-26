@@ -25,7 +25,7 @@
               <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+              <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
         </div>
@@ -49,7 +49,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="./camisa.php">Camisa</a>
+            <a class="nav-link" aria-current="page" href="">Camisa</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./camiseta.php">Camiseta</a>
@@ -90,7 +90,7 @@ $result = $conn->query($sql);
                   <div class="row">
                   <!-- amb un foreach recorrerem els productes que siguin de la categoria camisa -->
                   <?php foreach ($result as $row) { ?>
-                      <div class="col-lg-3 col-md-4">
+                      <div class="col-lg-3 col-6">
                           <div class="contenedor-articulo">
                               <div class="usuario">
                                   <img src="./../img/user-line.svg" alt="">

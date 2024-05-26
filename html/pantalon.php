@@ -25,7 +25,7 @@
               <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+              <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
         </div>
@@ -54,7 +54,7 @@
             <a class="nav-link" href="./camiseta.php">Camiseta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./pantalon.php">Pantalon</a>
+            <a class="nav-link" href="">Pantalon</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./chaquetas.php">Chaquetas</a>
@@ -87,7 +87,7 @@ $result = $conn->query($sql);
                 <div class="row">
                 <!-- amb un foreach recorrerem els productes que siguin de la categoria pantalon -->
                 <?php foreach ($result as $row) { ?>
-                    <div class="col-lg-3 col-md-4">
+                    <div class="col-lg-3 col-6">
                         <div class="contenedor-articulo">
                             <div class="usuario">
                                 <img src="./../img/user-line.svg" alt="">
@@ -156,10 +156,10 @@ $result = $conn->query($sql);
         </div>
         <div class="col derecha">
           <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4">
               <p>Síguenos por:</p>
             </div>
-            <div class="col-3 rrss">
+            <div class="col-lg-3 rrss">
               <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
               <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
             </div>

@@ -50,7 +50,7 @@ $conn->close();
                   <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="./login.php"><i class="bi bi-house-door"></i></a>
+                  <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
                 </li>
               </ul>
             </div>

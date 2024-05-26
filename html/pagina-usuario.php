@@ -69,10 +69,7 @@ $conn->close();
                   <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i></a>
+                  <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
                 </li>
               </ul>
             </div>
@@ -107,6 +104,9 @@ $conn->close();
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="chaquetas.php">Chaquetas</i></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./calzado.php">Calzado</a>
               </li>
             </ul>
           </div>
@@ -179,10 +179,10 @@ $conn->close();
             </div>
             <div class="col derecha">
               <div class="row">
-                <div class="col-4">
+                <div class="">
                   <p>Síguenos por:</p>
                 </div>
-                <div class="col-3 rrss">
+                <div class="col-lg-3 rrss">
                   <a href="www.instagram.com"><i class="bi bi-instagram"></i></a>
                   <a href="www.facebook.com"><i class="bi bi-facebook"></i></a>
                 </div>

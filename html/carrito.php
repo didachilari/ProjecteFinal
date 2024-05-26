@@ -55,13 +55,13 @@ if (isset($_POST['finalize'])) {
             <div class="col">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="./html/pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
+                  <a class="nav-link active" aria-current="page" href="./pagina-usuario.php"><i class="bi bi-person-circle"></i></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-link-cart" href="./html/carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
+                  <a class="nav-link nav-link-cart" href=""><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+                    <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
                 </li>
               </ul>
             </div>
@@ -196,7 +196,7 @@ if (isset($_POST['finalize'])) {
                         <div class="col-4">
                             <p>Síguenos por:</p>
                         </div>
-                        <div class="col-3 rrss">
+                        <div class="col-lg-3 rrss">
                             <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
                             <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
                         </div>

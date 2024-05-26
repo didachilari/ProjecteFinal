@@ -36,7 +36,7 @@ include './functions/db_connection.php';
               <a class="nav-link nav-link-cart" href="./html/carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./index.php"><i class="bi bi-house-door"></i></a>
+              <a class="nav-link" href="./html/logout.php"><i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
         </div>

@@ -46,7 +46,7 @@ h2{
     margin-bottom: 80px;
     @media screen and (max-width: 992px){
         margin-top: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 190px;
     }
 }
 .background-semiblack{
@@ -194,7 +194,10 @@ header{
     
 }
 footer{
-    position: absolute;
+    @media (min-width:992px) {
+        position: absolute;
+        
+    }
     width: 100%;
     .background{
         padding: 20px 0;

@@ -27,7 +27,7 @@
               <a class="nav-link nav-link-cart" href="./carrito.php"><i class="bi bi-cart"></i><span id="contadorCarrito" class="contador-carrito">0</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./../index.php"><i class="bi bi-house-door"></i></a>
+              <a class="nav-link" href="./logout.php"><i class="bi bi-box-arrow-right"></i></a>
             </li>
           </ul>
         </div>
@@ -43,7 +43,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="buscador">
-        <form class="d-flex" role="search" action="resultados_busqueda.php" method="GET" onsubmit="return validar()">
+        <form class="d-flex" role="search" action="./resultados_busqueda.php" method="GET" onsubmit="return validar()">
           <button class="btn" type="submit"><i class="bi bi-search"></i></button>
           <input class="form-control" type="search" placeholder="Buscar" aria-label="Search" name="search" id="searchInput">        </form>
       </div>
@@ -166,17 +166,17 @@
             <div class="col">
               <a href="./../index.php">Avisos legales</a>
             </div>
-            <div class="col">
+            <div class="col-lg-">
               <a href="./../index.php">Proteccion de datos</a>
             </div>
           </div>
         </div>
         <div class="col derecha">
           <div class="row">
-            <div class="col-4">
+            <div class="col-lg-4">
               <p>Síguenos por:</p>
             </div>
-            <div class="col-3 rrss">
+            <div class="col-lg-3 rrss">
               <a href="https://www.instagram.com"><i class="bi bi-instagram"></i></a>
               <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
             </div>
