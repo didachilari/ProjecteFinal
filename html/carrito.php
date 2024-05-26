@@ -132,7 +132,8 @@ if (isset($_POST['finalize'])) {
                                         </div>
                                         <div class="col-6">
                                             <h3><?php echo $row['nom']; ?></h3>
-                                            <p><?php echo $row['preu'] ?>€</p>
+                                            <p>Precio: <?php echo $row['preu'] ?>€</p>
+                                            <p>Talla: <?php echo $row['talla']?></p>
                                             <form action='' method='post'>
                                                 <input type='hidden' name='id_producte' value="<?php echo $row['id_producte']; ?>">
                                                 <button type='submit' name='remove' class='btn'><i class="bi bi-trash-fill"></i></button>

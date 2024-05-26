@@ -6,6 +6,7 @@
 @import url(./style/pagina_usuario.css);
 @import url(./style/carrito.css);
 @import url(./style/finalizar-compra.css);
+@import url(./style/detall_producte.css);
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 html{
@@ -18,7 +19,7 @@ body{
     min-height: 84vh;
 }
 p{
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-family: "Karla", sans-serif;
 }
 
@@ -30,6 +31,15 @@ h1{
 h2{
     font-size: 2rem;
     font-family: "Inder", sans-serif;
+}
+@media (max-width:992px) {
+    h1{
+        font-size: 2.25rem;
+    }
+    h2{
+        font-size: 1.75rem;
+    }
+    
 }
 .margin-top-80-30{
     margin-top: 80px;
@@ -216,12 +226,14 @@ footer{
                         margin-bottom: 10px;
                     }
                     .rrss{
-                        text-align: end;
                         a{
                             padding: 5px;
                             color: #ffffff;
                             margin: 0 5px;
                             font-size: 30px;
+                        }
+                        @media (min-width:992px) {
+                            text-align: end;
                         }
                     }
                 }
