@@ -1,3 +1,9 @@
+body.secciones .margin-top-80-30 .container {
+  padding-bottom: 180px;
+}
+body.secciones .margin-top-80-30 .row .col-lg-3.col-6 {
+  margin: 10px 0;
+}
 @media (max-width: 991px) {
   body.secciones .col-lg-3.col-6 {
     min-height: 420px;

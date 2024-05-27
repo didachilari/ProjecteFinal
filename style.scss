@@ -51,6 +51,11 @@ h2{
         margin-bottom: 190px;
     }
 }
+body.secciones{
+    footer{
+        bottom: 0;
+    }
+}
 .background-semiblack{
     background-color: var(--semiblack-color);
     padding: 20px 0;
@@ -229,6 +234,9 @@ footer{
                         font-size: 26px;
                         color: #E6E6E6;
                         margin-bottom: 10px;
+                        @media (min-width:992px) {
+                            text-align: end;
+                        }
                     }
                     .rrss{
                         a{

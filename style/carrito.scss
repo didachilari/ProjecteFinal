@@ -1,6 +1,7 @@
 body.carrito{
     .compra{
         margin-bottom: 50px;
+        padding-bottom: 190px;
         .producto{
             border-bottom: 1px solid #b1b1b1;
             padding: 10px 0;
@@ -56,5 +57,8 @@ body.carrito{
                 }
             }
         }
+    }
+    footer{
+        bottom: 0;
     }
 }

@@ -1,5 +1,6 @@
 body.carrito .compra {
   margin-bottom: 50px;
+  padding-bottom: 190px;
 }
 body.carrito .compra .producto {
   border-bottom: 1px solid #b1b1b1;
@@ -48,4 +49,7 @@ body.carrito .compra .pago .recuadro form .btn {
 }
 body.carrito .compra .pago .recuadro form .btn:hover {
   background-color: #65330c;
+}
+body.carrito footer {
+  bottom: 0;
 }/*# sourceMappingURL=carrito.css.map */

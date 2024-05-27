@@ -55,6 +55,10 @@ h2 {
   }
 }
 
+body.secciones footer {
+  bottom: 0;
+}
+
 .background-semiblack {
   background-color: var(--semiblack-color);
   padding: 20px 0;
@@ -231,6 +235,11 @@ footer .background .general .derecha .row p {
   font-size: 26px;
   color: #E6E6E6;
   margin-bottom: 10px;
+}
+@media (min-width: 992px) {
+  footer .background .general .derecha .row p {
+    text-align: end;
+  }
 }
 footer .background .general .derecha .row .rrss a {
   padding: 5px;
